@@ -444,6 +444,16 @@ main{position:relative;z-index:2}
    the measure — not a <br>, which the tokeniser would drop. 19ch lands the
    break after "work," and keeps the accent phrase whole on line two. */
 .h-lg-2{max-width:19ch}
+/* Small phones: the display headings must shrink a touch below the 32px floor
+   so each holds exactly TWO lines. Their long second line ("Moments of
+   growth.", "meaningful impact.", "the climb") is ~324px wide at 32px and
+   spills to a third line on a ~320–350px-wide phone. Scaling with the viewport
+   keeps that line whole; it returns to the full 32px by ~400px wide, so tablet
+   and desktop (already two lines) are untouched. Also covers zoomed-in
+   desktops, which narrow the effective viewport the same way. */
+@media(max-width:600px){
+  .h-lg{font-size:clamp(26px,8vw,32px)}
+}
 .h-sm{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
 .body{color:var(--muted);font-size:16px;line-height:1.7}
 .body strong{color:var(--ink);font-weight:500}
