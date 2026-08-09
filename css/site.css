@@ -910,11 +910,13 @@ body[data-chapter="night"] .panel-links a.store-cta{background:var(--paper);colo
 .tree-wrap{position:relative;margin-top:clamp(40px,7vh,90px);display:grid;grid-template-columns:1fr;gap:0}
 .tree{position:absolute;left:50%;top:0;transform:translateX(-50%);height:100%;width:min(400px,52vw);
   color:var(--forest);opacity:.85;pointer-events:none}
-/* non-scaling-stroke keeps the trunk/branches at their true 2–3px even when the
-   whole tree is scaled down to 120px wide on mobile (a 400-unit viewBox would
-   otherwise render the stroke at ~0.9px — a spine too faint to connect the
-   cards). */
-.tree path{stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke}
+/* The draw uses stroke-dasharray:1 with pathLength="1" so one dash spans the
+   whole path and stroke-dashoffset (1→0) reveals it. NOTE: do NOT add
+   vector-effect:non-scaling-stroke here — it breaks that pathLength dash
+   normalization (the dash reverts to raw pixels and the line fragments into
+   disconnected segments). Mobile stroke thickness is handled with stroke-width
+   in the responsive block instead. */
+.tree path{stroke-dasharray:1;stroke-dashoffset:1}
 .tree-leaves circle{fill:var(--forest-2);opacity:0}
 .years{list-style:none;display:flex;flex-direction:column;gap:clamp(40px,8vh,110px);position:relative;z-index:2}
 /* Same card size as before — they are only moved inward. The gutter is set
@@ -935,6 +937,11 @@ body[data-chapter="night"] .panel-links a.store-cta{background:var(--paper);colo
    whole timeline drops to one column instead — thin tree down the left, cards
    full width beside it. */
 @media(max-width:999px){.tree{left:14px;transform:none;width:120px;opacity:.55}
+  /* The tree is scaled to 120px (viewBox 400 → ~0.3), which would render the
+     2–3px strokes at ~0.9px. Fatten them in user units so they stay a crisp,
+     connecting ~3px — done with stroke-width, NOT non-scaling-stroke (which
+     breaks the pathLength dash draw). */
+  .tree path{stroke-width:10}
   .year,.year[data-side="r"]{width:100%;margin-left:0;margin-right:0}}
 
 /* ═══════════ COUNTERS ═══════════ */
