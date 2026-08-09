@@ -1073,6 +1073,11 @@ body[data-chapter="night"] .contact .ch-label i{color:rgba(238,244,240,.45)}
   .panel{position:static;transform:none!important;margin-bottom:48px}
   .pcard{height:auto!important;opacity:1!important;transform:none!important}
   .works-rail{display:none}
+  /* Frozen mid-flight these drifting critters pile up as static marks in a
+     corner — a bird carries no left/transform of its own, so with the glide
+     animation gone it snaps to the left edge (a stack of debris in the sky).
+     When motion is reduced they simply don't render. */
+  .birds,.leaves,.flies{display:none}
   body{cursor:auto!important}
   .cursor,.cursor-dot{display:none}
 }

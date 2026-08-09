@@ -700,18 +700,37 @@
     });
 
     /* ── chapter switching: each section owns a mood ──
-       The handover points must not overlap. With start/end both at the
-       viewport midpoint, a section is active exactly while it covers the
-       middle of the screen, so the next one takes over at the precise frame
-       this one lets go. (At 60%/40% two neighbours were briefly active at
-       once and the later trigger won — which is how night arrived while the
-       pinned process section was still on screen.) */
-    $$('[data-ch]').forEach((sec) => {
-      ScrollTrigger.create({
-        trigger: sec, start: 'top 50%', end: 'bottom 50%',
-        onToggle: (self) => { if (self.isActive) document.body.dataset.chapter = sec.dataset.ch; }
-      });
-    });
+       The active chapter is the last section whose top has crossed the middle
+       of the screen — identical handover point to the old "start top 50%",
+       where a section takes over exactly as it covers the centre.
+
+       This is resolved straight from live scroll position on every scroll
+       (plus scrollend and resize), NOT from ScrollTrigger enter/leave
+       callbacks. Those are edge-triggered, and a fast momentum flick back to
+       the top on a phone — which Lenis leaves as native, unsmoothed touch
+       scroll — outran them: the toggles were skipped and the night theme stuck
+       on the sections above. Reading geometry every frame self-corrects, and
+       also survives lazy images resizing the page underneath. */
+    const chapterSections = $$('[data-ch]');
+    let lastChapter = '';
+    const resolveChapter = () => {
+      const mid = innerHeight * 0.5;
+      let ch = chapterSections[0].dataset.ch;
+      for (const sec of chapterSections) {
+        if (sec.getBoundingClientRect().top <= mid) ch = sec.dataset.ch;
+      }
+      if (ch !== lastChapter) { lastChapter = ch; document.body.dataset.chapter = ch; }
+    };
+    let chapterQueued = false;
+    const onChapterScroll = () => {
+      if (chapterQueued) return;
+      chapterQueued = true;
+      requestAnimationFrame(() => { chapterQueued = false; resolveChapter(); });
+    };
+    addEventListener('scroll', onChapterScroll, { passive: true });   // fires during native/touch scroll too
+    addEventListener('scrollend', resolveChapter, { passive: true }); // final settle where supported
+    addEventListener('resize', resolveChapter);
+    resolveChapter();
 
     /* ── generic line + char reveals ── */
     splits.forEach((inners, el) => {
@@ -920,8 +939,21 @@
       frame.setAttribute('loading', 'lazy');   // attribute, not property — reflects everywhere
       frame.setAttribute('allowfullscreen', '');
       frame.setAttribute('allow', 'fullscreen');
-      // if the embed is blocked or slow, the poster stays until it paints
-      frame.addEventListener('load', () => box.classList.add('is-ready'), { once: true });
+      // Reveal the live prototype only when the visitor actually engages with
+      // the card — not on a timer. Figma's embed posts no "ready" message with
+      // these share params, and the iframe is cross-origin, so the exact paint
+      // moment can't be detected; fading the cover on a blind timer risked
+      // showing a half-loaded white screen. Instead the cover screenshot holds
+      // while the embed loads quietly underneath (it is mounted just before the
+      // card scrolls into view), and the live prototype fades in on first
+      // hover/tap — by which point it has loaded. If the visitor never engages,
+      // the cover simply stays; it is never blank.
+      const revealEvents = ['pointerenter', 'click', 'touchstart'];
+      const reveal = () => {
+        box.classList.add('is-ready');
+        revealEvents.forEach((ev) => box.removeEventListener(ev, reveal));
+      };
+      revealEvents.forEach((ev) => box.addEventListener(ev, reveal, { passive: true }));
 
       // The box becomes the device body; the screen is a separate window
       // inside it. Two elements are needed because the oversized iframe has
