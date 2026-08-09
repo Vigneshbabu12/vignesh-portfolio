@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Add your domain once it is live, e.g.
+# Sitemap: https://vigneshb.com/sitemap.xml

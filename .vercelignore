@@ -1,0 +1,33 @@
+# Files that must never reach the CDN.
+#
+# Nothing here is referenced by index.html, site.css or site.js — verified by
+# scanning every src/href/url() in the project. Together they are 5.1 MB of the
+# 8.2 MB folder, so excluding them roughly halves the deploy.
+#
+# If you ever wire one of these back into a page, delete its line here first or
+# it will 404 in production while working perfectly on your machine.
+
+# macOS noise
+.DS_Store
+**/.DS_Store
+
+# Superseded project artwork (kept locally in case you want it back)
+assets/bugtracker-cover.png
+assets/kanakku-dashboard.png
+assets/ring-sizer.png
+
+# Radius screenshots — the card shows the live Figma prototype instead
+assets/radius-cover.png
+assets/radius-live-room.png
+assets/radius-notifications.png
+assets/radius-profile.png
+assets/radius-referrals.png
+assets/radius-room-type.png
+assets/radius-rooms.png
+
+# Font source. The browser only ever loads the woff2/woff pair.
+assets/fonts/SharpGrotesk-Book20.otf
+assets/fonts/README.txt
+
+# Notes for you, not for visitors
+README.md

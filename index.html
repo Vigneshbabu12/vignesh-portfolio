@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vignesh B — Product & Visual Designer</title>
+<meta name="description" content="Product and visual designer crafting delightful digital experiences. Six years designing SaaS products, design systems and AI experiences.">
+<meta name="theme-color" content="#fdfbf7">
+<link rel="canonical" href="/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<!-- Link previews (LinkedIn, WhatsApp, Slack, X). Paths are relative so they
+     work on any domain; once the real domain is known, swapping og:url and
+     og:image to absolute URLs makes the stricter scrapers happy too. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vignesh B — Product &amp; Visual Designer">
+<meta property="og:description" content="Product and visual designer crafting delightful digital experiences. Six years designing SaaS products, design systems and AI experiences.">
+<meta property="og:image" content="assets/vignesh-portrait.png">
+<meta property="og:url" content="/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vignesh B — Product &amp; Visual Designer">
+<meta name="twitter:description" content="Product and visual designer crafting delightful digital experiences.">
+<meta name="twitter:image" content="assets/vignesh-portrait.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Archivo is requested with its width axis (wdth 62–125) so the fallback can
+     be widened to sit close to Sharp Grotesk's wider cuts. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..700;1,62..125,300..700&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body class="is-loading" data-chapter="morning">
+
+<!-- ══════════════ LOADER ══════════════ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <svg class="mark" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+      <!-- a leaf drawn on, then a sprouting stem -->
+      <path class="mark-leaf" pathLength="1" d="M40 70 C40 40 52 16 74 8 C70 34 58 60 40 70 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+      <path class="mark-leaf2" pathLength="1" d="M40 70 C40 40 28 16 6 8 C10 34 22 60 40 70 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+      <path class="mark-stem" pathLength="1" d="M40 78 L40 44" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <div class="loader-meta">
+      <span class="mono">Vignesh B</span>
+      <span class="mono loader-pct"><i id="pct">0</i>%</span>
+    </div>
+    <div class="loader-bar"><i id="bar"></i></div>
+    <p class="loader-word mono" id="loaderWord">Gathering morning light</p>
+  </div>
+</div>
+
+<!-- ══════════════ CUSTOM CURSOR ══════════════ -->
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<!-- ══════════════ ATMOSPHERE (fixed, behind everything) ══════════════ -->
+<div id="atmos" aria-hidden="true">
+  <div class="sky sky-morning"></div>
+  <div class="sky sky-forest"></div>
+  <div class="sky sky-mountain"></div>
+  <div class="sky sky-river"></div>
+  <div class="sky sky-sunset"></div>
+  <div class="sky sky-night"></div>
+
+  <div class="sun" id="sun"></div>
+  <div class="moon" id="moon"></div>
+  <div class="stars" id="stars"></div>
+
+  <!-- sunbeams through the canopy -->
+  <svg class="rays" id="rays" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="rayGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f6d99a" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#f6d99a" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g fill="url(#rayGrad)">
+      <polygon points="360,0 300,900 420,900"/>
+      <polygon points="620,0 560,900 640,900"/>
+      <polygon points="900,0 880,900 1000,900"/>
+      <polygon points="1240,0 1200,900 1320,900"/>
+    </g>
+  </svg>
+
+  <div class="clouds" id="clouds"></div>
+  <div class="ridge" id="ridge">
+    <svg viewBox="0 0 1600 420" preserveAspectRatio="none">
+      <path class="r3" d="M0 300 L180 190 L340 265 L520 150 L700 250 L880 165 L1060 255 L1240 175 L1420 260 L1600 195 L1600 420 L0 420Z"/>
+      <path class="r2" d="M0 340 L200 250 L380 320 L560 225 L760 315 L940 240 L1140 320 L1340 250 L1600 330 L1600 420 L0 420Z"/>
+      <path class="r1" d="M0 380 L240 320 L460 372 L680 310 L920 375 L1160 320 L1400 378 L1600 340 L1600 420 L0 420Z"/>
+    </svg>
+  </div>
+  <div class="water" id="water">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="birds" id="birds"></div>
+  <div class="leaves" id="leaves"></div>
+  <div class="flies" id="flies"></div>
+  <div class="grain"></div>
+</div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header class="nav" id="nav">
+  <a href="#hero" class="brand" data-cursor="Top">
+    <svg viewBox="0 0 80 80" fill="none" aria-hidden="true" class="brand-mark">
+      <path d="M40 70 C40 44 52 22 74 14 C70 38 58 60 40 70 Z" fill="currentColor" opacity=".9"/>
+      <path d="M40 70 C40 44 28 22 6 14 C10 38 22 60 40 70 Z" fill="currentColor" opacity=".55"/>
+    </svg>
+    <span>Vignesh B</span>
+  </a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#about" data-cursor="Read">About</a>
+    <a href="#works" data-cursor="View">Work</a>
+    <a href="#journey" data-cursor="Walk">Journey</a>
+    <!-- `download` asks the browser to save rather than open the PDF, and
+         names the file sensibly on the way out -->
+    <a href="assets/Vignesh-B-Resume.pdf" download="Vignesh-B-Resume.pdf"
+       data-cursor="Download">Resume</a>
+    <a href="#contact" class="nav-cta" data-cursor="Say hi">Contact</a>
+  </nav>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<!-- chapter rail -->
+<aside class="rail" aria-hidden="true">
+  <span class="rail-ch mono" id="railCh">Morning</span>
+  <span class="rail-line"><i id="railFill"></i></span>
+  <span class="rail-pct mono" id="railPct">00</span>
+</aside>
+
+<main id="main">
+
+  <!-- ══════════════ HERO — MORNING ══════════════ -->
+  <section id="hero" class="hero" data-ch="morning">
+
+    <div class="hero-inner">
+      <p class="hero-hi split-up mono">Hi, I'm</p>
+      <h1 class="hero-name" data-split="chars" data-cursor="Hello">Vignesh</h1>
+      <div class="hero-roles">
+        <span class="split-up">System Thinker</span>
+        <em class="split-up" aria-hidden="true">/</em>
+        <span class="split-up">Product &amp; Visual Designer</span>
+        <em class="split-up" aria-hidden="true">/</em>
+        <span class="split-up">Agentic AI</span>
+      </div>
+      <p class="hero-sub split-up">Crafting delightful digital experiences.</p>
+
+      <!-- Previously designed for — swap each .logo span for an <img> when the
+           real marks arrive; the row styling stays identical. -->
+      <div class="prev">
+        <p class="prev-label split-up">Previously designed for</p>
+        <ul class="prev-logos">
+          <li class="split-up">
+            <img class="logo-img" src="assets/logos/zoho.svg" alt="Zoho" width="143" height="63"
+                 data-name="Zoho" style="--logo-h:44px">
+          </li>
+          <li class="split-up">
+            <img class="logo-img" src="assets/logos/openweaver.png" alt="OpenWeaver" width="466" height="82"
+                 data-name="OpenWeaver" style="--logo-h:29px">
+          </li>
+          <li class="split-up">
+            <img class="logo-img" src="assets/logos/fidisys.svg" alt="fidisys" width="98" height="32"
+                 data-name="Fidisys" style="--logo-h:34px">
+          </li>
+        </ul>
+      </div>
+      <a href="#about" class="btn magnetic" data-cursor="Begin">
+        <span class="btn-fill"></span>
+        <span class="btn-text">Explore My Journey</span>
+        <span class="btn-arrow" aria-hidden="true">↓</span>
+      </a>
+    </div>
+    <div class="hero-foot">
+      <span class="mono">Chapter 01 — Morning</span>
+      <span class="mono hero-scroll">Scroll <i></i></span>
+      <span class="mono">India · <span id="clock">--:--</span></span>
+    </div>
+  </section>
+
+  <!-- ══════════════ ABOUT — FOREST ══════════════ -->
+  <section id="about" class="blk" data-ch="forest">
+    <div class="wrap">
+      <p class="ch-label mono"><i>02</i> Into the forest</p>
+      <div class="story">
+        <p class="story-line" data-split="words">I transform complex problems into <em>elegant</em> digital experiences.</p>
+        <p class="story-line" data-split="words">For over 6 years, I've designed enterprise products that simplify the way thousands of people work.</p>
+        <p class="story-line" data-split="words">Today, I build scalable design systems, AI-powered experiences, and intelligent workflows that make great products feel <em>effortless.</em></p>
+      </div>
+      <ul class="counters">
+        <li class="rv"><b><span class="count" data-to="18">0</span><span class="cu">K+</span></b><i class="mono">LinkedIn followers</i></li>
+        <li class="rv"><b><span class="count" data-to="40">0</span><span class="cu">+</span></b><i class="mono">Projects shipped</i></li>
+        <li class="rv"><b><span class="count" data-to="6">0</span><span class="cu">+</span></b><i class="mono">Years experience</i></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ SKILLS — MOUNTAINS ══════════════ -->
+  <section id="skills" class="blk" data-ch="mountain">
+    <div class="wrap">
+      <p class="ch-label mono"><i>03</i> Higher ground</p>
+      <h2 class="h-lg" data-split="lines">The craft behind the <em>climb</em></h2>
+      <div class="cards" id="cards">
+        <article class="card" data-tilt><span class="card-n mono">01</span><h4>UI Design</h4><p>Interface systems that scale.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">02</span><h4>UX Research</h4><p>Understanding people before pixels.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">03</span><h4>Design Systems</h4><p>Reusable components that grow.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">04</span><h4>Motion</h4><p>Movement that adds meaning.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">05</span><h4>AI Experiences</h4><p>Designing intuitive AI interactions.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">06</span><h4>Figma</h4><p>From concepts to polished products.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">07</span><h4>AI Agents</h4><p>Creating assistants that solve real problems.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">08</span><h4>Visual Design</h4><p>Crafting clear, beautiful interfaces.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">09</span><h4>Accessibility</h4><p>Inclusive experiences for everyone.</p></article>
+        <article class="card" data-tilt><span class="card-n mono">10</span><h4>Interaction Design</h4><p>Every detail feels intentional.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ WORKS — RIVER ══════════════ -->
+  <section id="works" class="works" data-ch="river">
+    <div class="wrap works-head">
+      <p class="ch-label mono"><i>04</i> Downstream — selected work</p>
+      <h2 class="h-lg h-lg-2" data-split="lines">Selected work, meaningful <em>impact.</em></h2>
+    </div>
+
+    <!-- step rail — tracks which card is on top of the stack -->
+    <nav class="works-rail" id="worksRail" aria-label="Projects">
+      <ol>
+        <li><a href="#w1" data-rail="1" data-cursor="Kanakku"><span>1</span></a></li>
+        <li><a href="#w2" data-rail="2" data-cursor="Ring Sizer"><span>2</span></a></li>
+        <li><a href="#w3" data-rail="3" data-cursor="Radius"><span>3</span></a></li>
+        <li><a href="#w4" data-rail="4" data-cursor="Sub App"><span>4</span></a></li>
+        <li><a href="#w5" data-rail="5" data-cursor="Bug"><span>5</span></a></li>
+      </ol>
+    </nav>
+
+    <!-- project 01 -->
+    <article class="panel" id="w1" data-panel>
+        <div class="wrap">
+         <div class="pcard">
+          <div class="pcard-body panel-copy">
+            <span class="panel-n mono">Project 01
+              <b class="live" data-cursor="Visit"><i aria-hidden="true"></i>Shipped — built with Figma Make AI</b>
+            </span>
+            <h3 class="panel-title" data-split="lines">Kanakku AI</h3>
+            <p class="panel-lead">A FinTech platform taken from idea to launch — brand, product, dashboard and marketing site.</p>
+            <dl class="panel-meta">
+              <div><dt class="mono">Role</dt><dd>End-to-end Product Design</dd></div>
+              <div><dt class="mono">Year</dt><dd>2025</dd></div>
+              <div><dt class="mono">Stack</dt><dd>Figma Make AI · Supabase · Web</dd></div>
+            </dl>
+            <div class="panel-pss">
+              <p><span class="mono">Problem</span> Institutions chased fees over WhatsApp and spreadsheets.</p>
+              <p><span class="mono">Solution</span> One ledger with automated reconciliation and clear reminders.</p>
+              <p><span class="mono">Impact</span> Live product with a full brand and design system.</p>
+            </div>
+            <p class="panel-note"><span class="mono">Built with</span> Figma Make AI end to end — prompt-driven development, with Supabase wired in to bring the product to life.</p>
+            <div class="panel-links">
+              <a href="https://www.kanakkuai.com/" target="_blank" rel="noopener" data-cursor="Visit">Website ↗</a>
+              <a href="https://kanakkuaifintech.figma.site/" target="_blank" rel="noopener" data-cursor="Open">Prototype ↗</a>
+            </div>
+          </div>
+          <figure class="pcard-media">
+            <div class="shot-frame">
+              <img src="assets/kanakku-cover.png" alt="Kanakku AI marketing site and collections dashboard"
+                   width="1436" height="1050" loading="lazy" decoding="async" data-slot="kanakku-cover">
+            </div>
+
+          </figure>
+         </div>
+        </div>
+    </article>
+
+    <!-- project 02 -->
+    <article class="panel" id="w2" data-panel data-flip>
+        <div class="wrap">
+         <div class="pcard">
+          <div class="pcard-body panel-copy">
+            <span class="panel-n mono">Project 02
+              <b class="live" data-cursor="Install"><i aria-hidden="true"></i>Shipped — live on Google Play</b>
+            </span>
+            <h3 class="panel-title" data-split="lines">Ring Sizer</h3>
+            <p class="panel-lead">A single screen that removes the biggest reason people don't buy rings online — now shipped as <em>JustFitIt</em>.</p>
+            <dl class="panel-meta">
+              <div><dt class="mono">Role</dt><dd>UX Case Study → Live app</dd></div>
+              <div><dt class="mono">Year</dt><dd>2024 — 2025</dd></div>
+              <div><dt class="mono">Stack</dt><dd>Android · Interaction</dd></div>
+            </dl>
+            <div class="panel-pss">
+              <p><span class="mono">Problem</span> Nobody knows their ring size, so nobody checks out.</p>
+              <p><span class="mono">Solution</span> Place a ring on the circle, drag the slider, read the size.</p>
+              <p><span class="mono">Impact</span> 553K+ impressions, 10K+ likes, and a shipped app on Google Play.</p>
+            </div>
+            <ul class="counters counters-sm">
+              <li><b><span class="count" data-to="553">0</span><span class="cu">K+</span></b><i class="mono">Impressions</i></li>
+              <li><b><span class="count" data-to="10">0</span><span class="cu">K+</span></b><i class="mono">Likes</i></li>
+              <li><b><span class="count" data-to="564">0</span></b><i class="mono">Comments</i></li>
+            </ul>
+            <div class="panel-links">
+              <a class="store-cta" href="https://play.google.com/store/apps/details?id=com.justfitit"
+                 target="_blank" rel="noopener" data-cursor="Install">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M3.6 2.2 13.8 12 3.6 21.8a1.7 1.7 0 0 1-.6-1.3V3.5c0-.5.2-1 .6-1.3Z" fill="#34a853"/>
+                  <path d="M17.2 8.4 13.8 12 3.6 2.2A1.7 1.7 0 0 1 5.3 2l11.9 6.4Z" fill="#4285f4"/>
+                  <path d="M17.2 15.6 5.3 22a1.7 1.7 0 0 1-1.7-.2L13.8 12l3.4 3.6Z" fill="#ea4335"/>
+                  <path d="M21.3 10.6c1.1.6 1.1 2.2 0 2.8l-4.1 2.2L13.8 12l3.4-3.6 4.1 2.2Z" fill="#fbbc04"/>
+                </svg>
+                <span>Get it on Google Play</span>
+              </a>
+              <a href="https://www.figma.com/proto/T07iyFGoSHTTyns0ySnpKN/My-Portfolio-projects?page-id=0%3A1&amp;node-id=1-1453&amp;viewport=684%2C349%2C0.17&amp;t=XrMwRMxBIk2GY3uy-1&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;starting-point-node-id=1%3A853"
+                 target="_blank" rel="noopener" data-cursor="Open">View prototype ↗</a>
+              <a href="https://www.linkedin.com/posts/vignesh-babu-91a756159_humanexperience-mobileapp-uiux-ugcPost-7276535725351690240-8IGe/" target="_blank" rel="noopener" data-cursor="Read">View LinkedIn post ↗</a>
+            </div>
+          </div>
+          <figure class="pcard-media">
+            <div class="shot-frame">
+              <img src="assets/ringsizer-launch.png" alt="JustFitIt app launch — find your perfect ring size in seconds"
+                   width="1536" height="1536" loading="lazy" decoding="async" data-slot="ring-sizer">
+            </div>
+          </figure>
+         </div>
+        </div>
+    </article>
+
+    <!-- project 03 -->
+    <article class="panel" id="w3" data-panel>
+        <div class="wrap">
+         <div class="pcard">
+          <div class="pcard-body panel-copy">
+            <span class="panel-n mono">Project 03
+              <b class="live"><i aria-hidden="true"></i>Mobile app — real-estate network</b>
+            </span>
+            <h3 class="panel-title" data-split="lines">Radius Agent</h3>
+            <p class="panel-lead">A community-first mobile network helping real-estate agents build connections and grow their business.</p>
+            <dl class="panel-meta">
+              <div><dt class="mono">Role</dt><dd>Product Design · Mobile</dd></div>
+              <div><dt class="mono">Year</dt><dd>2024</dd></div>
+              <div><dt class="mono">Stack</dt><dd>iOS · Android · Design System</dd></div>
+            </dl>
+            <div class="panel-pss">
+              <p><span class="mono">Problem</span> Agents were juggling leads, learning, and networking across five different apps.</p>
+              <p><span class="mono">Solution</span> Bringing live rooms, referrals, marketplace discovery, and brokerage tools into one experience.</p>
+              <p><span class="mono">Impact</span> One connected home for the agent's working day.</p>
+            </div>
+            <div class="panel-links">
+              <a data-proto-link="radius" href="#" target="_blank" rel="noopener" data-cursor="Open">View prototype ↗</a>
+            </div>
+          </div>
+          <figure class="pcard-media pcard-media--proto">
+            <!-- The poster is what you see until the card is nearly on screen;
+                 mountPrototypes() then swaps in the live Figma embed. The
+                 screenshot already carries its own device bezel, so the drawn
+                 frame only appears once the iframe does. -->
+            <div class="proto" data-proto="radius" data-proto-title="Radius Agent — interactive prototype">
+              <img src="assets/radius-prototype.png" alt="Radius Agent — log in screen"
+                   width="982" height="1870" loading="lazy" decoding="async" data-slot="radius-proto">
+              <!-- decorative: says "this one is clickable" without a caption -->
+              <span class="proto-hint" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5.5 2.6 19.4 11.6 12.7 12.9 9.9 19.6Z"/></svg>
+              </span>
+            </div>
+          </figure>
+         </div>
+        </div>
+    </article>
+
+    <!-- project 04 -->
+    <article class="panel" id="w4" data-panel data-flip>
+        <div class="wrap">
+         <div class="pcard">
+          <div class="pcard-body panel-copy">
+            <span class="panel-n mono">Project 04
+              <b class="live"><i aria-hidden="true"></i>Mobile app — subscriptions</b>
+            </span>
+            <h3 class="panel-title" data-split="lines">Subscription App</h3>
+            <p class="panel-lead">A mobile experience for choosing a plan, paying for it and staying in control of it afterwards.</p>
+            <dl class="panel-meta">
+              <div><dt class="mono">Role</dt><dd>Product Design · Mobile</dd></div>
+              <div><dt class="mono">Year</dt><dd>2025</dd></div>
+              <div><dt class="mono">Stack</dt><dd>iOS · Android · Design System</dd></div>
+            </dl>
+            <div class="panel-pss">
+              <p><span class="mono">Problem</span> Plans blur together at the moment of paying, and managing one later feels like a trap.</p>
+              <p><span class="mono">Solution</span> Plans compared side by side, upgrades in a tap, and renewals and cancellation always in plain sight.</p>
+              <p><span class="mono">Impact</span> A subscription journey a person can follow without asking anyone for help.</p>
+            </div>
+            <div class="panel-links">
+              <a data-proto-link="subscription" href="#" target="_blank" rel="noopener" data-cursor="Open">View prototype ↗</a>
+            </div>
+          </div>
+          <figure class="pcard-media pcard-media--proto">
+            <div class="proto" data-proto="subscription" data-proto-title="Subscription App — interactive prototype">
+              <img src="assets/subscription-cover.png" alt="Subscription App — home screen listing app subscriptions and monthly expense"
+                   width="780" height="1752" loading="lazy" decoding="async" data-slot="subscription-proto">
+              <span class="proto-hint" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5.5 2.6 19.4 11.6 12.7 12.9 9.9 19.6Z"/></svg>
+              </span>
+            </div>
+          </figure>
+         </div>
+        </div>
+    </article>
+
+    <!-- project 05 -->
+    <article class="panel" id="w5" data-panel>
+        <div class="wrap">
+         <div class="pcard">
+          <div class="pcard-body panel-copy">
+            <span class="panel-n mono">Project 05
+              <b class="live"><i aria-hidden="true"></i>Web app — issue tracking</b>
+            </span>
+            <h3 class="panel-title" data-split="lines">Bug Tracker</h3>
+            <p class="panel-lead">A tracking dashboard that tells a team where its bugs actually are — by state, by priority, by person.</p>
+            <dl class="panel-meta">
+              <div><dt class="mono">Role</dt><dd>Product &amp; Visual Design</dd></div>
+              <div><dt class="mono">Year</dt><dd>2024</dd></div>
+              <div><dt class="mono">Stack</dt><dd>Web · Dashboard · Design System</dd></div>
+            </dl>
+            <div class="panel-pss">
+              <p><span class="mono">Problem</span> A bug list says what is broken. It never says what the team should do next.</p>
+              <p><span class="mono">Solution</span> One overview — counts by state, breakdowns by priority and category, and the people beside them.</p>
+              <p><span class="mono">Impact</span> The whole picture in a glance, instead of a filtered list nobody opens.</p>
+            </div>
+            <div class="panel-links">
+              <a href="https://www.figma.com/proto/tMKLzmzSRjHSGGegkvHonq/Bug-tracker-Final?node-id=2401-22720&amp;viewport=14229%2C-7480%2C0.68&amp;t=qUJ5xcbCaFcVm2PO-1&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;page-id=19%3A1344&amp;starting-point-node-id=2401%3A22720"
+                 target="_blank" rel="noopener" data-cursor="Open">View prototype ↗</a>
+            </div>
+          </div>
+          <figure class="pcard-media">
+            <div class="shot-frame">
+              <img src="assets/bugtracker-cover.jpg" alt="Bug Tracker — project overview dashboard"
+                   width="1436" height="1050" loading="lazy" decoding="async" data-slot="bugtracker-cover">
+            </div>
+          </figure>
+         </div>
+        </div>
+    </article>
+
+    <!-- Scroll room after the last card. Without it the section ends the
+         instant card 05 locks, so the whole stack lifts away before you have
+         read it. This is what buys it a turn on top. -->
+    <div class="works-tail" aria-hidden="true"></div>
+  </section>
+
+  <!-- ══════════════ JOURNEY — THE TREE ══════════════ -->
+  <section id="journey" class="blk journey" data-ch="river">
+    <div class="wrap">
+      <p class="ch-label mono"><i>05</i> The tree of years</p>
+      <h2 class="h-lg h-lg-2" data-split="lines">Years of learning. Moments of <em>growth.</em></h2>
+      <div class="tree-wrap">
+        <svg class="tree" id="tree" viewBox="0 0 400 900" fill="none" aria-hidden="true">
+          <path id="trunk" pathLength="1" d="M200 890 C200 760 198 700 200 640 C202 560 196 500 200 430 C204 350 198 290 200 210 C201 150 200 110 200 60"
+                stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <path class="branch" pathLength="1" d="M200 780 C160 760 130 740 96 730" stroke="currentColor" stroke-width="2"/>
+          <path class="branch" pathLength="1" d="M200 650 C244 630 274 612 306 604" stroke="currentColor" stroke-width="2"/>
+          <path class="branch" pathLength="1" d="M200 520 C158 500 128 484 94 476" stroke="currentColor" stroke-width="2"/>
+          <path class="branch" pathLength="1" d="M200 390 C244 370 276 354 308 346" stroke="currentColor" stroke-width="2"/>
+          <path class="branch" pathLength="1" d="M200 250 C158 232 130 216 98 208" stroke="currentColor" stroke-width="2"/>
+          <g class="tree-leaves">
+            <circle cx="96" cy="730" r="7"/><circle cx="306" cy="604" r="7"/><circle cx="94" cy="476" r="7"/>
+            <circle cx="308" cy="346" r="7"/><circle cx="98" cy="208" r="7"/><circle cx="200" cy="60" r="9"/>
+          </g>
+        </svg>
+        <ol class="years">
+          <li class="year rv" data-side="l"><span class="mono">2023 — Present</span><h4>Visual &amp; Product Designer</h4><p>Zoho Corporation</p></li>
+          <li class="year rv" data-side="r"><span class="mono">2022 — 2023</span><h4>Senior UX Designer</h4><p>Open Weaver</p></li>
+          <li class="year rv" data-side="l"><span class="mono">2021 — 2022</span><h4>UI/UX Designer</h4><p>Fidisys Technologies</p></li>
+          <li class="year rv" data-side="r"><span class="mono">2019 — 2021</span><h4>Visual Designer</h4><p>SCAD Group</p></li>
+          <li class="year rv" data-side="l"><span class="mono">Earlier</span><h4>Graphic Designer</h4><p>Stutzen Corporates</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ ACHIEVEMENTS ══════════════ -->
+  <!-- ══════════════ PROCESS — HORIZONTAL ══════════════ -->
+  <section id="process" class="process" data-ch="sunset">
+    <div class="process-pin" id="processPin">
+      <div class="process-track" id="processTrack">
+
+        <!-- opening column: the title travels inside the horizontal run -->
+        <article class="col col-intro">
+          <div class="col-in">
+            <p class="rule-label"><i></i>Process</p>
+            <h3 class="col-title">How I <em>work</em></h3>
+            <p class="col-lead">Six deliberate steps — scroll sideways through the way an idea becomes a product.</p>
+          </div>
+        </article>
+
+        <!-- Icons are line art on a 100×100 grid with pathLength="1" on every
+             shape, which is what lets them draw themselves on scroll. Any
+             replacement needs that attribute or it will simply appear. -->
+        <article class="col">
+          <div class="col-in">
+            <!-- a person: people before prompts -->
+            <svg viewBox="0 0 100 100" class="col-art"><circle pathLength="1" cx="50" cy="32" r="14"/><path pathLength="1" d="M22 84 C22 64 35 54 50 54 C65 54 78 64 78 84"/></svg>
+            <p class="col-step">Step 01</p>
+            <h4 class="col-h">Understand</h4>
+            <p class="col-p">People first, prompts second. Find the problem worth solving.</p>
+          </div>
+        </article>
+
+        <article class="col">
+          <div class="col-in">
+            <!-- a compass: finding the direction the evidence points -->
+            <svg viewBox="0 0 100 100" class="col-art"><circle pathLength="1" cx="50" cy="50" r="32"/><path pathLength="1" d="M64 36 L44 44 L36 64 L56 56 Z"/></svg>
+            <p class="col-step">Step 02</p>
+            <h4 class="col-h">Explore</h4>
+            <p class="col-p">AI accelerates research. Insights over assumptions.</p>
+          </div>
+        </article>
+
+        <article class="col">
+          <div class="col-in">
+            <!-- a pencil: ideas becoming something you can look at -->
+            <svg viewBox="0 0 100 100" class="col-art"><path pathLength="1" d="M22 78 L28 58 L64 22 L78 36 L42 72 Z"/><path pathLength="1" d="M60 26 L74 40"/></svg>
+            <p class="col-step">Step 03</p>
+            <h4 class="col-h">Create</h4>
+            <p class="col-p">Ideas into experiences. Design, iterate, prototype.</p>
+          </div>
+        </article>
+
+        <article class="col">
+          <div class="col-in">
+            <!-- sliders: the small adjustments that make it feel finished -->
+            <svg viewBox="0 0 100 100" class="col-art"><path pathLength="1" d="M18 36 L82 36"/><circle pathLength="1" cx="62" cy="36" r="7"/><path pathLength="1" d="M18 66 L82 66"/><circle pathLength="1" cx="36" cy="66" r="7"/></svg>
+            <p class="col-step">Step 04</p>
+            <h4 class="col-h">Refine</h4>
+            <p class="col-p">Craft every detail. Polish for clarity and scale.</p>
+          </div>
+        </article>
+
+        <article class="col">
+          <div class="col-in">
+            <!-- a check: proven by the people who use it -->
+            <svg viewBox="0 0 100 100" class="col-art"><circle pathLength="1" cx="50" cy="50" r="32"/><path pathLength="1" d="M35 51 L46 62 L66 39"/></svg>
+            <p class="col-step">Step 05</p>
+            <h4 class="col-h">Validate</h4>
+            <p class="col-p">Learn from real users. Improve with evidence.</p>
+          </div>
+        </article>
+
+        <article class="col">
+          <div class="col-in">
+            <!-- a rising line: shipping is the midpoint, never the end -->
+            <svg viewBox="0 0 100 100" class="col-art"><path pathLength="1" d="M18 74 L40 52 L54 64 L82 30"/><path pathLength="1" d="M62 30 L82 30 L82 50"/></svg>
+            <p class="col-step">Step 06</p>
+            <h4 class="col-h">Evolve</h4>
+            <p class="col-p">Ship. Measure. Grow. Products never stop improving.</p>
+          </div>
+        </article>
+
+      </div>
+      <div class="process-bar"><i id="processFill"></i></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONTACT — DUSK ══════════════ -->
+  <section id="contact" class="contact" data-ch="night">
+    <div class="wrap">
+      <p class="ch-label mono"><i>06</i> Last light</p>
+      <h2 class="cta-title" data-split="lines">Let's build something <em>meaningful.</em></h2>
+      <div class="contact-grid">
+        <form class="form" id="form" novalidate>
+          <div class="field">
+            <input type="text" id="fname" name="name" required autocomplete="name" placeholder=" ">
+            <label for="fname">Your name</label>
+          </div>
+          <div class="field">
+            <input type="email" id="femail" name="email" required autocomplete="email" placeholder=" ">
+            <label for="femail">Email</label>
+          </div>
+          <div class="field">
+            <textarea id="fmsg" name="message" rows="4" required placeholder=" "></textarea>
+            <label for="fmsg">What are you building?</label>
+          </div>
+          <button type="submit" class="btn btn-solid magnetic" data-cursor="Send">
+            <span class="btn-fill"></span><span class="btn-text">Send message</span><span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="form-hint" id="formHint"></p>
+          <p class="form-note mono" id="formNote" role="status"></p>
+        </form>
+
+        <div class="contact-side">
+          <p class="body">Open to product design roles, freelance collaborations and the occasional interesting problem.</p>
+          <ul class="social">
+            <li><a href="https://www.linkedin.com/in/vignesh-babu-91a756159/" target="_blank" rel="noopener" data-cursor="Follow"><span>LinkedIn</span><i class="mono">18K+ followers</i></a></li>
+            <li><a href="https://www.behance.net/vigneshb2" target="_blank" rel="noopener" data-cursor="Browse"><span>Behance</span><i class="mono">Case studies</i></a></li>
+            <li><a href="#" id="waLink" data-cursor="Message"><span>WhatsApp</span><i class="mono">Fastest reply</i></a></li>
+            <li><a href="mailto:vigneshmech68@gmail.com" data-cursor="Write"><span>Email</span><i class="mono">vigneshmech68@gmail.com</i></a></li>
+            <li><a href="assets/Vignesh-B-Resume.pdf" download="Vignesh-B-Resume.pdf" data-cursor="Download" id="resume"><span>Résumé</span><i class="mono">PDF — 1.4 MB</i></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="thanks" id="thanks" hidden>
+        <p class="thanks-in">Thank you — I'll be in touch soon.</p>
+      </div>
+
+      <div class="finale">
+        <p class="finale-kicker">Nightfall</p>
+        <h2 class="finale-title">Thank you</h2>
+        <p class="finale-copy">Every great product starts with a conversation. Maybe ours starts today.</p>
+        <a href="#hero" class="finale-btn magnetic" data-cursor="Restart"><span class="dot"></span>Back to the top</a>
+        <ul class="finale-meta">
+          <li>Vignesh B</li>
+          <li>Product &amp; Visual Designer</li>
+          <li>Available for select work</li>
+        </ul>
+        <p class="finale-fine">Designed and crafted by Vignesh B · Inspired by nature · © 2026</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer
+        integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer
+        integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer
+        integrity="sha384-O55L/6rhHr9CFvrxqv5luxOCcmVaBmETbZbJDP+Do8T0pztTACsFBD/IXCNkj7DV"
+        crossorigin="anonymous"></script>
+<script src="js/site.js" defer></script>
+</body>
+</html>

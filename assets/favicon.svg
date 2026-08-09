@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <!-- the same two-leaf mark as the nav brand -->
+  <path d="M40 70 C40 44 52 22 74 14 C70 38 58 60 40 70 Z" fill="#22553d"/>
+  <path d="M40 70 C40 44 28 22 6 14 C10 38 22 60 40 70 Z" fill="#22553d" opacity=".55"/>
+</svg>
