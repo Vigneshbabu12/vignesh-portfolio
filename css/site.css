@@ -910,7 +910,11 @@ body[data-chapter="night"] .panel-links a.store-cta{background:var(--paper);colo
 .tree-wrap{position:relative;margin-top:clamp(40px,7vh,90px);display:grid;grid-template-columns:1fr;gap:0}
 .tree{position:absolute;left:50%;top:0;transform:translateX(-50%);height:100%;width:min(400px,52vw);
   color:var(--forest);opacity:.85;pointer-events:none}
-.tree path{stroke-dasharray:1;stroke-dashoffset:1}
+/* non-scaling-stroke keeps the trunk/branches at their true 2–3px even when the
+   whole tree is scaled down to 120px wide on mobile (a 400-unit viewBox would
+   otherwise render the stroke at ~0.9px — a spine too faint to connect the
+   cards). */
+.tree path{stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke}
 .tree-leaves circle{fill:var(--forest-2);opacity:0}
 .years{list-style:none;display:flex;flex-direction:column;gap:clamp(40px,8vh,110px);position:relative;z-index:2}
 /* Same card size as before — they are only moved inward. The gutter is set
@@ -930,7 +934,7 @@ body[data-chapter="night"] .panel-links a.store-cta{background:var(--paper);colo
    the cards narrowed, so the branch tips ended up behind the card edges. The
    whole timeline drops to one column instead — thin tree down the left, cards
    full width beside it. */
-@media(max-width:999px){.tree{left:14px;transform:none;width:120px;opacity:.35}
+@media(max-width:999px){.tree{left:14px;transform:none;width:120px;opacity:.55}
   .year,.year[data-side="r"]{width:100%;margin-left:0;margin-right:0}}
 
 /* ═══════════ COUNTERS ═══════════ */
@@ -965,6 +969,12 @@ body[data-chapter="night"] .panel-links a.store-cta{background:var(--paper);colo
 .col:last-child{border-right:1px solid var(--line)}
 .col-intro{flex:0 0 clamp(340px,33vw,520px);border-left:0}
 .col-in{padding:0 clamp(28px,3.4vw,58px) clamp(90px,16vh,190px);width:100%}
+/* The intro heading ("How I work") should line up with the site's left margin
+   like every other section. The shared column padding above is tighter than
+   var(--pad), which left it under-indented at ≥1000px (and in mobile
+   "Desktop site" mode); pin the intro's left edge to var(--pad). Matches the
+   mobile value too, so nothing shifts on phones. */
+.col-intro .col-in{padding-left:var(--pad)}
 
 .col-art{width:44px;height:44px;fill:none;stroke:var(--forest);stroke-width:2.6;
   stroke-linecap:round;stroke-linejoin:round;margin-bottom:clamp(30px,6vh,64px)}
@@ -1083,11 +1093,16 @@ body[data-chapter="night"] .contact .ch-label i{color:rgba(238,244,240,.45)}
   .panel{position:static;transform:none!important;margin-bottom:48px}
   .pcard{height:auto!important;opacity:1!important;transform:none!important}
   .works-rail{display:none}
-  /* Frozen mid-flight these drifting critters pile up as static marks in a
-     corner — a bird carries no left/transform of its own, so with the glide
-     animation gone it snaps to the left edge (a stack of debris in the sky).
-     When motion is reduced they simply don't render. */
-  .birds,.leaves,.flies{display:none}
+  /* Motion is off, so the drifting critters can't animate. Leaves and
+     fireflies simply don't render; the birds are wanted in the sky, so show
+     them as a STILL, SCATTERED flock instead of letting the frozen glide stack
+     them in the top-left corner (a bird has no left of its own — without this
+     they all collapse to x:0). Heights stay as their random inline `top`. */
+  .leaves,.flies{display:none}
+  .bird{animation:none}
+  .bird:nth-child(1){left:6%}  .bird:nth-child(2){left:18%} .bird:nth-child(3){left:30%}
+  .bird:nth-child(4){left:43%} .bird:nth-child(5){left:55%} .bird:nth-child(6){left:66%}
+  .bird:nth-child(7){left:77%} .bird:nth-child(8){left:87%} .bird:nth-child(9){left:96%}
   body{cursor:auto!important}
   .cursor,.cursor-dot{display:none}
 }

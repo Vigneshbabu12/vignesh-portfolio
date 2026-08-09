@@ -933,38 +933,46 @@
 
     const build = (box) => {
       if (box.classList.contains('is-live')) return;
+
+      // The box becomes the device body; the screen is a separate window inside
+      // it, holding the cover screenshot. (On desktop an oversized iframe is
+      // clipped inside this same window; the two-element split keeps that clip
+      // off the bezel.)
+      const screen = document.createElement('div');
+      screen.className = 'proto-screen';
+      const poster = box.querySelector('img');
+      if (poster) screen.appendChild(poster);
+      box.classList.add('is-live');
+      box.appendChild(screen);
+
+      // Phones stop here — cover screenshot only. The interactive Figma embed
+      // renders inside its own dark canvas, and the desktop crop that hides
+      // that canvas can't be applied on a small screen without throwing the UI
+      // off the sides (--proto-zoom is 1 on mobile), so the embed showed as a
+      // small screenshot floating in black. Mobile therefore keeps the clean
+      // cover filling the device; the live prototype stays one tap away via the
+      // "View prototype" link. This also stops a scroll-touch from revealing it.
+      if (MOBILE()) return;
+
       const frame = document.createElement('iframe');
       frame.src = figmaEmbed(PROTOTYPE[box.dataset.proto]);
       frame.title = box.dataset.protoTitle || 'Interactive prototype';
       frame.setAttribute('loading', 'lazy');   // attribute, not property — reflects everywhere
       frame.setAttribute('allowfullscreen', '');
       frame.setAttribute('allow', 'fullscreen');
-      // Reveal the live prototype only when the visitor actually engages with
-      // the card — not on a timer. Figma's embed posts no "ready" message with
-      // these share params, and the iframe is cross-origin, so the exact paint
-      // moment can't be detected; fading the cover on a blind timer risked
-      // showing a half-loaded white screen. Instead the cover screenshot holds
-      // while the embed loads quietly underneath (it is mounted just before the
-      // card scrolls into view), and the live prototype fades in on first
-      // hover/tap — by which point it has loaded. If the visitor never engages,
-      // the cover simply stays; it is never blank.
-      const revealEvents = ['pointerenter', 'click', 'touchstart'];
+      screen.appendChild(frame);
+
+      // Reveal the live prototype on first hover/click — it loads quietly
+      // underneath, so the cover holds until then and there's never a blank or
+      // half-loaded frame. (Figma posts no "ready" message with these share
+      // params and the iframe is cross-origin, so paint can't be detected; a
+      // blind timer risked showing a still-loading white screen.)
+      const revealEvents = ['pointerenter', 'click'];
       const reveal = () => {
         box.classList.add('is-ready');
         revealEvents.forEach((ev) => box.removeEventListener(ev, reveal));
       };
       revealEvents.forEach((ev) => box.addEventListener(ev, reveal, { passive: true }));
-
-      // The box becomes the device body; the screen is a separate window
-      // inside it. Two elements are needed because the oversized iframe has
-      // to be clipped, and a clip would otherwise eat the bezel too.
-      const screen = document.createElement('div');
-      screen.className = 'proto-screen';
-      const poster = box.querySelector('img');
-      if (poster) screen.appendChild(poster);   // keep it as the loading layer
-      screen.appendChild(frame);
-      box.classList.add('is-live');
-      box.appendChild(screen);
     };
 
     if (typeof IntersectionObserver === 'undefined') { boxes.forEach(build); return; }
