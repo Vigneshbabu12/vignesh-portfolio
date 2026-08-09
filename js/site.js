@@ -227,15 +227,21 @@
       if (n.nodeType === 3) {
         n.textContent.split(/\s+/).filter(Boolean).forEach((w) => tokens.push({ w, em: false }));
       } else if (n.nodeType === 1) {
+        // An explicit <br> is a FORCED line break — it lets a heading pin its
+        // own two-line split instead of relying on where the text happens to
+        // wrap (which drifts with viewport and font size).
+        if (n.tagName === 'BR') { tokens.push({ br: true }); return; }
         const em = n.tagName === 'EM';
         n.textContent.split(/\s+/).filter(Boolean).forEach((w) => tokens.push({ w, em }));
       }
     });
 
-    // Probe pass: lay every word out inline and read its offsetTop, so the
-    // masks follow the real wrap points rather than a guess.
+    // Probe pass: lay every word out inline — inserting a real <br> at each
+    // forced break — and read each word's offsetTop, so the masks follow the
+    // actual wrap points (author breaks included) rather than a guess.
     el.textContent = '';
     const probes = tokens.map((t) => {
+      if (t.br) { el.appendChild(document.createElement('br')); return null; }
       const s = document.createElement('span');
       s.textContent = t.w;
       s.style.display = 'inline-block';
@@ -246,6 +252,7 @@
     const lines = [];
     let top = null, cur = null;
     probes.forEach((s, i) => {
+      if (!s) return;                              // forced-break marker — no glyph to measure
       const t = Math.round(s.offsetTop);
       if (top === null || Math.abs(t - top) > 4) { top = t; cur = []; lines.push(cur); }
       cur.push(tokens[i]);
@@ -788,22 +795,35 @@
        ScrollTrigger mis-measures sticky elements, because their rect moves
        while they're stuck. */
 
-    /* ── the tree draws itself, branch by branch ── */
-    gsap.to('#trunk', {
-      strokeDashoffset: 0, ease: 'none',
-      scrollTrigger: { trigger: '.tree-wrap', start: 'top 78%', end: 'bottom 65%', scrub: .6 }
-    });
-    $$('.tree .branch').forEach((b, i) => {
-      gsap.to(b, {
-        strokeDashoffset: 0, duration: .9, ease: 'power2.out',
-        scrollTrigger: { trigger: $$('.year')[i] || '.tree-wrap', start: 'top 82%' }
-      });
-    });
-    $$('.tree-leaves circle').forEach((c, i) => {
-      gsap.to(c, {
-        opacity: .9, scale: 1, duration: .7, ease: 'back.out(2)', transformOrigin: 'center',
-        scrollTrigger: { trigger: $$('.year')[i] || '.tree-wrap', start: 'top 78%' }
-      });
+    /* ── the tree draws itself as the trunk travels up ──
+       The trunk is one scrubbed draw; its branches and leaves are gated to the
+       trunk's OWN progress, each drawing exactly as the climbing trunk reaches
+       its junction on the stem. This keeps the line connected: previously the
+       branches fired on their own once-off triggers and floated in as diagonal
+       stubs ahead of a trunk that had not drawn up to them yet — broken
+       mid-scroll. The heights below are each junction as a fraction of the stem
+       (trunk runs y890→y60, so progress ≈ (890 − y) / 830). */
+    const trunkEl = $('#trunk');
+    const branchEls = $$('.tree .branch');
+    const leafEls = $$('.tree-leaves circle');
+    const branchAt = [0.13, 0.29, 0.45, 0.60, 0.77];    // branches at y 780,650,520,390,250
+    const leafAt   = [0.19, 0.34, 0.50, 0.66, 0.82, 1.0]; // leaves   at y 730,604,476,346,208,60
+    const DRAW_WIN = 0.07;                               // scroll each branch/leaf takes to appear
+    const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+    // The dash offsets are written directly (0 = drawn, 1 = hidden). GSAP mis-
+    // interpolates strokeDashoffset on the trunk path (it snapped 0→1 instead of
+    // drawing), whereas a plain inline value renders the partial line correctly —
+    // so the whole tree is driven from the scroll progress here, and the trunk
+    // and branches can never fall out of step.
+    const drawTree = (p) => {
+      trunkEl.style.strokeDashoffset = String(1 - p);
+      branchEls.forEach((b, i) => { b.style.strokeDashoffset = String(1 - clamp01((p - branchAt[i]) / DRAW_WIN)); });
+      leafEls.forEach((c, i) => { c.style.opacity = String(0.9 * clamp01((p - leafAt[i]) / DRAW_WIN)); });
+    };
+    ScrollTrigger.create({
+      trigger: '.tree-wrap', start: 'top 78%', end: 'bottom 65%',
+      onUpdate: (self) => drawTree(self.progress),
+      onRefresh: (self) => drawTree(self.progress)
     });
 
     /* ── counters ── */
