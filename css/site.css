@@ -392,6 +392,17 @@ body[data-chapter="night"] .flies{opacity:1}
   50%{transform:translate(6vw,-16vh);opacity:.6}
   86%{opacity:.9}100%{transform:translate(-3vw,-34vh);opacity:0}}
 
+/* rain — a brief, faint shower shown only for a few seconds when the River
+   chapter arrives (JS toggles body.rain-on), pairing with the rainforest clip.
+   Sits in the atmosphere behind the content, so it never obscures text. */
+.rain{position:absolute;inset:0;opacity:0;overflow:hidden;pointer-events:none;
+  transition:opacity 1.4s var(--e-io)}
+body.rain-on .rain{opacity:1}
+.rain i{position:absolute;top:0;width:1.5px;border-radius:2px;
+  background:linear-gradient(to bottom,rgba(120,150,160,0),rgba(120,150,160,.5));
+  animation:rainfall linear infinite}
+@keyframes rainfall{0%{transform:translateY(-18vh)}100%{transform:translateY(118vh)}}
+
 /* grain */
 .grain{position:absolute;inset:0;opacity:.035;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -415,6 +426,50 @@ body[data-chapter="night"] .flies{opacity:1}
 .nav-burger{display:none;background:none;border:0;width:34px;height:34px;position:relative}
 .nav-burger i{position:absolute;left:7px;width:20px;height:1.4px;background:var(--ink);transition:transform .4s var(--e)}
 .nav-burger i:first-child{top:14px}.nav-burger i:last-child{top:19px}
+
+/* right-side nav cluster: links + sound toggle + burger */
+.nav-right{display:flex;align-items:center;gap:clamp(14px,2vw,26px)}
+/* ambient-sound toggle */
+.snd{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;background:none;
+  color:var(--ink-2);transition:color .4s var(--e)}
+.snd svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.snd .snd-spk{fill:currentColor;stroke:none}
+/* off = muted (slash shown, no waves); on = waves shown, slash hidden */
+.snd .snd-wave,.snd .snd-wave2{opacity:0;transition:opacity .35s var(--e)}
+.snd .snd-slash{opacity:1;transition:opacity .35s var(--e)}
+.snd[aria-pressed="true"] .snd-wave{opacity:.9}
+.snd[aria-pressed="true"] .snd-wave2{opacity:.55}
+.snd[aria-pressed="true"] .snd-slash{opacity:0}
+.snd:hover{color:var(--forest)}
+body[data-chapter="night"] .snd{color:rgba(242,246,243,.78)}
+body[data-chapter="night"] .snd:hover{color:#fff}
+
+/* ── "Tap for sound" cue ──
+   A small tooltip pill anchored under the speaker, shown on load until audio
+   starts (body.snd-hint). Absolutely positioned inside a zero-impact wrapper,
+   so it changes no layout; fixed dark/light colours read on any chapter. */
+.snd-wrap{position:relative;display:inline-flex}
+.snd-cue{
+  position:absolute;top:calc(100% + 10px);right:1px;white-space:nowrap;z-index:1;
+  font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:#f4f7f4;background:rgba(18,26,22,.92);padding:6px 11px;border-radius:999px;
+  box-shadow:0 10px 26px -14px rgba(10,20,14,.7);
+  opacity:0;transform:translateY(-6px) scale(.94);pointer-events:none;
+  transition:opacity .5s var(--e),transform .5s var(--e)}
+.snd-cue::before{content:"";position:absolute;bottom:100%;right:12px;
+  border:5px solid transparent;border-bottom-color:rgba(18,26,22,.92)}
+/* one-time bounce-in when the cue appears; removing .snd-hint fades it back out */
+body.snd-hint .snd-cue{animation:cueBounce .9s var(--e) both}
+@keyframes cueBounce{
+  0%{opacity:0;transform:translateY(-10px) scale(.9)}
+  45%{opacity:1;transform:translateY(3px) scale(1.05)}
+  68%{transform:translateY(-1px) scale(.99)}
+  100%{opacity:1;transform:translateY(0) scale(1)}}
+/* a gentle, finite pulse on the icon in sync (stops on its own) */
+body.snd-hint .snd svg{animation:sndHint 2.1s var(--e-io) 2}
+@keyframes sndHint{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+@media(max-width:560px){.snd-cue{font-size:8.5px;padding:5px 9px;letter-spacing:.1em}}
 body[data-chapter="night"] .nav{color:#f2f6f3}
 body[data-chapter="night"] .nav-links a{color:rgba(242,246,243,.7)}
 body[data-chapter="night"] .nav-links a:hover{color:#fff}
@@ -1105,7 +1160,7 @@ body[data-chapter="night"] .contact .ch-label i{color:rgba(238,244,240,.45)}
      them as a STILL, SCATTERED flock instead of letting the frozen glide stack
      them in the top-left corner (a bird has no left of its own — without this
      they all collapse to x:0). Heights stay as their random inline `top`. */
-  .leaves,.flies{display:none}
+  .leaves,.flies,.rain{display:none}
   .bird{animation:none}
   .bird:nth-child(1){left:6%}  .bird:nth-child(2){left:18%} .bird:nth-child(3){left:30%}
   .bird:nth-child(4){left:43%} .bird:nth-child(5){left:55%} .bird:nth-child(6){left:66%}

@@ -134,6 +134,20 @@
       f.style.animationDelay = -rand(0, 24) + 's';
       flies.appendChild(f);
     }
+
+    // rain — thin fast streaks, only visible during the brief River shower
+    const rain = $('#rain');
+    if (rain) {
+      for (let i = 0; i < 55; i++) {
+        const d = document.createElement('i');
+        d.style.left = rand(0, 100) + '%';
+        d.style.height = rand(8, 16) + 'vh';
+        d.style.opacity = rand(.2, .5);
+        d.style.animationDuration = rand(.5, 1.1) + 's';   // fast fall
+        d.style.animationDelay = -rand(0, 2) + 's';
+        rain.appendChild(d);
+      }
+    }
   }
 
   /* ───────────── 1c. LOGO STRIP FALLBACK ─────────────
@@ -719,12 +733,17 @@
        on the sections above. Reading geometry every frame self-corrects, and
        also survives lazy images resizing the page underneath. */
     const chapterSections = $$('[data-ch]');
+    // Most sections take over at the screen's midpoint (0.5). The NIGHT section
+    // (Contact) is the only dark-themed one — light text on a dark sky — so it
+    // must switch to dark SOONER, as soon as it's ~25% into view, otherwise its
+    // white text briefly sits on the still-light sunset sky as you scroll in.
+    const CH_ENTER = { night: 0.75 };
     let lastChapter = '';
     const resolveChapter = () => {
-      const mid = innerHeight * 0.5;
       let ch = chapterSections[0].dataset.ch;
       for (const sec of chapterSections) {
-        if (sec.getBoundingClientRect().top <= mid) ch = sec.dataset.ch;
+        const line = (CH_ENTER[sec.dataset.ch] || 0.5) * innerHeight;
+        if (sec.getBoundingClientRect().top <= line) ch = sec.dataset.ch;
       }
       if (ch !== lastChapter) { lastChapter = ch; document.body.dataset.chapter = ch; }
     };
@@ -826,14 +845,18 @@
       onRefresh: (self) => drawTree(self.progress)
     });
 
-    /* ── counters ── */
+    /* ── counters ──
+       Start once the numbers are properly on screen (top 80%), not the instant
+       they peek in from the bottom (top 92%) — otherwise the count-up finished
+       while they were still at the very bottom edge and the visitor never saw
+       it tick. A slightly longer count makes the rise easy to follow. */
     $$('.count').forEach((el) => {
       const to = parseFloat(el.dataset.to);
       const obj = { v: 0 };
       gsap.to(obj, {
-        v: to, duration: 1.9, ease: 'power2.out',
+        v: to, duration: 2.2, ease: 'power2.out',
         onUpdate: () => { el.textContent = Math.round(obj.v); },
-        scrollTrigger: { trigger: el, start: 'top 92%' }
+        scrollTrigger: { trigger: el, start: 'top 80%' }
       });
     });
 
@@ -1142,8 +1165,171 @@
     else addEventListener('load', () => { measure(); active = -1; paint(); }, { once: true });
   }
 
+  /* ───────────── AMBIENT SOUND (per-chapter nature loops) ─────────────
+     Off by default — browsers block sound-on autoplay and surprise audio is
+     rude, so it starts only when the visitor flips the nav toggle. Each chapter
+     maps to a looping nature clip; moving between chapters cross-fades from one
+     to the next. Clips load only once sound is enabled, and the choice is
+     remembered.
+
+     Clips are royalty-free (chosic.com / wr-sound-library, no-copyright). Each
+     chapter maps to one and to its own subtle target volume; moving between
+     chapters cross-fades. Day → water → night: fresh birds up top, a rainforest
+     bed for the River, night crickets for Sunset/Night. Multiple chapters share
+     a clip. Kept deliberately quiet as tuned locally. */
+  const SOUND_SRC = {
+    morning:  { src: 'assets/sounds/morning-birds.mp3',    vol: 0.55 },  // fresh morning birds — a bit louder up top
+    forest:   { src: 'assets/sounds/morning-birds.mp3',    vol: 0.55 },
+    mountain: { src: 'assets/sounds/morning-birds.mp3',    vol: 0.55 },
+    river:    { src: 'assets/sounds/river-rainforest.mp3', vol: 0.30 },  // rain / rainforest — softened
+    sunset:   { src: 'assets/sounds/night-crickets.mp3',   vol: 0.30 },  // night crickets
+    night:    { src: 'assets/sounds/night-crickets.mp3',   vol: 0.30 }
+  };
+  function initAmbientSound() {
+    const btn = $('#soundToggle');
+    if (!btn) return;
+
+    const KEY = 'bgSound', FADE = 3.6, BED_VOL = 0.035;  // FADE = cross-fade s; BED_VOL = soft wind floor
+    const urls = [...new Set(Object.values(SOUND_SRC).map((s) => s.src))];
+    const el = {}, target = {}, fromV = {}, t0 = {};
+    let on = false, built = false, raf = 0, bedCtx = null, bedGain = null;
+    const chFor = () => SOUND_SRC[document.body.dataset.chapter] || SOUND_SRC.morning;
+    const ease = (p) => (p <= 0 ? 0 : p >= 1 ? 1 : 0.5 - 0.5 * Math.cos(Math.PI * p)); // easeInOutSine
+
+    function build() {
+      urls.forEach((u) => {
+        const a = new Audio(u);
+        a.loop = true; a.preload = 'auto'; a.volume = 0;
+        el[u] = a; target[u] = 0; fromV[u] = 0; t0[u] = 0;
+      });
+      buildBed();          // soft continuous "air" floor under the clips
+      built = true;
+    }
+    // A very soft brown-noise wind bed (Web Audio) under the nature clips, so the
+    // first fold — and every section — has a gentle continuous background beneath
+    // the intermittent bird calls. Its level is driven from apply().
+    function buildBed() {
+      try {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        bedCtx = new AC();
+        const buf = bedCtx.createBuffer(1, bedCtx.sampleRate * 3, bedCtx.sampleRate);
+        const d = buf.getChannelData(0); let last = 0;
+        for (let i = 0; i < d.length; i++) { const w = Math.random() * 2 - 1; last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; }
+        const src = bedCtx.createBufferSource(); src.buffer = buf; src.loop = true;
+        const lp = bedCtx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 420; lp.Q.value = 0.4;
+        bedGain = bedCtx.createGain(); bedGain.gain.value = 0;
+        const lfo = bedCtx.createOscillator(); lfo.type = 'sine'; lfo.frequency.value = 0.05; // gentle movement
+        const lg = bedCtx.createGain(); lg.gain.value = 70;
+        lfo.connect(lg); lg.connect(lp.frequency); lfo.start();              // sweep the cutoff, never the on/off gain
+        src.connect(lp); lp.connect(bedGain); bedGain.connect(bedCtx.destination); src.start();
+      } catch (e) { bedGain = null; }
+    }
+
+    // one rAF loop eases every clip from its start volume to its target over
+    // FADE seconds — outgoing and incoming overlap fully, so the clips cross-fade
+    // into one another instead of one cutting as the next begins.
+    function loop(ts) {
+      raf = 0;
+      const now = ts / 1000;
+      let moving = false;
+      urls.forEach((u) => {
+        const a = el[u];
+        const p = (now - t0[u]) / FADE;
+        let v = p >= 1 ? target[u] : fromV[u] + (target[u] - fromV[u]) * ease(p);
+        if (p < 1) moving = true;
+        v = v < 0 ? 0 : v > 1 ? 1 : v;
+        a.volume = v;
+        if (v > 0.002 && a.paused) a.play().catch(() => {});
+        if (v <= 0.002 && !a.paused) a.pause();
+      });
+      if (moving) raf = requestAnimationFrame(loop);
+    }
+    const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
+
+    function apply() {
+      if (!built) return;                                  // nothing to ramp until the clips exist
+      const c = on && !document.hidden ? chFor() : null;   // {src, vol} for current chapter
+      const now = performance.now() / 1000;
+      urls.forEach((u) => {
+        const to = (c && u === c.src) ? c.vol : 0;
+        if (to !== target[u]) { fromV[u] = el[u] ? el[u].volume : 0; t0[u] = now; target[u] = to; } // ease from current level
+      });
+      kick();
+      // the soft wind floor rides on/off with the clips (Web Audio ramp, so it
+      // isn't affected by the rAF loop)
+      if (bedGain) bedGain.gain.setTargetAtTime((on && !document.hidden) ? BED_VOL : 0, bedCtx.currentTime, 0.9);
+    }
+
+    function setOn(state) {
+      document.body.classList.remove('snd-hint');          // audio is starting (or being muted) — drop the cue
+      if (state && !built) build();
+      on = state;
+      // Kick the current clip's play() synchronously inside the click/gesture so
+      // the browser's autoplay policy lets it through; the rAF loop then eases
+      // the volume in. (play() from inside the ramp alone can miss the gesture.)
+      if (state) { const a = el[chFor().src]; if (a) a.play().catch(() => {}); }
+      if (state && bedCtx && bedCtx.state === 'suspended') bedCtx.resume();   // wind bed needs the same gesture
+      apply();
+      btn.setAttribute('aria-pressed', String(state));
+      btn.setAttribute('aria-label', 'Ambient sound: ' + (state ? 'on' : 'off'));
+      try { localStorage.setItem(KEY, state ? 'on' : 'off'); } catch (e) {}
+    }
+
+    btn.addEventListener('click', () => setOn(!on));
+    // cross-fade to the new chapter's clip as the sky changes
+    new MutationObserver(() => { if (on) apply(); }).observe(document.body, { attributes: true, attributeFilter: ['data-chapter'] });
+    // pause when the tab is hidden, resume if it was on
+    document.addEventListener('visibilitychange', () => { if (built) apply(); });
+
+    // The volume icon is the ONLY control — no auto-start on page taps/scrolls.
+    // Start OFF and, once the loader has cleared and the page is revealed, play
+    // the "Tap for sound" cue as a one-time bounce, hold briefly, then let it
+    // fade away. The icon stays as the control. (setOn also clears it on tap.)
+    on = false;
+    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-label', 'Ambient sound: off');
+
+    const showCue = () => {
+      if (on) return;
+      document.body.classList.add('snd-hint');                                  // bounce in
+      setTimeout(() => { document.body.classList.remove('snd-hint'); }, 4200);  // hold, then subtly hide
+    };
+    if (document.body.classList.contains('is-loading')) {
+      const mo = new MutationObserver(() => {
+        if (!document.body.classList.contains('is-loading')) { mo.disconnect(); setTimeout(showCue, 900); }
+      });
+      mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    } else {
+      setTimeout(showCue, 900);
+    }
+  }
+
+  /* ───────────── RIVER RAIN BURST ─────────────
+     A short, subtle shower when the River chapter arrives (pairs with the
+     rainforest clip). Runs a few seconds, then fades; re-arms on re-entry.
+     Reduced-motion hides the rain layer entirely (see CSS). */
+  function initRain() {
+    let last = null, timer = 0;
+    const check = () => {
+      const ch = document.body.dataset.chapter;
+      if (ch === last) return;
+      last = ch;
+      clearTimeout(timer);
+      if (ch === 'river') {
+        document.body.classList.add('rain-on');
+        timer = setTimeout(() => document.body.classList.remove('rain-on'), 6000);
+      } else {
+        document.body.classList.remove('rain-on');
+      }
+    };
+    new MutationObserver(check).observe(document.body, { attributes: true, attributeFilter: ['data-chapter'] });
+    check();
+  }
+
   /* ───────────── BOOT ───────────── */
   seedAtmosphere();
+  initRain();
   initLogoFallback();
   mountHeroMedia();
   const splits = prepareSplits();
@@ -1157,7 +1343,7 @@
 
   function gsapReadyThen() {
     initCursor(); initMagnetic(); initTilt(); initChrome(); initForm();
-    initWorkStack(); mountPrototypes(); initResume();
+    initWorkStack(); mountPrototypes(); initResume(); initAmbientSound();
 
     // draw the loader mark if GSAP made it in
     if (window.gsap) {

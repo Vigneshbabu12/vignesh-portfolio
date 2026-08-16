@@ -1,3 +1,6 @@
 .DS_Store
 **/.DS_Store
 .vercel/
+
+# Unlicensed audio previews (Adobe Stock comp files) — local tuning only, never ship
+assets/sounds/*preview*

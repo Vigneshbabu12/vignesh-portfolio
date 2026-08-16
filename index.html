@@ -96,6 +96,7 @@
   <div class="birds" id="birds"></div>
   <div class="leaves" id="leaves"></div>
   <div class="flies" id="flies"></div>
+  <div class="rain" id="rain"></div>
   <div class="grain"></div>
 </div>
 
@@ -108,6 +109,7 @@
     </svg>
     <span>Vignesh B</span>
   </a>
+  <div class="nav-right">
   <nav class="nav-links" aria-label="Sections">
     <a href="#about" data-cursor="Read">About</a>
     <a href="#works" data-cursor="View">Work</a>
@@ -118,7 +120,19 @@
        data-cursor="Download">Resume</a>
     <a href="#contact" class="nav-cta" data-cursor="Say hi">Contact</a>
   </nav>
+  <span class="snd-wrap">
+  <button class="snd" id="soundToggle" type="button" aria-pressed="false" aria-label="Ambient sound: off" data-cursor="Sound">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path class="snd-spk" d="M4 9.5v5h3.5L12 18V6L7.5 9.5H4Z"/>
+      <path class="snd-wave" d="M15.5 9.2a4 4 0 0 1 0 5.6"/>
+      <path class="snd-wave2" d="M18 6.8a7.5 7.5 0 0 1 0 10.4"/>
+      <line class="snd-slash" x1="4" y1="4" x2="20" y2="20"/>
+    </svg>
+  </button>
+  <span class="snd-cue" id="soundCue" aria-hidden="true">Tap for sound</span>
+  </span>
   <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+  </div>
 </header>
 
 <!-- chapter rail -->
