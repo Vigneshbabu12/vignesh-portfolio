@@ -48,7 +48,12 @@
   };
 
   const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const FINE = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  // Any touchscreen (phone, tablet, in-app WebView) reports maxTouchPoints > 0.
+  // In-app browsers (LinkedIn, Instagram, etc.) often misreport the hover/pointer
+  // media query as desktop, so we AND it with a hard touch check — otherwise
+  // Lenis/cursor/tilt wrongly activate there and scrolling feels stuck.
+  const TOUCH = (navigator.maxTouchPoints || 0) > 0 || 'ontouchstart' in window;
+  const FINE = matchMedia('(hover:hover) and (pointer:fine)').matches && !TOUCH;
   /* One breakpoint governs every complex layout: the sticky card stack, the
      pinned horizontal process and the branching timeline all unwind below it.
      It MUST match the `max-width:999px` blocks in site.css — when JS and CSS
