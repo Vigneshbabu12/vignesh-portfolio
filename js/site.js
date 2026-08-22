@@ -670,9 +670,13 @@
     const { gsap } = window;
     gsap.registerPlugin(ScrollTrigger);
 
-    /* Lenis smooth scroll, driven by GSAP's ticker so both agree on time */
+    /* Lenis smooth scroll, driven by GSAP's ticker so both agree on time.
+       DESKTOP ONLY (FINE = fine pointer): on touch devices Lenis's easing
+       fought native momentum — a normal short swipe barely advanced and felt
+       stuck. Mobile/touch now uses native scrolling (proper momentum); every
+       scroll-linked feature reads native scroll and falls back without Lenis. */
     let lenis = null;
-    if (window.Lenis && !REDUCED) {
+    if (window.Lenis && !REDUCED && FINE) {
       lenis = new Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 1.6 });
       window.__lenis = lenis;        // the work rail scrolls through it too
       lenis.on('scroll', ScrollTrigger.update);
