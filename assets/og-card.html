@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@500&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px}
+  body{
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 78% 18%, #f3f7ef 0%, rgba(243,247,239,0) 55%),
+      linear-gradient(180deg,#fdfbf7 0%,#f7f5ee 100%);
+    font-family:'Archivo',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:#141a16;
+    display:flex;align-items:center;
+    padding:0 92px;
+  }
+  /* brand ridge motif at the bottom, echoing the site's mountains */
+  .ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:210px;opacity:.9}
+  .ridge svg{display:block;width:100%;height:100%}
+
+  .content{position:relative;z-index:2;flex:1;max-width:640px}
+  .kicker{
+    font-family:'Geist Mono',ui-monospace,monospace;
+    font-size:19px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+    color:#22553d;display:flex;align-items:center;gap:11px;margin-bottom:26px;
+  }
+  .kicker .dot{width:9px;height:9px;border-radius:50%;background:#2f6d4f;box-shadow:0 0 0 5px rgba(47,109,79,.16)}
+  .name{
+    font-size:104px;font-weight:800;line-height:.94;letter-spacing:-.03em;color:#141a16;
+  }
+  .name em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#22553d}
+  .role{font-size:37px;font-weight:600;letter-spacing:-.02em;color:#3a463d;margin-top:24px}
+  .meta{
+    font-family:'Geist Mono',ui-monospace,monospace;
+    font-size:20px;font-weight:500;color:#6d7a70;margin-top:30px;letter-spacing:.01em;
+  }
+
+  .portrait-wrap{position:relative;z-index:2;margin-left:36px;flex:0 0 auto}
+  .halo{
+    position:absolute;inset:-26px;border-radius:50%;
+    background:radial-gradient(circle,rgba(34,85,61,.16) 0%,rgba(34,85,61,0) 70%);
+  }
+  .portrait{
+    width:300px;height:300px;border-radius:50%;display:block;position:relative;
+    box-shadow:0 24px 60px rgba(20,40,30,.22);
+  }
+</style>
+</head>
+<body>
+  <div class="content">
+    <div class="kicker"><span class="dot"></span>Portfolio</div>
+    <div class="name">Vignesh&nbsp;B</div>
+    <div class="role">Product &amp; Visual Designer</div>
+    <div class="meta">6 years&nbsp;&nbsp;·&nbsp;&nbsp;SaaS&nbsp;&nbsp;·&nbsp;&nbsp;Design systems&nbsp;&nbsp;·&nbsp;&nbsp;AI</div>
+  </div>
+
+  <div class="portrait-wrap">
+    <div class="halo"></div>
+    <img class="portrait" src="vignesh-portrait.png" alt="Vignesh B">
+  </div>
+
+  <div class="ridge" aria-hidden="true">
+    <svg viewBox="0 0 1200 210" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,150 L150,96 L330,150 L520,72 L720,140 L920,84 L1200,148 L1200,210 L0,210 Z" fill="#e2ece0"/>
+      <path d="M0,178 L220,120 L430,176 L660,110 L880,172 L1080,128 L1200,170 L1200,210 L0,210 Z" fill="#d3e3d1"/>
+    </svg>
+  </div>
+</body>
+</html>
