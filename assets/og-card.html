@@ -44,7 +44,9 @@
   }
   .portrait{
     width:300px;height:300px;border-radius:50%;display:block;position:relative;
-    box-shadow:0 24px 60px rgba(20,40,30,.22);
+    object-fit:cover;background:#fff;
+    box-shadow:0 24px 60px rgba(20,40,30,.22),
+               0 0 0 8px #fff, 0 0 0 9px rgba(20,26,22,.10);
   }
 </style>
 </head>
@@ -58,7 +60,7 @@
 
   <div class="portrait-wrap">
     <div class="halo"></div>
-    <img class="portrait" src="vignesh-portrait.png" alt="Vignesh B">
+    <img class="portrait" src="portrait-og.jpg" alt="Vignesh B">
   </div>
 
   <div class="ridge" aria-hidden="true">
