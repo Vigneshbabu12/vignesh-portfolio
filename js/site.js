@@ -1336,9 +1336,71 @@
     check();
   }
 
+  /* Case study modal — clones a per-project <template> into a shared shell,
+     applies that project's accent, and handles open/close/scroll-lock/focus. */
+  function initCaseStudies() {
+    const modal = $('#csModal'), scroll = $('#csScroll');
+    if (!modal || !scroll) return;
+    const card = $('.cs-card', modal);
+    const tpls = {};
+    $$('.cs-tpl').forEach((t) => { tpls[t.dataset.case] = t; });
+    let lastFocus = null, clearT = 0;
+
+    function open(key) {
+      const tpl = tpls[key];
+      if (!tpl) return;
+      clearTimeout(clearT);            // cancel any pending clear from a fast close→open
+      lastFocus = document.activeElement;
+      scroll.innerHTML = '';
+      scroll.appendChild(tpl.content.cloneNode(true));
+      card.style.setProperty('--cs-accent', tpl.dataset.accent || '#22553d');
+      card.style.setProperty('--cs-accent-2', tpl.dataset.accent2 || tpl.dataset.accent || '#2f6d4f');
+      card.style.setProperty('--cs-tint', tpl.dataset.tint || '#eef4ea');
+      // lock the page without a layout jump when the scrollbar disappears
+      const sw = window.innerWidth - document.documentElement.clientWidth;
+      if (sw > 0) document.body.style.paddingRight = sw + 'px';
+      document.body.classList.add('cs-open');
+      if (window.__lenis) window.__lenis.stop();
+      void modal.offsetWidth;                 // reflow so the enter transition plays
+      modal.classList.add('is-open');
+      scroll.scrollTop = 0;
+      const closeBtn = $('.cs-close', modal);
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function close() {
+      if (!modal.classList.contains('is-open')) return;
+      modal.classList.remove('is-open');
+      if (window.__lenis) window.__lenis.start();
+      document.body.classList.remove('cs-open');
+      document.body.style.paddingRight = '';
+      clearT = setTimeout(() => { scroll.innerHTML = ''; }, 480);   // clear after the fade-out
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    $$('[data-case]').forEach((el) => {
+      if (el.tagName === 'TEMPLATE') return;
+      el.addEventListener('click', (e) => { e.preventDefault(); open(el.dataset.case); });
+    });
+    modal.addEventListener('click', (e) => { if (e.target.closest('[data-cs-close]')) close(); });
+    addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('is-open')) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'Tab') {
+        const f = $$('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])', modal)
+          .filter((el) => el.offsetParent !== null);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
   /* ───────────── BOOT ───────────── */
   seedAtmosphere();
   initRain();
+  initCaseStudies();
   initLogoFallback();
   mountHeroMedia();
   const splits = prepareSplits();

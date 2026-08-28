@@ -274,7 +274,8 @@
             <p class="panel-note"><span class="mono">Built with</span> Figma Make AI end to end — prompt-driven development, with Supabase wired in to bring the product to life.</p>
             <div class="panel-links">
               <a href="https://www.kanakkuai.com/" target="_blank" rel="noopener" data-cursor="Visit">Website ↗</a>
-              <a href="https://kanakkuaifintech.figma.site/" target="_blank" rel="noopener" data-cursor="Open">Prototype ↗</a>
+              <a href="https://kanakkuaidemo.figma.site/#/signin" target="_blank" rel="noopener" data-cursor="Open">Demo product ↗</a>
+              <button type="button" class="panel-cs" data-case="kanakku" data-cursor="Read">Case study ↗</button>
             </div>
           </div>
           <figure class="pcard-media">
@@ -327,6 +328,7 @@
               <a href="https://www.figma.com/proto/T07iyFGoSHTTyns0ySnpKN/My-Portfolio-projects?page-id=0%3A1&amp;node-id=1-1453&amp;viewport=684%2C349%2C0.17&amp;t=XrMwRMxBIk2GY3uy-1&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;starting-point-node-id=1%3A853"
                  target="_blank" rel="noopener" data-cursor="Open">View prototype ↗</a>
               <a href="https://www.linkedin.com/posts/vignesh-babu-91a756159_humanexperience-mobileapp-uiux-ugcPost-7276535725351690240-8IGe/" target="_blank" rel="noopener" data-cursor="Read">View LinkedIn post ↗</a>
+              <button type="button" class="panel-cs" data-case="ringsizer" data-cursor="Read">Case study ↗</button>
             </div>
           </div>
           <figure class="pcard-media">
@@ -361,6 +363,7 @@
             </div>
             <div class="panel-links">
               <a data-proto-link="radius" href="#" target="_blank" rel="noopener" data-cursor="Open">View prototype ↗</a>
+              <button type="button" class="panel-cs" data-case="radius" data-cursor="Read">Case study ↗</button>
             </div>
           </div>
           <figure class="pcard-media pcard-media--proto">
@@ -403,6 +406,7 @@
             </div>
             <div class="panel-links">
               <a data-proto-link="subscription" href="#" target="_blank" rel="noopener" data-cursor="Open">View prototype ↗</a>
+              <button type="button" class="panel-cs" data-case="subscription" data-cursor="Read">Case study ↗</button>
             </div>
           </div>
           <figure class="pcard-media pcard-media--proto">
@@ -441,6 +445,7 @@
             <div class="panel-links">
               <a href="https://www.figma.com/proto/tMKLzmzSRjHSGGegkvHonq/Bug-tracker-Final?node-id=2401-22720&amp;viewport=14229%2C-7480%2C0.68&amp;t=qUJ5xcbCaFcVm2PO-1&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;page-id=19%3A1344&amp;starting-point-node-id=2401%3A22720"
                  target="_blank" rel="noopener" data-cursor="Open">View prototype ↗</a>
+              <button type="button" class="panel-cs" data-case="bugtracker" data-cursor="Read">Case study ↗</button>
             </div>
           </div>
           <figure class="pcard-media">
@@ -629,6 +634,866 @@
     </div>
   </section>
 </main>
+
+<!-- ══ Case study modal — shared shell; content is cloned from the templates below ══ -->
+<div class="cs-modal" id="csModal" role="dialog" aria-modal="true" aria-labelledby="csTitle">
+  <div class="cs-backdrop" data-cs-close></div>
+  <div class="cs-card">
+    <button type="button" class="cs-close" data-cs-close aria-label="Close case study">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="cs-scroll" id="csScroll" data-lenis-prevent>
+  </div>
+</div>
+
+<template class="cs-tpl" data-case="kanakku" data-accent="#005a63" data-accent2="#0b7c86" data-tint="#e7f1f0">
+  <article class="cs">
+    <header class="cs-hero">
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · FinTech</div>
+      <h1 class="cs-title" id="csTitle">Kanakku AI</h1>
+      <p class="cs-lead">A fee-collection platform for institutions — taken from idea to launch: brand, product, dashboard and marketing site.</p>
+      <div class="cs-chips">
+        <span class="cs-chip"><span class="mono">Role</span><b>End-to-end Product Design</b></span>
+        <span class="cs-chip"><span class="mono">Year</span><b>2025</b></span>
+        <span class="cs-chip"><span class="mono">Platform</span><b>Web</b></span>
+        <span class="cs-chip"><span class="mono">Stack</span><b>Figma Make AI · Supabase</b></span>
+      </div>
+    </header>
+    <div class="cs-body">
+      <section class="cs-sec">
+        <div class="cs-label">Overview</div>
+        <p>Kanakku AI gives institutions — schools, coaching centres and small finance teams — one place to track, reconcile and collect fees. I owned it end to end: brand, product UX, dashboard UI and the marketing site, built prompt-first in Figma Make AI with Supabase powering real data.</p>
+        <dl class="cs-facts">
+          <div class="row"><dt>Project</dt><dd>Kanakku AI</dd></div>
+          <div class="row"><dt>Category</dt><dd>FinTech · Fee collection</dd></div>
+          <div class="row"><dt>Role</dt><dd>End-to-end Product Design</dd></div>
+          <div class="row"><dt>Platform</dt><dd>Web</dd></div>
+          <div class="row"><dt>Year</dt><dd>2025</dd></div>
+          <div class="row"><dt>Built with</dt><dd>Figma Make AI · Supabase</dd></div>
+        </dl>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Problem</div>
+        <h4>Payments lived in WhatsApp threads and spreadsheets</h4>
+        <p>Institutions were chasing fees across chat messages, paper receipts and ad-hoc spreadsheets. Reconciliation was manual and error-prone, reminders were inconsistent, and no one had a clear, real-time picture of who had paid and who hadn't.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Insights that shaped it</div>
+        <div class="cs-insights">
+          <div class="cs-insight"><div class="n">01</div><h5>Chasing was social</h5><p>Most follow-ups happened in chat, so collection had to feel as quick and familiar as sending a message.</p></div>
+          <div class="cs-insight"><div class="n">02</div><h5>Reconciliation was the real cost</h5><p>Matching payments to people ate the most time — automating it was the highest-leverage bet.</p></div>
+          <div class="cs-insight"><div class="n">03</div><h5>Trust is the product</h5><p>To move money-tracking here, the brand and UI had to read as credible from the very first screen.</p></div>
+        </div>
+        <p class="cs-note">Qualitative insights drawn from the problem space and stakeholder conversations — directional, not a formal survey.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Who it's for</div>
+        <div class="cs-persona">
+          <div class="who">
+            <div class="avatar">FA</div>
+            <div>
+              <div class="role">Finance admin</div>
+              <div class="ctx">Growing institution · hundreds of payers</div>
+            </div>
+          </div>
+          <div class="cols">
+            <div>
+              <h6>Goals</h6>
+              <ul>
+                <li>See who has paid at a glance</li>
+                <li>Send reminders without manual nagging</li>
+                <li>Close the books without hunting</li>
+              </ul>
+            </div>
+            <div>
+              <h6>Frustrations</h6>
+              <ul>
+                <li>Manual reconciliation across tools</li>
+                <li>Missed or duplicated payments</li>
+                <li>No single, real-time view</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Goals</div>
+        <ul class="cs-goals">
+          <li>Create a single source of truth for every fee and payment.</li>
+          <li>Automate reconciliation to remove manual matching.</li>
+          <li>Make reminders effortless, consistent and trackable.</li>
+          <li>Build a finance-grade brand and interface people trust.</li>
+        </ul>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design process</div>
+        <div class="cs-steps">
+          <div class="cs-step"><h5>Discover</h5><p>Mapped the collection flow across WhatsApp, receipts and spreadsheets to find where money and time leaked.</p></div>
+          <div class="cs-step"><h5>Define</h5><p>Framed the product as one ledger + automated reconciliation + reminders — the smallest set that fixes the chaos.</p></div>
+          <div class="cs-step"><h5>Wireframe</h5><p>Blocked out the dashboard and collection views low-fi first, settling hierarchy before any visual polish.</p></div>
+          <div class="cs-step"><h5>Design &amp; system</h5><p>Built the brand, type scale, colour and components, then the high-fi UI — iterating fast in Figma Make AI.</p></div>
+          <div class="cs-step"><h5>Ship</h5><p>Wired Supabase for real data and launched a live product alongside a focused marketing site.</p></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Wireframes &amp; structure</div>
+        <p>I worked the hierarchy out in low fidelity first — deciding what each screen leads with before any styling.</p>
+        <div class="cs-wire">
+          <div class="cs-frame">
+            <div class="cap">Dashboard — structure</div>
+            <span class="sk bar"></span>
+            <div class="sk-kpis"><span class="k"></span><span class="k"></span><span class="k"></span><span class="k"></span></div>
+            <div class="sk-chart"></div>
+            <div class="sk-rows"><span class="r"></span><span class="r"></span><span class="r"></span></div>
+          </div>
+          <div class="cs-frame">
+            <div class="cap">Collections — list &amp; detail</div>
+            <span class="sk bar"></span>
+            <div class="sk-split">
+              <div class="col"></div>
+              <div class="col main"><span class="r"></span><span class="r"></span><span class="r"></span><span class="r"></span></div>
+            </div>
+            <div class="sk-rows"><span class="r"></span><span class="r"></span></div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design system</div>
+        <h4>A calm, finance-grade visual language</h4>
+        <div class="cs-type">
+          <div class="big">Ag</div>
+          <div class="scale">
+            <div><span class="s1">Clear, geometric sans</span><span class="lab">Display</span></div>
+            <div><span class="s2">Confident headings, tight tracking</span><span class="lab">Heading</span></div>
+            <div><span class="s3">Readable body for numbers &amp; tables</span><span class="lab">Body</span></div>
+          </div>
+        </div>
+        <div class="cs-swatches">
+          <div class="cs-swatch"><div class="chip" style="background:#005a63"></div><div class="meta"><div class="nm">Deep Teal</div><div class="hex">#005A63</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#a6bc8a"></div><div class="meta"><div class="nm">Sage</div><div class="hex">#A6BC8A</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Final design</div>
+        <h4>One ledger, clear reminders, real-time status</h4>
+        <p>The product turns scattered payment chatter into a structured, trustworthy workflow — with a marketing site that gets people to the value fast.</p>
+        <figure class="cs-shot">
+          <div class="cs-browser">
+            <div class="bar"><i></i><i></i><i></i><span class="url"></span></div>
+            <img src="assets/kanakku-cover.png" alt="Kanakku AI marketing site and dashboard" loading="lazy">
+          </div>
+          <figcaption>Marketing site — leads with one promise, “Simplify your payment collections,” then hands off to the product.</figcaption>
+        </figure>
+        <figure class="cs-shot">
+          <div class="cs-browser">
+            <div class="bar"><i></i><i></i><i></i><span class="url"></span></div>
+            <img src="assets/kanakku-dashboard.png" alt="Kanakku AI collections dashboard" loading="lazy">
+          </div>
+          <figcaption>Collections dashboard — totals and payment status at a glance, reconciliation surfaced where the work happens.</figcaption>
+        </figure>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Impact</div>
+        <div class="cs-impact">
+          <p>Shipped as a live product with a complete brand and design system, an end-to-end collections dashboard and a marketing site — designed and built prompt-first in Figma Make AI with Supabase behind it. <em>(Adoption and volume metrics to be added as the product grows.)</em></p>
+        </div>
+      </section>
+    </div>
+    <footer class="cs-foot">
+      <a href="https://www.kanakkuai.com/" target="_blank" rel="noopener">Visit website ↗</a>
+      <a class="ghost" href="https://kanakkuaidemo.figma.site/#/signin" target="_blank" rel="noopener">Open demo product ↗</a>
+    </footer>
+  </article>
+</template>
+
+<template class="cs-tpl" data-case="ringsizer" data-accent="#2f6fd0" data-accent2="#5a8fe0" data-tint="#eaf1fb">
+  <article class="cs">
+    <header class="cs-hero">
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
+      <h1 class="cs-title" id="csTitle">Ring Sizer</h1>
+      <p class="cs-lead">A single screen that removes the biggest reason people don't buy rings online — shipped as JustFitIt on Google Play.</p>
+      <div class="cs-chips">
+        <span class="cs-chip"><span class="mono">Role</span><b>UX case study → Live app</b></span>
+        <span class="cs-chip"><span class="mono">Year</span><b>2024–2025</b></span>
+        <span class="cs-chip"><span class="mono">Platform</span><b>Android</b></span>
+        <span class="cs-chip"><span class="mono">Focus</span><b>Interaction</b></span>
+      </div>
+    </header>
+    <div class="cs-body">
+      <section class="cs-sec">
+        <div class="cs-label">Overview</div>
+        <p>Buying a ring online stalls at one question: what size? Ring Sizer answers it in seconds — place a real ring on the screen, drag to match, read the size. It grew from a UX case study into JustFitIt, a live Android app.</p>
+        <dl class="cs-facts">
+          <div class="row"><dt>Project</dt><dd>Ring Sizer · JustFitIt</dd></div>
+          <div class="row"><dt>Category</dt><dd>Mobile · E-commerce utility</dd></div>
+          <div class="row"><dt>Role</dt><dd>UX case study → Live app</dd></div>
+          <div class="row"><dt>Platform</dt><dd>Android</dd></div>
+          <div class="row"><dt>Year</dt><dd>2024–2025</dd></div>
+          <div class="row"><dt>Focus</dt><dd>Interaction design</dd></div>
+        </dl>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Problem</div>
+        <h4>Nobody knows their ring size, so nobody checks out</h4>
+        <p>Ring sizing is the silent conversion killer in jewellery e-commerce. Shoppers don't know their size, printable guides are fiddly, and that uncertainty ends most purchases before they start.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Insights that shaped it</div>
+        <div class="cs-insights">
+          <div class="cs-insight"><div class="n">01</div><h5>It's one unknown</h5><p>The whole purchase hinges on a single number — solve that and the funnel opens.</p></div>
+          <div class="cs-insight"><div class="n">02</div><h5>Physical beats abstract</h5><p>People trust measuring against a ring they already own more than typing in millimetres.</p></div>
+          <div class="cs-insight"><div class="n">03</div><h5>No setup, or no use</h5><p>The tool has to work instantly — before any account, cart or friction.</p></div>
+        </div>
+        <p class="cs-note">Qualitative insights from the e-commerce problem space — directional, not a formal survey.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Who it's for</div>
+        <div class="cs-persona">
+          <div class="who">
+            <div class="avatar">RS</div>
+            <div>
+              <div class="role">Online ring shopper</div>
+              <div class="ctx">Buying a ring, unsure of size</div>
+            </div>
+          </div>
+          <div class="cols">
+            <div><h6>Goals</h6><ul><li>Get an accurate size fast</li><li>Trust the result</li><li>Finish the purchase</li></ul></div>
+            <div><h6>Frustrations</h6><ul><li>Confusing size charts</li><li>Fear of ordering wrong</li><li>Returns and reorders</li></ul></div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Goals</div>
+        <ul class="cs-goals">
+          <li>Remove the size unknown in under a minute.</li>
+          <li>Make the result feel trustworthy.</li>
+          <li>Require zero setup or signup.</li>
+          <li>Turn a UX concept into a shippable product.</li>
+        </ul>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design process</div>
+        <div class="cs-steps">
+          <div class="cs-step"><h5>Discover</h5><p>Mapped why jewellery carts get abandoned — sizing uncertainty led the list.</p></div>
+          <div class="cs-step"><h5>Define</h5><p>Reduced it to one interaction: calibrate against a real ring, then read the size.</p></div>
+          <div class="cs-step"><h5>Wireframe</h5><p>Set the hierarchy — circle target, slider, size readout — so nothing competes.</p></div>
+          <div class="cs-step"><h5>Design &amp; motion</h5><p>Tuned the tactile drag and a confident size readout that feels accurate.</p></div>
+          <div class="cs-step"><h5>Ship</h5><p>Built and launched JustFitIt on Google Play; shared the story on LinkedIn.</p></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Wireframes &amp; structure</div>
+        <p>The whole product is one screen, so hierarchy was everything — the sizing target leads, the result reassures.</p>
+        <div class="cs-wire">
+          <div class="cs-frame">
+            <div class="cap">Sizer — one screen</div>
+            <span class="sk bar"></span>
+            <span class="sk accent" style="height:120px;width:120px;border-radius:50%;margin:14px auto;display:block"></span>
+            <span class="sk line w70" style="margin:12px auto"></span>
+            <div class="sk-rows"><span class="r"></span></div>
+          </div>
+          <div class="cs-frame">
+            <div class="cap">Result &amp; readout</div>
+            <span class="sk bar"></span>
+            <span class="sk accent" style="height:52px;width:52%;margin:14px auto;display:block;border-radius:10px"></span>
+            <div class="sk-rows"><span class="r"></span><span class="r"></span></div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design system</div>
+        <h4>Confident, tactile, single-purpose</h4>
+        <div class="cs-type">
+          <div class="big">Ag</div>
+          <div class="scale">
+            <div><span class="s1">Bold size readout</span><span class="lab">Display</span></div>
+            <div><span class="s2">Clear step labels</span><span class="lab">Heading</span></div>
+            <div><span class="s3">Quiet helper text</span><span class="lab">Body</span></div>
+          </div>
+        </div>
+        <div class="cs-swatches">
+          <div class="cs-swatch"><div class="chip" style="background:#2f6fd0"></div><div class="meta"><div class="nm">Cobalt</div><div class="hex">#2F6FD0</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#e58d99"></div><div class="meta"><div class="nm">Blush</div><div class="hex">#E58D99</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Final design</div>
+        <h4>One screen, one number, done</h4>
+        <p>Ring Sizer shipped as JustFitIt — a focused Android app that turns a purchase-blocking question into a five-second interaction.</p>
+        <figure class="cs-shot"><img src="assets/ringsizer-launch.png" alt="JustFitIt — find your perfect ring size in seconds" loading="lazy"><figcaption>Launch — JustFitIt, live on Google Play.</figcaption></figure>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">How it works</div>
+        <h4>Measure a real ring, right on the screen</h4>
+        <p>The whole product hangs on one screen. You calibrate against a ring you already own, and the app does the maths — diameter to ring size, in the standard for your country.</p>
+        <div class="cs-how">
+          <div class="cs-phone"><img src="assets/rs-measure.png" alt="Ring Sizer measurement screen — a ring on the circle with a size slider" loading="lazy"></div>
+          <ol>
+            <li><h5>Set your details</h5><p>Enter your name and country, so the reading maps to the right regional standard — US, UK, India and more.</p></li>
+            <li><h5>Place your ring on the circle</h5><p>Lay a ring you already own flat over the on-screen target.</p></li>
+            <li><h5>Drag the slider to match</h5><p>Resize the circle until it lines up with the ring's inside edge.</p></li>
+            <li><h5>Read your size</h5><p>The app shows the inside diameter in millimetres and the matching ring size instantly — e.g. 16.71&nbsp;mm → size 12.</p></li>
+            <li><h5>Save it</h5><p>Name the measurement and keep it in your history to reuse or share later.</p></li>
+          </ol>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Key screens</div>
+        <div class="cs-phones">
+          <figure><div class="cs-phone"><img src="assets/rs-welcome.png" alt="JustFitIt welcome screen" loading="lazy"></div><figcaption>Welcome — measure effortlessly</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/rs-save.png" alt="Save ring size with a name" loading="lazy"></div><figcaption>Save with a name</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/rs-history.png" alt="History of saved measurements" loading="lazy"></div><figcaption>History of measurements</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Every screen</div>
+        <p>The full flow — onboarding, measuring, saving, managing units and standards, and sharing.</p>
+        <div class="cs-gallery">
+          <figure><img src="assets/rs-welcome.png" alt="Welcome" loading="lazy"><figcaption>Welcome</figcaption></figure>
+          <figure><img src="assets/rs-details.png" alt="Enter details" loading="lazy"><figcaption>Your details</figcaption></figure>
+          <figure><img src="assets/rs-country.png" alt="Country picker" loading="lazy"><figcaption>Country standard</figcaption></figure>
+          <figure><img src="assets/rs-measure.png" alt="Measure" loading="lazy"><figcaption>Measure</figcaption></figure>
+          <figure><img src="assets/rs-save.png" alt="Save" loading="lazy"><figcaption>Save size</figcaption></figure>
+          <figure><img src="assets/rs-empty.png" alt="Empty history" loading="lazy"><figcaption>Empty state</figcaption></figure>
+          <figure><img src="assets/rs-history.png" alt="History" loading="lazy"><figcaption>History</figcaption></figure>
+          <figure><img src="assets/rs-history-menu.png" alt="Share, edit, delete" loading="lazy"><figcaption>Share · edit · delete</figcaption></figure>
+          <figure><img src="assets/rs-settings.png" alt="Settings" loading="lazy"><figcaption>Settings</figcaption></figure>
+          <figure><img src="assets/rs-unit.png" alt="Measure unit" loading="lazy"><figcaption>Units — mm / in</figcaption></figure>
+          <figure><img src="assets/rs-type.png" alt="Measure type" loading="lazy"><figcaption>Diameter / circumference</figcaption></figure>
+          <figure><img src="assets/rs-conversion.png" alt="Conversion table" loading="lazy"><figcaption>Conversion table</figcaption></figure>
+          <figure><img src="assets/rs-rate.png" alt="Rate us" loading="lazy"><figcaption>Rate &amp; review</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Impact</div>
+        <div class="cs-impact">
+          <p>Shipped as <strong>JustFitIt</strong> on Google Play. The concept resonated widely — <strong>553K+ impressions</strong>, <strong>10K+ likes</strong> and <strong>500+ comments</strong> on the launch post.</p>
+        </div>
+      </section>
+    </div>
+    <footer class="cs-foot">
+      <a href="https://play.google.com/store/apps/details?id=com.justfitit" target="_blank" rel="noopener">Get it on Google Play ↗</a>
+      <a class="ghost" href="https://www.linkedin.com/posts/vignesh-babu-91a756159_humanexperience-mobileapp-uiux-ugcPost-7276535725351690240-8IGe/" target="_blank" rel="noopener">View LinkedIn post ↗</a>
+    </footer>
+  </article>
+</template>
+
+<template class="cs-tpl" data-case="radius" data-accent="#5a2fd0" data-accent2="#7a52e6" data-tint="#efeafc">
+  <article class="cs">
+    <header class="cs-hero">
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
+      <h1 class="cs-title" id="csTitle">Radius Agent</h1>
+      <p class="cs-lead">A community-first mobile network that brings a real-estate agent's whole working day into one app.</p>
+      <div class="cs-chips">
+        <span class="cs-chip"><span class="mono">Role</span><b>Product Design · Mobile</b></span>
+        <span class="cs-chip"><span class="mono">Year</span><b>2024</b></span>
+        <span class="cs-chip"><span class="mono">Platform</span><b>iOS · Android</b></span>
+        <span class="cs-chip"><span class="mono">Focus</span><b>Design system</b></span>
+      </div>
+    </header>
+    <div class="cs-body">
+      <section class="cs-sec">
+        <div class="cs-label">Overview</div>
+        <p>Radius Agent helps real-estate agents connect, learn and grow. I designed a mobile experience that unifies live rooms, referrals, marketplace discovery and brokerage tools — the things agents previously juggled across separate apps.</p>
+        <dl class="cs-facts">
+          <div class="row"><dt>Project</dt><dd>Radius Agent</dd></div>
+          <div class="row"><dt>Category</dt><dd>Mobile · Real-estate network</dd></div>
+          <div class="row"><dt>Role</dt><dd>Product Design · Mobile</dd></div>
+          <div class="row"><dt>Platform</dt><dd>iOS · Android</dd></div>
+          <div class="row"><dt>Year</dt><dd>2024</dd></div>
+          <div class="row"><dt>Focus</dt><dd>Cross-platform design system</dd></div>
+        </dl>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Problem</div>
+        <h4>An agent's day was scattered across five apps</h4>
+        <p>Agents were juggling leads, learning and networking across separate tools. Context lived in different places, momentum leaked between them, and there was no single home for the working day.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Insights that shaped it</div>
+        <div class="cs-insights">
+          <div class="cs-insight"><div class="n">01</div><h5>Fragmentation kills momentum</h5><p>Every app-switch is a chance to lose a lead or a conversation.</p></div>
+          <div class="cs-insight"><div class="n">02</div><h5>Community is retention</h5><p>Agents stay for the people and live rooms, not just the tools.</p></div>
+          <div class="cs-insight"><div class="n">03</div><h5>Trust needs a face</h5><p>In a referral network, profiles and credibility do real work.</p></div>
+        </div>
+        <p class="cs-note">Qualitative insights from the agent workflow — directional, not a formal survey.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Who it's for</div>
+        <div class="cs-persona">
+          <div class="who">
+            <div class="avatar">RA</div>
+            <div>
+              <div class="role">Real-estate agent</div>
+              <div class="ctx">Chasing leads, building a network</div>
+            </div>
+          </div>
+          <div class="cols">
+            <div><h6>Goals</h6><ul><li>Find and claim quality leads</li><li>Learn from peers in live rooms</li><li>Grow referrals and reputation</li></ul></div>
+            <div><h6>Frustrations</h6><ul><li>Scattered, disconnected tools</li><li>Cold or low-quality leads</li><li>No single hub for the day</li></ul></div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Goals</div>
+        <ul class="cs-goals">
+          <li>Unify the daily tools in one app.</li>
+          <li>Make community and live rooms effortless to join.</li>
+          <li>Surface quality leads and referrals.</li>
+          <li>Ship a coherent cross-platform design system.</li>
+        </ul>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design process</div>
+        <div class="cs-steps">
+          <div class="cs-step"><h5>Discover</h5><p>Mapped the agent's fragmented day across the apps they were forced to switch between.</p></div>
+          <div class="cs-step"><h5>Define</h5><p>Framed one hub — rooms, referrals, marketplace and brokerage — around the working day.</p></div>
+          <div class="cs-step"><h5>Wireframe</h5><p>Set the tab structure and feed hierarchy so the important things surface first.</p></div>
+          <div class="cs-step"><h5>Design system</h5><p>Built components that hold up across iOS and Android with one visual language.</p></div>
+          <div class="cs-step"><h5>Ship</h5><p>Delivered a clickable prototype and a system the team could build against.</p></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Wireframes &amp; structure</div>
+        <p>I worked the navigation and feed hierarchy out low-fi first — what an agent lands on, and how they move between rooms, leads and profile.</p>
+        <div class="cs-wire">
+          <div class="cs-frame">
+            <div class="cap">Home — rooms &amp; feed</div>
+            <span class="sk bar"></span>
+            <div class="sk-rows"><span class="r"></span><span class="r"></span><span class="r"></span><span class="r"></span></div>
+            <span class="sk accent" style="height:34px;margin-top:12px"></span>
+          </div>
+          <div class="cs-frame">
+            <div class="cap">Profile &amp; leads</div>
+            <span class="sk bar"></span>
+            <span class="sk" style="height:60px;margin:10px 0"></span>
+            <div class="sk-kpis"><span class="k"></span><span class="k"></span><span class="k"></span><span class="k"></span></div>
+            <div class="sk-rows"><span class="r"></span><span class="r"></span></div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design system</div>
+        <h4>One language across iOS and Android</h4>
+        <div class="cs-type">
+          <div class="big">Ag</div>
+          <div class="scale">
+            <div><span class="s1">Friendly, rounded display</span><span class="lab">Display</span></div>
+            <div><span class="s2">Clear section headings</span><span class="lab">Heading</span></div>
+            <div><span class="s3">Readable feed &amp; list body</span><span class="lab">Body</span></div>
+          </div>
+        </div>
+        <div class="cs-swatches">
+          <div class="cs-swatch"><div class="chip" style="background:#5a2fd0"></div><div class="meta"><div class="nm">Violet</div><div class="hex">#5A2FD0</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#00964e"></div><div class="meta"><div class="nm">Emerald</div><div class="hex">#00964E</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Final design</div>
+        <h4>The whole working day, in one app</h4>
+        <p>Live rooms, referrals, marketplace discovery and brokerage tools — cohesive across screens and platforms.</p>
+        <figure class="cs-shot cs-shot-bleed"><img src="assets/radius-cover.png" alt="Radius Agent — key screens" loading="lazy"><figcaption>Sign-in, rooms and profile — one connected experience.</figcaption></figure>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">How it works</div>
+        <h4>Hosting a live room, end to end</h4>
+        <p>Live rooms are the heart of Radius — where agents connect with clients and each other. The flow keeps a broadcast-grade feature down to a few taps.</p>
+        <div class="cs-phones">
+          <figure><div class="cs-phone"><img src="assets/ra-roomtype.png" alt="Choose a room type" loading="lazy"></div><figcaption>1 · Pick a room type</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/ra-liveroom.png" alt="Set up the live room" loading="lazy"></div><figcaption>2 · Set topic &amp; privacy</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/ra-speakers.png" alt="Add speakers" loading="lazy"></div><figcaption>3 · Add co-hosts</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/ra-roomcreated.png" alt="Room created successfully" loading="lazy"></div><figcaption>4 · You're live</figcaption></figure>
+        </div>
+        <p class="cs-note">Scheduling a room reuses the same flow with a date &amp; time step — shown in the gallery below.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Key screens</div>
+        <div class="cs-phones">
+          <figure><div class="cs-phone"><img src="assets/ra-rooms.png" alt="Rooms and topics" loading="lazy"></div><figcaption>Rooms &amp; topics</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/ra-referrals.png" alt="Referral leads marketplace" loading="lazy"></div><figcaption>Referral leads</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/ra-profile.png" alt="Agent profile" loading="lazy"></div><figcaption>Agent profile</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/ra-notifications.png" alt="Notifications" loading="lazy"></div><figcaption>Notifications</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Every screen</div>
+        <p>Onboarding, community, scheduling, messaging and the full referral flow — one connected system across the app.</p>
+        <div class="cs-gallery">
+          <figure><img src="assets/ra-splash.png" alt="Splash" loading="lazy"><figcaption>Splash</figcaption></figure>
+          <figure><img src="assets/ra-signup.png" alt="Sign up" loading="lazy"><figcaption>Sign up</figcaption></figure>
+          <figure><img src="assets/ra-login.png" alt="Log in" loading="lazy"><figcaption>Log in</figcaption></figure>
+          <figure><img src="assets/ra-community.png" alt="Community feed" loading="lazy"><figcaption>Community feed</figcaption></figure>
+          <figure><img src="assets/ra-schedule.png" alt="Schedule a room" loading="lazy"><figcaption>Schedule room</figcaption></figure>
+          <figure><img src="assets/ra-setdate.png" alt="Set date" loading="lazy"><figcaption>Set date</figcaption></figure>
+          <figure><img src="assets/ra-settime.png" alt="Set time" loading="lazy"><figcaption>Set time</figcaption></figure>
+          <figure><img src="assets/ra-messages.png" alt="Messages" loading="lazy"><figcaption>Messages</figcaption></figure>
+          <figure><img src="assets/ra-newmessage.png" alt="New message" loading="lazy"><figcaption>New message</figcaption></figure>
+          <figure><img src="assets/ra-referral-confirm.png" alt="Confirm referral" loading="lazy"><figcaption>Confirm referral</figcaption></figure>
+          <figure><img src="assets/ra-leads-claimed.png" alt="Claimed leads" loading="lazy"><figcaption>Claimed leads</figcaption></figure>
+          <figure><img src="assets/ra-leads-submitted.png" alt="Submitted lead" loading="lazy"><figcaption>Submitted lead</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Impact</div>
+        <div class="cs-impact">
+          <p>One connected home for the agent's working day — live rooms, referrals, marketplace and brokerage tools in a single, cohesive experience, backed by a cross-platform design system.</p>
+        </div>
+      </section>
+    </div>
+    <footer class="cs-foot">
+      <a href="https://www.figma.com/proto/a3YAGRaDyjDni0PSv6rsor/Radius-Agent---Task---Vignesh?node-id=1-381&amp;viewport=1587%2C2596%2C0.42&amp;t=Hg2hWGd69ET731JH-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=1%3A59&amp;page-id=0%3A1" target="_blank" rel="noopener">Open prototype ↗</a>
+    </footer>
+  </article>
+</template>
+
+<template class="cs-tpl" data-case="subscription" data-accent="#8b2fd6" data-accent2="#a24fe6" data-tint="#f5eafc">
+  <article class="cs">
+    <header class="cs-hero">
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
+      <h1 class="cs-title" id="csTitle">Subscription App</h1>
+      <p class="cs-lead">A mobile app to track every subscription, see what you really spend, and split the bill with your household.</p>
+      <div class="cs-chips">
+        <span class="cs-chip"><span class="mono">Role</span><b>Product Design · Mobile</b></span>
+        <span class="cs-chip"><span class="mono">Year</span><b>2025</b></span>
+        <span class="cs-chip"><span class="mono">Platform</span><b>iOS · Android</b></span>
+        <span class="cs-chip"><span class="mono">Focus</span><b>Design system</b></span>
+      </div>
+    </header>
+    <div class="cs-body">
+      <section class="cs-sec">
+        <div class="cs-label">Overview</div>
+        <p>Subscription App (Subapp) brings all your recurring subscriptions into one place — what's active, what's expiring, and the true monthly total. It adds renewal reminders, cancellation guidance and plan comparison, plus family groups so a household can share subscriptions and split the cost fairly.</p>
+        <dl class="cs-facts">
+          <div class="row"><dt>Project</dt><dd>Subscription App · Subapp</dd></div>
+          <div class="row"><dt>Category</dt><dd>Mobile · Subscriptions</dd></div>
+          <div class="row"><dt>Role</dt><dd>Product Design · Mobile</dd></div>
+          <div class="row"><dt>Platform</dt><dd>iOS · Android</dd></div>
+          <div class="row"><dt>Year</dt><dd>2025</dd></div>
+          <div class="row"><dt>Focus</dt><dd>Design system</dd></div>
+        </dl>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Problem</div>
+        <h4>Subscriptions pile up in the background</h4>
+        <p>Different apps, different renewal dates, different prices — the charges scatter across the month. Nobody knows the real total, when things renew, or who in the household is actually paying for what.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Insights that shaped it</div>
+        <div class="cs-insights">
+          <div class="cs-insight"><div class="n">01</div><h5>The total is the shock</h5><p>People badly underestimate their monthly spend until every subscription sits in one list.</p></div>
+          <div class="cs-insight"><div class="n">02</div><h5>Cancelling shouldn't be a hunt</h5><p>Clear guidance to cancel builds more trust than burying the exit.</p></div>
+          <div class="cs-insight"><div class="n">03</div><h5>Subscriptions are shared</h5><p>Households already share logins, so the app should let them split the bill fairly.</p></div>
+        </div>
+        <p class="cs-note">Qualitative insights from the subscriptions problem space — directional, not a formal survey.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Who it's for</div>
+        <div class="cs-persona">
+          <div class="who">
+            <div class="avatar">SU</div>
+            <div>
+              <div class="role">Subscriber</div>
+              <div class="ctx">Manages a household's subscriptions</div>
+            </div>
+          </div>
+          <div class="cols">
+            <div><h6>Goals</h6><ul><li>See the true monthly total</li><li>Never miss or duplicate a renewal</li><li>Share &amp; split fairly with family</li></ul></div>
+            <div><h6>Frustrations</h6><ul><li>Hidden renewals</li><li>Unclear who pays for what</li><li>Cancellation buried deep</li></ul></div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Goals</div>
+        <ul class="cs-goals">
+          <li>Put every subscription and the true monthly total in one place.</li>
+          <li>Surface renewals early and guide cancellation.</li>
+          <li>Compare plans before committing.</li>
+          <li>Let a household share and split subscriptions fairly.</li>
+        </ul>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design process</div>
+        <div class="cs-steps">
+          <div class="cs-step"><h5>Discover</h5><p>Mapped how subscriptions sprawl — scattered renewals, unclear totals and shared logins.</p></div>
+          <div class="cs-step"><h5>Define</h5><p>Set two pillars: manage your own subscriptions, and split them with a household.</p></div>
+          <div class="cs-step"><h5>Wireframe</h5><p>Blocked the home total and list, and the group-and-split flow.</p></div>
+          <div class="cs-step"><h5>Design system</h5><p>Built clear status, price and date components that stay legible across the app.</p></div>
+          <div class="cs-step"><h5>Ship</h5><p>Delivered a prototype covering tracking, comparison and household splitting.</p></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Wireframes &amp; structure</div>
+        <p>Spend and status lead the home screen; creating a group and splitting a bill is a short, guided flow.</p>
+        <div class="cs-wire">
+          <div class="cs-frame">
+            <div class="cap">Home — spend &amp; list</div>
+            <span class="sk bar"></span>
+            <span class="sk accent" style="height:56px;margin:10px 0"></span>
+            <div class="sk-rows"><span class="r"></span><span class="r"></span><span class="r"></span><span class="r"></span></div>
+          </div>
+          <div class="cs-frame">
+            <div class="cap">Group &amp; split</div>
+            <span class="sk bar"></span>
+            <div class="sk-split">
+              <div class="col"></div>
+              <div class="col main"><span class="r"></span><span class="r"></span><span class="r"></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design system</div>
+        <h4>Status, price and dates, always legible</h4>
+        <div class="cs-type">
+          <div class="big">Ag</div>
+          <div class="scale">
+            <div><span class="s1">Bold spend totals</span><span class="lab">Display</span></div>
+            <div><span class="s2">Plan &amp; status headings</span><span class="lab">Heading</span></div>
+            <div><span class="s3">Dates and helper text</span><span class="lab">Body</span></div>
+          </div>
+        </div>
+        <div class="cs-swatches">
+          <div class="cs-swatch"><div class="chip" style="background:#8b2fd6"></div><div class="meta"><div class="nm">Violet</div><div class="hex">#8B2FD6</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#1dd147"></div><div class="meta"><div class="nm">Active</div><div class="hex">#1DD147</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Final design</div>
+        <h4>Track everything, split with your household</h4>
+        <p>Two pillars in one app — a clear view of every subscription and its true cost, and a simple way to share and split those subscriptions with family.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">How it works</div>
+        <h4>Split a subscription with your household</h4>
+        <p>The standout flow: turn a shared login into a fair, transparent split in a few taps — no spreadsheets, no awkward reminders.</p>
+        <div class="cs-phones">
+          <figure><div class="cs-phone"><img src="assets/sub-creategroup.png" alt="Create a group" loading="lazy"></div><figcaption>1 · Create a group</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/sub-participants.png" alt="Add participants" loading="lazy"></div><figcaption>2 · Add participants</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/sub-split.png" alt="Choose how to split" loading="lazy"></div><figcaption>3 · Choose how to split</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/sub-splitdone.png" alt="Each member's share is set" loading="lazy"></div><figcaption>4 · Everyone's share is set</figcaption></figure>
+        </div>
+        <p class="cs-note">Members can securely share the account login and verify wallets before a subscription is split — shown in the gallery below.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Key screens</div>
+        <div class="cs-phones">
+          <figure><div class="cs-phone"><img src="assets/sub-home.png" alt="Home — subscriptions and monthly spend" loading="lazy"></div><figcaption>All subscriptions &amp; spend</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/sub-subinfo.png" alt="Subscription details and reminders" loading="lazy"></div><figcaption>Plan details &amp; reminders</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/sub-compare.png" alt="Compare plans" loading="lazy"></div><figcaption>Compare plans</figcaption></figure>
+          <figure><div class="cs-phone"><img src="assets/sub-notifications.png" alt="Renewal notifications" loading="lazy"></div><figcaption>Renewal alerts</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Every screen</div>
+        <p>Tracking, comparison and cancellation on one side; household groups, invitations and splitting on the other.</p>
+        <div class="cs-gallery">
+          <figure><img src="assets/sub-menu.png" alt="Menu" loading="lazy"><figcaption>Menu</figcaption></figure>
+          <figure><img src="assets/sub-add.png" alt="Add a subscription" loading="lazy"><figcaption>Add a subscription</figcaption></figure>
+          <figure><img src="assets/sub-cancel.png" alt="Cancellation guide" loading="lazy"><figcaption>Cancellation guide</figcaption></figure>
+          <figure><img src="assets/sub-subscribe.png" alt="Subscribe to a plan" loading="lazy"><figcaption>Subscribe to a plan</figcaption></figure>
+          <figure><img src="assets/sub-household.png" alt="Manage household" loading="lazy"><figcaption>Manage household</figcaption></figure>
+          <figure><img src="assets/sub-invite.png" alt="Invite people" loading="lazy"><figcaption>Invite people</figcaption></figure>
+          <figure><img src="assets/sub-verify.png" alt="Verify and share wallet" loading="lazy"><figcaption>Verify &amp; share wallet</figcaption></figure>
+          <figure><img src="assets/sub-library.png" alt="Family library" loading="lazy"><figcaption>Family library</figcaption></figure>
+          <figure><img src="assets/sub-sendinvite.png" alt="Send invite" loading="lazy"><figcaption>Send invite</figcaption></figure>
+          <figure><img src="assets/sub-familygroup.png" alt="Create your family group" loading="lazy"><figcaption>Family group</figcaption></figure>
+          <figure><img src="assets/sub-groupcreated.png" alt="Group created" loading="lazy"><figcaption>Group created</figcaption></figure>
+          <figure><img src="assets/sub-groupdetails.png" alt="Group details" loading="lazy"><figcaption>Group details</figcaption></figure>
+          <figure><img src="assets/sub-credentials.png" alt="Shared credentials" loading="lazy"><figcaption>Shared credentials</figcaption></figure>
+          <figure><img src="assets/sub-memberadded.png" alt="Member added" loading="lazy"><figcaption>Member added</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Impact</div>
+        <div class="cs-impact">
+          <p>A subscription manager a household can actually run together — every plan and its true cost in one place, renewals and cancellation made clear, and bills split fairly across the family.</p>
+        </div>
+      </section>
+    </div>
+    <footer class="cs-foot">
+      <a href="https://www.figma.com/proto/IFy5us83P1pfAYBe5hfXN4/Task-Vignesh?node-id=4301-1372&amp;viewport=647%2C1027%2C0.15&amp;t=uDigE66I1mPo0tFi-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=106%3A2273&amp;page-id=106%3A2161" target="_blank" rel="noopener">Open prototype ↗</a>
+    </footer>
+  </article>
+</template>
+
+<template class="cs-tpl" data-case="bugtracker" data-accent="#1f9d63" data-accent2="#2fb877" data-tint="#e7f5ee">
+  <article class="cs">
+    <header class="cs-hero">
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · Web app</div>
+      <h1 class="cs-title" id="csTitle">Bug Tracker</h1>
+      <p class="cs-lead">A tracking dashboard that tells a team where its bugs actually are — by state, by priority, by person.</p>
+      <div class="cs-chips">
+        <span class="cs-chip"><span class="mono">Role</span><b>Product &amp; Visual Design</b></span>
+        <span class="cs-chip"><span class="mono">Year</span><b>2024</b></span>
+        <span class="cs-chip"><span class="mono">Platform</span><b>Web</b></span>
+        <span class="cs-chip"><span class="mono">Focus</span><b>Dashboard system</b></span>
+      </div>
+    </header>
+    <div class="cs-body">
+      <section class="cs-sec">
+        <div class="cs-label">Overview</div>
+        <p>Bug Tracker (Bound) is a bug &amp; feedback platform. Testers and clients report issues in context — right on the live site — and each one flows into a project to be triaged on a board or table, topped by a dashboard that shows the whole picture: counts by state, priority and category, and the people responsible.</p>
+        <dl class="cs-facts">
+          <div class="row"><dt>Project</dt><dd>Bug Tracker</dd></div>
+          <div class="row"><dt>Category</dt><dd>Web · Issue tracking</dd></div>
+          <div class="row"><dt>Role</dt><dd>Product &amp; Visual Design</dd></div>
+          <div class="row"><dt>Platform</dt><dd>Web</dd></div>
+          <div class="row"><dt>Year</dt><dd>2024</dd></div>
+          <div class="row"><dt>Focus</dt><dd>Dashboard design system</dd></div>
+        </dl>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Problem</div>
+        <h4>A bug list says what's broken, not what to do next</h4>
+        <p>A flat list tells you an issue exists, but not where the team should focus. Priorities hide in a sortable column, ownership is unclear, and the big picture never surfaces.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Insights that shaped it</div>
+        <div class="cs-insights">
+          <div class="cs-insight"><div class="n">01</div><h5>Counts drive decisions</h5><p>Totals by state answer the first question a team asks: where are we?</p></div>
+          <div class="cs-insight"><div class="n">02</div><h5>Priority must be visual</h5><p>Colour and charts beat a sortable column for spotting hotspots fast.</p></div>
+          <div class="cs-insight"><div class="n">03</div><h5>People make it actionable</h5><p>A bug means little until it sits beside the person who owns it.</p></div>
+        </div>
+        <p class="cs-note">Qualitative insights from the issue-tracking problem space — directional, not a formal survey.</p>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Who it's for</div>
+        <div class="cs-persona">
+          <div class="who">
+            <div class="avatar">QA</div>
+            <div>
+              <div class="role">QA lead / project owner</div>
+              <div class="ctx">Owns quality, reports status</div>
+            </div>
+          </div>
+          <div class="cols">
+            <div><h6>Goals</h6><ul><li>See overall health at a glance</li><li>Spot priority hotspots</li><li>Know who owns what</li></ul></div>
+            <div><h6>Frustrations</h6><ul><li>Filtered lists nobody opens</li><li>No big-picture view</li><li>Chasing status manually</li></ul></div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Goals</div>
+        <ul class="cs-goals">
+          <li>Turn the list into an overview.</li>
+          <li>Make priority and category legible instantly.</li>
+          <li>Put people beside the work.</li>
+          <li>Build a clean, scalable dashboard system.</li>
+        </ul>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design process</div>
+        <div class="cs-steps">
+          <div class="cs-step"><h5>Discover</h5><p>Watched how teams actually triage — the list was rarely the thing they opened.</p></div>
+          <div class="cs-step"><h5>Define</h5><p>Led with an overview: counts by state, then breakdowns and the people behind them.</p></div>
+          <div class="cs-step"><h5>Wireframe</h5><p>Set the KPI row, the analytics charts and the team panel before styling.</p></div>
+          <div class="cs-step"><h5>Design system</h5><p>Built consistent stat cards, charts and status colours that scale across projects.</p></div>
+          <div class="cs-step"><h5>Ship</h5><p>Delivered a clean, legible dashboard a team could read in a glance.</p></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Wireframes &amp; structure</div>
+        <p>Overview-first: the counts lead, the charts explain, and the people sit right beside the work.</p>
+        <div class="cs-wire">
+          <div class="cs-frame">
+            <div class="cap">Overview — counts &amp; charts</div>
+            <span class="sk bar"></span>
+            <div class="sk-kpis"><span class="k"></span><span class="k"></span><span class="k"></span><span class="k"></span></div>
+            <div class="sk-chart"></div>
+          </div>
+          <div class="cs-frame">
+            <div class="cap">Team &amp; assignment</div>
+            <span class="sk bar"></span>
+            <div class="sk-split">
+              <div class="col"></div>
+              <div class="col main"><span class="r"></span><span class="r"></span><span class="r"></span><span class="r"></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Design system</div>
+        <h4>Legible stats, clear status colour</h4>
+        <div class="cs-type">
+          <div class="big">Ag</div>
+          <div class="scale">
+            <div><span class="s1">Big count numbers</span><span class="lab">Display</span></div>
+            <div><span class="s2">Card &amp; chart headings</span><span class="lab">Heading</span></div>
+            <div><span class="s3">Table and label body</span><span class="lab">Body</span></div>
+          </div>
+        </div>
+        <div class="cs-swatches">
+          <div class="cs-swatch"><div class="chip" style="background:#1f9d63"></div><div class="meta"><div class="nm">Green</div><div class="hex">#1F9D63</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#6a5cff"></div><div class="meta"><div class="nm">Indigo</div><div class="hex">#6A5CFF</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
+          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Final design</div>
+        <h4>The whole picture in a glance</h4>
+        <p>The overview leads: counts by state, breakdowns by priority and category, and the team beside the work — one dashboard instead of a filtered list nobody opens.</p>
+        <figure class="cs-shot"><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-overview.png" alt="Bug Tracker overview dashboard" loading="lazy"></div><figcaption>Overview — totals by state, priority and category charts, and the team, all on one screen.</figcaption></figure>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">How it works</div>
+        <h4>From website feedback to fixed</h4>
+        <p>The signature loop: report an issue in context on the live site, and watch it flow into the project to be triaged and resolved.</p>
+        <div class="cs-webgrid">
+          <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-capture.png" alt="Capture feedback on the live site" loading="lazy"></div><figcaption>1 · Report it in context on the live site</figcaption></figure>
+          <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-project-table.png" alt="Feedback lands in the project" loading="lazy"></div><figcaption>2 · It lands in the project</figcaption></figure>
+          <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-kanban.png" alt="Triage on the kanban board" loading="lazy"></div><figcaption>3 · Triage on the board</figcaption></figure>
+          <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-bugcard.png" alt="Open the bug card for detail" loading="lazy"></div><figcaption>4 · Open the bug card for detail</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Key screens</div>
+        <div class="cs-webgrid">
+          <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-projects.png" alt="Projects list" loading="lazy"></div><figcaption>Projects</figcaption></figure>
+          <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-team.png" alt="Team members" loading="lazy"></div><figcaption>Team members</figcaption></figure>
+          <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-integrations.png" alt="Integrations" loading="lazy"></div><figcaption>Integrations</figcaption></figure>
+          <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-billing.png" alt="Billing and plans" loading="lazy"></div><figcaption>Billing &amp; plans</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Every screen</div>
+        <p>The full system — capture and activity, project boards, team and org management, integrations, and account settings.</p>
+        <div class="cs-gallery web">
+          <figure><img src="assets/bt-activity.png" alt="Feedback activity" loading="lazy"><figcaption>Feedback activity</figcaption></figure>
+          <figure><img src="assets/bt-createfeedback.png" alt="Create new feedback" loading="lazy"><figcaption>Create feedback</figcaption></figure>
+          <figure><img src="assets/bt-cardopen.png" alt="Card open in project" loading="lazy"><figcaption>Card open state</figcaption></figure>
+          <figure><img src="assets/bt-membersettings.png" alt="Member settings" loading="lazy"><figcaption>Member settings</figcaption></figure>
+          <figure><img src="assets/bt-teams.png" alt="Teams" loading="lazy"><figcaption>Teams</figcaption></figure>
+          <figure><img src="assets/bt-company.png" alt="Company settings" loading="lazy"><figcaption>Company</figcaption></figure>
+          <figure><img src="assets/bt-projectsettings.png" alt="Project settings" loading="lazy"><figcaption>Project settings</figcaption></figure>
+          <figure><img src="assets/bt-integrations.png" alt="Integrations" loading="lazy"><figcaption>Integrations</figcaption></figure>
+          <figure><img src="assets/bt-api.png" alt="API tokens" loading="lazy"><figcaption>API</figcaption></figure>
+          <figure><img src="assets/bt-emailnotif.png" alt="Email notifications" loading="lazy"><figcaption>Email notifications</figcaption></figure>
+          <figure><img src="assets/bt-account.png" alt="Account preferences" loading="lazy"><figcaption>Account preferences</figcaption></figure>
+          <figure><img src="assets/bt-profile.png" alt="Profile" loading="lazy"><figcaption>Profile</figcaption></figure>
+          <figure><img src="assets/bt-signup.png" alt="Sign up" loading="lazy"><figcaption>Sign up</figcaption></figure>
+        </div>
+      </section>
+      <section class="cs-sec">
+        <div class="cs-label">Impact</div>
+        <div class="cs-impact">
+          <p>A bug-and-feedback loop a team can actually run — reported in context, organised on a board, and rolled up into an overview that shows exactly what to do next.</p>
+        </div>
+      </section>
+    </div>
+    <footer class="cs-foot">
+      <a href="https://www.figma.com/proto/tMKLzmzSRjHSGGegkvHonq/Bug-tracker-Final?node-id=2401-22720&amp;viewport=14229%2C-7480%2C0.68&amp;t=qUJ5xcbCaFcVm2PO-1&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;page-id=19%3A1344&amp;starting-point-node-id=2401%3A22720" target="_blank" rel="noopener">Open prototype ↗</a>
+    </footer>
+  </article>
+</template>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer
         integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"

@@ -145,6 +145,10 @@ button,input,textarea{font:inherit;color:inherit}
    edge, and therefore the crop on the g, stays exactly where it is. 0.3em
    clears the 16px lift even at the smallest hero size. */
 .hero-name .char-mask{padding-top:.3em;margin-top:-.3em}
+/* widen the per-char clip box horizontally (offset by negative margin so layout
+   and the vertical reveal are unchanged) — otherwise the "g" right-side overhang
+   gets clipped by the mask under the negative letter-spacing. */
+.hero-name .char-mask{padding-inline:.08em;margin-inline:-.08em}
 .h-lg,.panel-title,.cta-title,.finale-title{letter-spacing:-.028em}
 .col-title,.col-h,.counters b,.year h4{letter-spacing:-.025em}
 
@@ -1175,4 +1179,233 @@ body[data-chapter="night"] .contact .ch-label i{color:rgba(238,244,240,.45)}
   .bird:nth-child(7){left:77%} .bird:nth-child(8){left:87%} .bird:nth-child(9){left:96%}
   body{cursor:auto!important}
   .cursor,.cursor-dot{display:none}
+}
+
+/* ═══════════ CASE STUDY MODAL ═══════════ */
+/* The "Case study" trigger matches the plain Website/Prototype links exactly
+   (a <button>, so restated here without fill). */
+.panel-links .panel-cs{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--forest);background:none;border:0;border-bottom:1px solid transparent;padding:0 0 3px;
+  cursor:pointer;transition:border-color .4s var(--e)}
+.panel-links .panel-cs:hover{border-bottom-color:var(--forest)}
+
+body.cs-open{overflow:hidden}
+/* Always in flow (display:flex) but invisible until .is-open, so the fade/slide
+   transitions have a start frame. visibility hides after the fade-out via delay. */
+.cs-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:flex-end;justify-content:center;
+  visibility:hidden;pointer-events:none;transition:visibility 0s .45s}
+.cs-modal.is-open{visibility:visible;pointer-events:auto;transition:visibility 0s 0s}
+@media(min-width:721px){.cs-modal{align-items:center;padding:32px}}
+.cs-backdrop{position:absolute;inset:0;background:rgba(16,22,18,.55);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;transition:opacity .4s var(--e)}
+.cs-modal.is-open .cs-backdrop{opacity:1}
+.cs-card{position:relative;z-index:2;background:#fff;width:min(940px,100%);max-height:94vh;
+  border-radius:24px 24px 0 0;overflow:hidden;display:flex;flex-direction:column;
+  transform:translateY(26px);opacity:0;transition:transform .5s var(--e),opacity .4s var(--e);
+  /* per-project accent — JS overrides these three on open */
+  --cs-accent:#22553d;--cs-accent-2:#2f6d4f;--cs-tint:#eef4ea}
+@media(min-width:721px){.cs-card{border-radius:24px;transform:translateY(30px) scale(.985)}}
+.cs-modal.is-open .cs-card{transform:none;opacity:1}
+.cs-close{position:absolute;top:15px;right:15px;z-index:6;width:42px;height:42px;border-radius:50%;
+  border:0;background:rgba(255,255,255,.9);color:#141a16;cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 4px 16px rgba(20,26,22,.16);transition:transform .2s var(--e),background .2s}
+.cs-close:hover{transform:scale(1.06);background:#fff}
+.cs-close svg{width:18px;height:18px}
+/* flex:1 + min-height:0 is what actually lets this scroll inside the flex-column
+   card (without min-height:0 it grows to content height and the card just clips). */
+.cs-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+/* while the modal is open, show the real pointer — the custom cursor sits below
+   the modal (z-index) and the native one is hidden, so there'd be no pointer. */
+body.cs-open{cursor:auto!important}
+body.cs-open a,body.cs-open button,body.cs-open [data-cs-close]{cursor:pointer!important}
+body.cs-open .cursor,body.cs-open .cursor-dot{opacity:0!important}
+
+.cs{color:var(--ink);font-size:16px;line-height:1.6}
+.cs-hero{background:linear-gradient(180deg,var(--cs-tint),#fff);padding:56px clamp(24px,8%,72px) 34px}
+.cs-eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cs-accent);display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.cs-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--cs-accent)}
+.cs-title{font-family:var(--f-display);font-size:clamp(34px,5.4vw,52px);font-weight:800;
+  letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.cs-lead{font-size:clamp(17px,2.4vw,21px);color:var(--ink-2);margin-top:14px;max-width:46ch}
+.cs-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.cs-chip{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:#fff}
+.cs-chip .mono{font-family:var(--fm);color:var(--muted);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;margin-right:7px}
+.cs-chip b{color:var(--cs-accent);font-weight:600}
+
+.cs-body{padding:8px clamp(24px,8%,72px) 4px}
+.cs-sec{padding:26px 0;border-top:1px solid var(--line-2)}
+.cs-label{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cs-accent);margin-bottom:12px}
+.cs-sec h4{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px;color:var(--ink)}
+.cs-sec p{color:var(--ink-2);max-width:66ch}
+.cs-goals{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:11px}
+.cs-goals li{position:relative;padding-left:28px;color:var(--ink-2)}
+.cs-goals li::before{content:'';position:absolute;left:0;top:8px;width:12px;height:12px;border-radius:4px;
+  background:var(--cs-tint);border:2px solid var(--cs-accent)}
+
+.cs-steps{display:grid;gap:14px;margin-top:6px;counter-reset:step}
+@media(min-width:600px){.cs-steps{grid-template-columns:repeat(2,1fr)}}
+.cs-step{position:relative;padding:18px 18px 18px 20px;border:1px solid var(--line);border-radius:16px;
+  background:var(--paper-2)}
+.cs-step::before{counter-increment:step;content:'0' counter(step);font-family:var(--fm);font-size:12px;
+  color:var(--cs-accent);font-weight:600;letter-spacing:.08em}
+.cs-step h5{font-size:16px;font-weight:700;margin:7px 0 5px;color:var(--ink)}
+.cs-step p{font-size:14.5px;color:var(--muted);max-width:none}
+
+.cs-shot{margin:22px 0 4px}
+.cs-shot img{width:100%;height:auto;display:block;border-radius:16px;border:1px solid var(--line);
+  background:var(--paper-2)}
+.cs-shot figcaption{font-size:14px;color:var(--muted);margin-top:12px;border-left:3px solid var(--cs-accent);
+  padding-left:12px}
+/* full-bleed composite hero (its own background) — larger radius, no grey border */
+.cs-shot-bleed img{border-radius:26px;border:0;box-shadow:0 22px 50px -30px rgba(20,40,25,.4)}
+
+.cs-impact{background:var(--cs-tint);border-radius:18px;padding:24px 26px;margin-top:6px}
+.cs-impact p{color:var(--ink-2);max-width:66ch}
+.cs-foot{display:flex;flex-wrap:wrap;gap:12px;padding:26px clamp(24px,8%,72px) 48px}
+.cs-foot a{font-size:14px;font-weight:600;color:#fff;background:var(--cs-accent);border-radius:999px;
+  padding:13px 24px;text-decoration:none;transition:transform .2s var(--e),opacity .2s}
+.cs-foot a.ghost{background:transparent;color:var(--cs-accent);border:1.5px solid var(--cs-accent)}
+.cs-foot a:hover{transform:translateY(-2px);opacity:.94}
+
+/* ── overview facts table ── */
+.cs-facts{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;margin-top:8px}
+@media(max-width:600px){.cs-facts{grid-template-columns:1fr;gap:0}}
+.cs-facts .row{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid var(--line-2)}
+.cs-facts dt{color:var(--muted);font-size:14px}
+.cs-facts dd{font-weight:600;font-size:14px;text-align:right}
+
+/* ── insight cards (qualitative, honest) ── */
+.cs-insights{display:grid;gap:14px;margin-top:6px}
+@media(min-width:640px){.cs-insights{grid-template-columns:repeat(3,1fr)}}
+.cs-insight{padding:20px;border-radius:16px;background:var(--cs-tint);border:1px solid var(--line-2)}
+.cs-insight .n{font-family:var(--fm);font-size:12px;color:var(--cs-accent);font-weight:600}
+.cs-insight h5{font-size:16px;font-weight:700;margin:9px 0 6px;letter-spacing:-.01em}
+.cs-insight p{font-size:14px;color:var(--ink-2);max-width:none}
+.cs-note{font-size:12.5px;color:var(--faint);margin-top:12px;font-style:italic}
+
+/* ── persona / target user (representative role, no fake identity) ── */
+.cs-persona{display:grid;gap:22px;padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--paper-2);margin-top:6px}
+@media(min-width:660px){.cs-persona{grid-template-columns:220px 1fr;align-items:start}}
+.cs-persona .who{display:flex;gap:14px;align-items:center}
+.cs-persona .avatar{width:56px;height:56px;border-radius:50%;background:var(--cs-accent);color:#fff;
+  display:grid;place-items:center;font-weight:700;font-size:20px;flex:0 0 auto}
+.cs-persona .role{font-weight:700;font-size:16px;line-height:1.2}
+.cs-persona .ctx{color:var(--muted);font-size:13px;margin-top:2px}
+.cs-persona .cols{display:grid;gap:18px}
+@media(min-width:520px){.cs-persona .cols{grid-template-columns:1fr 1fr}}
+.cs-persona h6{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cs-accent);margin-bottom:8px}
+.cs-persona ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14px;display:grid;gap:5px}
+
+/* ── low-fi wireframe / structure diagrams ── */
+.cs-wire{display:grid;gap:18px;margin-top:6px}
+@media(min-width:640px){.cs-wire{grid-template-columns:1fr 1fr}}
+.cs-frame{border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px;
+  box-shadow:0 8px 24px -16px rgba(20,40,25,.4)}
+.cs-frame .cap{font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px}
+.sk{background:var(--paper-2);border-radius:6px;display:block}
+.sk.line{height:9px;margin:7px 0}
+.sk.w30{width:30%}.sk.w50{width:50%}.sk.w70{width:70%}
+.sk.bar{height:30px;margin-bottom:12px}
+.sk.accent{background:var(--cs-tint);border:1px solid var(--cs-accent)}
+.sk-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.sk-kpis .k{height:44px;background:var(--paper-2);border-radius:8px}
+.sk-kpis .k:first-child{background:var(--cs-tint);border:1px solid var(--cs-accent)}
+.sk-chart{height:120px;background:var(--paper-2);border-radius:8px}
+.sk-rows{display:grid;gap:7px;margin-top:12px}
+.sk-rows .r{height:16px;background:var(--paper-2);border-radius:5px}
+.sk-split{display:grid;grid-template-columns:34% 1fr;gap:10px;margin-top:12px}
+.sk-split .col{height:150px;background:var(--paper-2);border-radius:8px}
+.sk-split .col.main{background:transparent;border:1px dashed var(--line);display:grid;gap:7px;padding:10px}
+.sk-split .col.main .r{height:14px;background:var(--paper-2);border-radius:5px}
+
+/* ── design system: type scale + colour palette ── */
+.cs-type .big{font-size:clamp(44px,8vw,80px);font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--cs-accent)}
+.cs-type .scale{margin-top:20px;display:grid;gap:0}
+.cs-type .scale div{display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--line-2);padding:12px 0}
+.cs-type .scale .lab{font-family:var(--fm);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.cs-type .scale .s1{font-size:26px;font-weight:700}
+.cs-type .scale .s2{font-size:19px;font-weight:600}
+.cs-type .scale .s3{font-size:15px;color:var(--ink-2)}
+.cs-swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+@media(max-width:600px){.cs-swatches{grid-template-columns:repeat(2,1fr)}}
+.cs-swatch{border:1px solid var(--line-2);border-radius:14px;overflow:hidden;background:#fff}
+.cs-swatch .chip{height:82px}
+.cs-swatch .meta{padding:10px 12px}
+.cs-swatch .nm{font-size:13px;font-weight:600}
+.cs-swatch .hex{font-family:var(--fm);font-size:12px;color:var(--muted)}
+
+/* ── device / browser mockups (real screens) ── */
+.cs-browser{border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  box-shadow:0 34px 70px -34px rgba(20,40,25,.55);background:#fff;margin-top:18px}
+.cs-browser .bar{display:flex;align-items:center;gap:7px;padding:12px 15px;
+  background:var(--paper-2);border-bottom:1px solid var(--line-2)}
+.cs-browser .bar i{width:11px;height:11px;border-radius:50%;background:#d9d5cc;display:block;flex:0 0 auto}
+.cs-browser .bar .url{margin-left:14px;height:22px;flex:1;max-width:360px;background:#fff;
+  border:1px solid var(--line-2);border-radius:7px}
+.cs-browser img{display:block;width:100%;height:auto}
+/* mobile screens: constrain width so tall portrait shots don't dominate */
+.cs-shot.phone img{max-width:300px;margin:0 auto;border-radius:26px}
+.cs-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.cs-duo img{width:100%;height:auto;border-radius:20px;border:1px solid var(--line);background:var(--paper-2)}
+@media(max-width:600px){.cs-duo{grid-template-columns:1fr}}
+
+/* phone frame — thin black bezel, modest radius */
+.cs-phone{position:relative;width:264px;margin:0 auto;border-radius:22px;background:#0e1512;
+  padding:5px;box-shadow:0 18px 40px -24px rgba(20,40,25,.38)}
+.cs-phone img{display:block;width:100%;border-radius:18px}
+
+/* "how it works" — hero phone beside numbered steps */
+.cs-how{display:grid;gap:28px;align-items:center;margin-top:8px}
+@media(min-width:720px){.cs-how{grid-template-columns:264px 1fr;gap:44px}}
+.cs-how ol{margin:0;padding:0;list-style:none;counter-reset:hw;display:grid;gap:20px}
+.cs-how li{position:relative;padding-left:46px}
+.cs-how li::before{counter-increment:hw;content:counter(hw);position:absolute;left:0;top:-3px;
+  width:30px;height:30px;border-radius:50%;background:var(--cs-accent);color:#fff;
+  display:grid;place-items:center;font-weight:700;font-size:13px;font-family:var(--fm)}
+.cs-how h5{font-size:16px;font-weight:700;margin-bottom:4px}
+.cs-how p{font-size:14.5px;color:var(--ink-2)}
+
+/* a row of a few phone-framed key screens */
+.cs-phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;margin-top:16px;align-items:start}
+@media(max-width:600px){.cs-phones{grid-template-columns:repeat(2,1fr)}}
+.cs-phones figure{margin:0}
+.cs-phones .cs-phone{width:100%;max-width:230px;margin-inline:auto}
+.cs-phones figcaption{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
+
+/* complete screen gallery */
+.cs-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
+@media(max-width:600px){.cs-gallery{grid-template-columns:repeat(2,1fr)}}
+.cs-gallery figure{margin:0}
+.cs-gallery img{width:100%;aspect-ratio:780/1688;object-fit:cover;object-position:top;
+  border-radius:14px;border:1px solid var(--line);background:var(--paper-2)}
+.cs-gallery figcaption{font-size:12px;color:var(--muted);margin-top:7px;text-align:center}
+/* landscape gallery variant for web screens */
+.cs-gallery.web{grid-template-columns:repeat(3,1fr)}
+@media(max-width:600px){.cs-gallery.web{grid-template-columns:repeat(2,1fr)}}
+.cs-gallery.web img{aspect-ratio:16/10}
+
+/* 2-up grid of browser-framed web screens (how-it-works / key screens) */
+.cs-webgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+@media(max-width:600px){.cs-webgrid{grid-template-columns:1fr}}
+.cs-webgrid figure{margin:0}
+.cs-webgrid .cs-browser{margin-top:0}
+.cs-webgrid figcaption{font-size:13px;color:var(--muted);margin-top:10px}
+
+/* tighter side padding on phones so content isn't cramped at ~360px */
+@media(max-width:600px){
+  .cs-hero{padding:44px 16px 28px}
+  .cs-body{padding:8px 16px 4px}
+  .cs-foot{padding:24px 16px 40px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .cs-backdrop,.cs-card{transition:opacity .001s}
+  .cs-card{transform:none}
 }

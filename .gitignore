@@ -4,3 +4,14 @@
 
 # Unlicensed audio previews (Adobe Stock comp files) — local tuning only, never ship
 assets/sounds/*preview*
+
+# Case-study source screen folders (originals are copied into assets/ with clean names)
+/Ring sizer/
+/Radius Agent/
+/Subscription App/
+/Bug Tracker/
+
+# Local scratch renders & the case-study preview helper (build-time only)
+scratchpad-*.png
+assets/_cs-preview.html
+assets/1742283947746*
