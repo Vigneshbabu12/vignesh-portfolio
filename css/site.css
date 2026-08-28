@@ -1398,8 +1398,13 @@ body.cs-open .cursor,body.cs-open .cursor-dot{opacity:0!important}
 .cs-webgrid .cs-browser{margin-top:0}
 .cs-webgrid figcaption{font-size:13px;color:var(--muted);margin-top:10px}
 
-/* tighter side padding on phones so content isn't cramped at ~360px */
+/* On phones: full-screen sheet with the close button pinned to the top-right.
+   The bottom-sheet (94vh) drifted under iOS's dynamic viewport, pushing the
+   close button off-screen — a full-height, top-anchored card keeps it fixed. */
 @media(max-width:600px){
+  .cs-modal{align-items:stretch;padding:0}
+  .cs-card{width:100%;height:100%;max-height:100%;border-radius:0}
+  .cs-close{top:12px;right:12px}
   .cs-hero{padding:44px 16px 28px}
   .cs-body{padding:8px 16px 4px}
   .cs-foot{padding:24px 16px 40px}
