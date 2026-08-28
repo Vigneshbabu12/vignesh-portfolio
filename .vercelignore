@@ -13,11 +13,10 @@
 
 # Superseded project artwork (kept locally in case you want it back)
 assets/bugtracker-cover.png
-assets/kanakku-dashboard.png
 assets/ring-sizer.png
 
 # Radius screenshots — the card shows the live Figma prototype instead
-assets/radius-cover.png
+# (radius-cover.png is used by the Radius case study, so it must ship)
 assets/radius-live-room.png
 assets/radius-notifications.png
 assets/radius-profile.png
