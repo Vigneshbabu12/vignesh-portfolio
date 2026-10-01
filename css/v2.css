@@ -1,0 +1,292 @@
+/* ═══════════════════════════════════════════════════════════════
+   Portfolio v2 — painterly-landscape re-skin.
+   Loads AFTER css/site.css and only overrides colour, surfaces and the
+   atmosphere. Layout, spacing, type sizes and every section's alignment are
+   untouched — this is a theme layer, not a redesign.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Registered colour properties so gradient stops can *transition* when the
+   chapter changes (a plain var swap would snap). Chrome 85+, Safari 16.4+. */
+@property --sk1{syntax:'<color>';inherits:true;initial-value:#a9c8ee}
+@property --sk2{syntax:'<color>';inherits:true;initial-value:#e6d8e8}
+@property --sk3{syntax:'<color>';inherits:true;initial-value:#fbdcc4}
+@property --veil{syntax:'<color>';inherits:true;initial-value:#fbf8f3}
+@property --sunc{syntax:'<color>';inherits:true;initial-value:#ffe6b8}
+
+:root{
+  /* paper + ink: warm off-white, near-black — the reference's restraint */
+  --paper:#faf7f3;
+  --paper-2:#f3efe8;
+  --mint:#eef3e6;
+  --ink:#121412;
+  --ink-2:#3b423c;
+  --muted:#6a746c;
+  --faint:#a3aba4;
+  --line:rgba(18,20,18,.10);
+  --line-2:rgba(18,20,18,.055);
+
+  /* accent: indigo (solid uses) + a blue→violet→orange gradient for display type */
+  --forest:#4a58d6;
+  --forest-2:#6c5ad8;
+  --forest-soft:#e7e9fb;
+  --grad:linear-gradient(90deg,#2a62dc 0%,#6a4ad0 42%,#b24a95 68%,#e0692f 100%);
+  --grad-a:linear-gradient(90deg,#2a62dc 0%,#5a52d6 100%);
+  --grad-b:linear-gradient(90deg,#5a52d6 0%,#8a4bbb 55%,#b24a95 100%);
+  --grad-c:linear-gradient(90deg,#b24a95 0%,#d05a5a 50%,#e0692f 100%);
+  --grad-soft:linear-gradient(90deg,#c5d3ff 0%,#d9caff 40%,#f0c6e4 70%,#ffd3b8 100%);
+  --acc-a:rgba(74,88,214,.45); --acc-a2:rgba(74,88,214,.18); --acc-a3:rgba(74,88,214,.09);
+  --blue:#7a9cc8;
+  --blue-soft:#e6eef7;
+  --gold:#e3a95a;
+  --gold-soft:#f8ead6;
+
+  /* ── SKY PALETTE (morning): pale blue → white, clouds lit white with a cool shadow ── */
+  --sk1:#9dbfe9; --sk2:#d6e5f6; --sk3:#f8fafd;
+  --sunc:#fff1cf; --sun-o:.75;
+  --cl:#ffffff; --cllit:#f3f6fb; --clmid:#d3dcec; --clsh:#a6b7d1; --cl-o:1;
+  --veil:#fbf8f3; --veil-max:.5;
+}
+
+/* chapter palettes — the same artwork, re-lit six times */
+body[data-chapter="forest"]{
+  --sk1:#bfd9ea; --sk2:#e2eee6; --sk3:#f6f8f2; --sunc:#fff3d2; --cl:#ffffff; --cllit:#f4f8f3; --clmid:#d6e1d6; --clsh:#a9bcae;
+}
+body[data-chapter="mountain"]{
+  --sk1:#a9c4ea; --sk2:#d6e0f3; --sk3:#f3f4fa; --sunc:#fff7e2; --cl:#ffffff; --cllit:#f3f5fb; --clmid:#d1d8ec; --clsh:#a2accd;
+}
+body[data-chapter="river"]{
+  --sk1:#b3d3dc; --sk2:#dbece9; --sk3:#f4f8f4; --sunc:#fff9e8; --cl:#ffffff; --cllit:#f3f8f8; --clmid:#d0e1e1; --clsh:#9fbcbd;
+}
+body[data-chapter="sunset"]{
+  --sk1:#8f93c9; --sk2:#e9b3a6; --sk3:#ffd8a8; --sunc:#ffb066; --sun-o:1; --cl:#fff4e6; --cllit:#fbdcc8; --clmid:#e6b3ae; --clsh:#b07a90; --veil:#fdf3ea;
+}
+body[data-chapter="night"]{
+  --sk1:#070f1e; --sk2:#0e1f33; --sk3:#173042; --sunc:#8fd0ab; --sun-o:.14; --cl:#33466b; --cllit:#263858; --clmid:#1a2a47; --clsh:#0b1428; --cl-o:.55; --veil:#0b1620; --veil-max:.5;
+}
+
+/* ═══════════ SCENE ═══════════ */
+#scene{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+/* the old hand-drawn sky, rays, CSS clouds, ridge and ripples are replaced by
+   the painted scene; birds, leaves, fireflies, stars, moon and grain stay */
+#atmos .sky,#atmos .rays,#atmos .clouds,#atmos .ridge,#atmos .water,#atmos .sun{display:none}
+#atmos .stars,#atmos .moon,#atmos .birds,#atmos .leaves,#atmos .flies,#atmos .rain,#atmos .grain{z-index:2}
+
+.sc-sky{position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--sk1) 0%,var(--sk2) 52%,var(--sk3) 100%);
+  transition:--sk1 1.6s var(--e-io),--sk2 1.6s var(--e-io),--sk3 1.6s var(--e-io)}
+/* sunlight: a wide, very soft warm bloom high on the left, behind the clouds */
+.sc-sun{position:absolute;left:22%;top:8%;width:clamp(320px,52vw,820px);aspect-ratio:1;border-radius:999px;
+  transform:translate(-50%,-30%);opacity:calc(var(--sun-o) * .55);will-change:transform;
+  background:radial-gradient(circle,var(--sunc) 0%,color-mix(in srgb,var(--sunc) 45%,transparent) 30%,transparent 64%);
+  filter:blur(18px);transition:--sunc 1.6s var(--e-io),opacity 1.6s var(--e-io)}
+
+.sc-gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.2s var(--e-io)}
+.sc-gl.on{opacity:1}
+/* the shader draws the sky too; keep the CSS gradient underneath as the
+   first-paint and no-WebGL fallback */
+
+/* dev toggle (?raw=1): show the sky without the legibility veil */
+body.sc-raw .sc-veil{opacity:0!important}
+body.sc-nl #loader{display:none!important}
+
+/* veil: once out of the clouds, a soft wash keeps long copy legible */
+.sc-veil{position:absolute;inset:0;background:var(--veil);opacity:0;
+  transition:--veil 1.6s var(--e-io)}
+/* faint paper texture */
+.sc-paint{position:absolute;inset:0;opacity:.07;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)'/%3E%3C/svg%3E")}
+
+body.sc-static .sc-veil{opacity:var(--veil-max)}
+
+/* ═══════════ SURFACES & TYPE (colour only) ═══════════ */
+body{background:var(--paper)}
+#loader{background:var(--paper)}
+
+/* accent words: the editorial italic, like the reference's "Mukundh." */
+.hero-name em,.h-lg em,.panel-title em,.cta-title em,.col-title em,.thanks-in em,.story-line em{
+  font-family:var(--f-accent);font-style:italic;font-stretch:100%;font-weight:400;color:var(--forest);
+  letter-spacing:0}
+.h-lg em,.panel-title em,.cta-title em{font-size:1.04em}
+
+/* hero copy sits straight on the clouds; a faint pool of light behind the name
+   keeps the small labels readable without hiding the sky */
+.hero::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(60% 52% at 50% 46%,rgba(250,247,243,.55) 0%,rgba(250,247,243,.25) 55%,rgba(250,247,243,0) 100%)}
+.hero-hi,.hero-sub{color:var(--ink-2)}
+.hero-roles{color:var(--forest)}
+.hero-roles em{color:var(--muted)}
+/* ── GRADIENT TYPE — blue → violet → orange, running across the roles line and
+   through every italic accent word. Colours are tuned dark enough to hold on
+   the pale sky; night swaps in the pastel version. ── */
+.grad-text,.hero-roles span,.hero-name em,.h-lg em,.panel-title em,.cta-title em,.col-title em,.thanks-in em,.story-line em{
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent}
+.hero-roles span:nth-of-type(1){background-image:var(--grad-a)}
+.hero-roles span:nth-of-type(2){background-image:var(--grad-b)}
+.hero-roles span:nth-of-type(3){background-image:var(--grad-c)}
+.hero-roles span,.h-lg em,.panel-title em,.cta-title em,.col-title em,.story-line em{padding-right:.06em} /* italics overhang the clip box */
+.cursor.grow{background:var(--grad);border-color:transparent}
+.btn .btn-fill,.rail-line i,.process-bar i,.loader-bar i{background:var(--grad)}
+.hero-foot{color:var(--ink-2)}
+
+/* primary button → solid ink pill (the reference's "View my work") */
+.hero .btn,.btn{border-color:var(--ink);background:var(--ink);color:#fff}
+.btn .btn-fill{background:var(--forest)}
+.btn:hover{color:#fff;border-color:var(--forest)}
+.nav-cta{border-color:rgba(18,20,18,.18);background:rgba(255,255,255,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav-cta:hover{background:var(--ink);border-color:var(--ink)}
+
+/* glass surfaces over the painted landscape */
+.card{background:rgba(255,255,255,.58);border-color:rgba(255,255,255,.75);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 18px 50px -34px rgba(20,40,28,.35)}
+.card:hover{background:rgba(255,255,255,.88);border-color:var(--forest)}
+.year,.counters,.panel-pss{transition:background-color .9s var(--e-io),border-color .9s var(--e-io)}
+.year{background:rgba(255,255,255,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.shot-frame,.shot-row img{background:rgba(255,255,255,.6)}
+.works-rail a.on{background:var(--ink);color:#fff}
+::selection{background:var(--forest);color:#fff}
+
+/* night: the inversion in site.css already re-points the ink tokens */
+body[data-chapter="night"]{--forest:#a9c4ff;--forest-2:#c3b6ff;
+  /* same blue → violet → orange family, lifted so it holds on the dark sky */
+  --grad:linear-gradient(90deg,#6c9bff 0%,#a08cff 42%,#e07fc4 68%,#ff9a62 100%);
+  --grad-a:linear-gradient(90deg,#6c9bff 0%,#8f8dff 100%);
+  --grad-b:linear-gradient(90deg,#8f8dff 0%,#c084dc 55%,#e07fc4 100%);
+  --grad-c:linear-gradient(90deg,#e07fc4 0%,#f08a8a 50%,#ff9a62 100%)}
+body[data-chapter="night"] .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+body[data-chapter="night"] .year{background:rgba(255,255,255,.06)}
+body[data-chapter="night"] .btn{background:#f4f7f4;color:#0f1a16;border-color:#f4f7f4}
+body[data-chapter="night"] .btn .btn-fill{background:#9fd8b3}
+body[data-chapter="night"] .nav-cta{background:rgba(255,255,255,.08)}
+
+@media(max-width:720px){
+  .sc-sun{left:50%;top:22%;width:70vw}
+}
+@media(prefers-reduced-motion:reduce){
+  .sc-clouds svg{animation:none}
+}
+
+/* ── falling leaves take the accent gradient too — three tints from the same
+   sweep, and the whole flurry a touch more transparent than before ── */
+.leaves i{background:linear-gradient(150deg,#2a62dc,#6a4ad0)}
+.leaves i:nth-child(3n+1){background:linear-gradient(150deg,#6a4ad0,#b24a95)}
+.leaves i:nth-child(3n+2){background:linear-gradient(150deg,#b24a95,#e0692f)}
+body[data-chapter="forest"] .leaves{opacity:.72}
+body[data-chapter="night"] .leaves i{background:linear-gradient(150deg,#6c9bff,#a08cff)}
+body[data-chapter="night"] .leaves i:nth-child(3n+1){background:linear-gradient(150deg,#a08cff,#e07fc4)}
+body[data-chapter="night"] .leaves i:nth-child(3n+2){background:linear-gradient(150deg,#e07fc4,#ff9a62)}
+
+/* ── split-line masks: the Instrument Serif italics ("growth.", "meaningful.")
+   descend deeper than the grotesk, so give each line mask room below and pull
+   the layout back with a matching negative margin — no visual shift ── */
+.line-mask{padding-bottom:.32em;margin-bottom:-.32em}
+/* gradient-clipped text is clipped to its own box, so let the italic breathe */
+.h-lg em,.panel-title em,.cta-title em,.col-title em,.story-line em,.hero-name em,.thanks-in em{
+  /* background-clip:text only paints inside the element's box, so any glyph
+     part outside it (the g's lower bowl) vanishes: extend the box on every side
+     and pull the layout back with equal negative margins */
+  display:inline-block;line-height:inherit;
+  padding:.12em .16em .36em .24em;margin:-.12em -.16em -.36em -.24em}
+
+/* process icons: heavier line so they read on the tinted panels */
+.col-art{stroke-width:3.4}
+
+/* ── night chapter: site.css hard-codes the old mint (#8fd0ab) in a handful of
+   places; re-point every one of them at the v2 accent ── */
+body[data-chapter="night"] .contact .ch-label,
+body[data-chapter="night"] .brand-mark,
+body[data-chapter="night"] .form-note,
+body[data-chapter="night"] .social a:hover{color:var(--forest)}
+body[data-chapter="night"] .field input:focus,
+body[data-chapter="night"] .field textarea:focus{border-color:var(--forest)}
+body[data-chapter="night"] .rail-line i{background:var(--grad)}
+body[data-chapter="night"] .contact .btn-solid{background:var(--grad);color:#0f1a16;border-color:transparent}
+body[data-chapter="night"] .contact .btn-solid .btn-fill{background:#fff}
+body[data-chapter="night"] .finale-btn .dot{background:var(--grad);box-shadow:0 0 14px rgba(160,140,255,.55)}
+body[data-chapter="night"] .finale-btn:hover{background:var(--forest);border-color:var(--forest);color:#0f1a16}
+body[data-chapter="night"] .finale-btn:hover .dot{background:#0f1a16;box-shadow:none}
+.field input:focus,.field textarea:focus{border-color:var(--forest)}
+.field input:focus+label,.field textarea:focus+label,
+.field input:not(:placeholder-shown)+label,.field textarea:not(:placeholder-shown)+label{color:var(--forest)}
+.form-note{color:var(--forest)}
+
+/* ── the last greens: every hard-coded forest/mint tint in site.css, re-pointed.
+   Hover fills use the MILD gradient so they stay quiet behind dark text. ── */
+.cursor{border-color:var(--acc-a)}
+.card::after{background:radial-gradient(200px circle at var(--mx,50%) var(--my,50%),var(--acc-a3),transparent 65%)}
+.card:hover{box-shadow:0 26px 60px -34px rgba(60,70,160,.35)}
+.live,.badge-live,.panel-live{background:var(--forest-soft);border-color:var(--acc-a2)}
+.live i,.live::before,.badge-live i{box-shadow:0 0 0 0 var(--acc-a);animation-name:livePulseV2}
+@keyframes livePulseV2{0%{box-shadow:0 0 0 0 var(--acc-a)}70%{box-shadow:0 0 0 7px rgba(74,88,214,0)}100%{box-shadow:0 0 0 0 rgba(74,88,214,0)}}
+body[data-chapter="night"] .finale-btn:hover{background:var(--grad-soft);border-color:transparent;color:#0f1a16}
+body[data-chapter="night"] .finale-btn:hover .dot{background:#0f1a16;box-shadow:none}
+body[data-chapter="night"] .contact .btn-solid{background:var(--grad-soft);color:#0f1a16;border-color:transparent}
+body[data-chapter="night"] .contact .btn-solid .btn-fill{background:#fff}
+body[data-chapter="night"] .rail-line i{background:var(--grad-soft)}
+body[data-chapter="night"] .finale-btn .dot{background:var(--grad-soft);box-shadow:0 0 14px rgba(180,170,255,.5)}
+
+/* ── CASE STUDY MODAL — same family as the home: each project owns one stop of
+   the blue → orange sweep (set on its template), the shared bits use the
+   gradient itself ── */
+.cs-card{background:#fbfbfd}
+.cs-eyebrow .dot{background:var(--grad)}
+.cs-close{border-color:var(--cs-accent);color:var(--cs-accent)}
+.cs-close:hover{background:var(--cs-accent);color:#fff}
+.cs-foot a:not(.ghost){background:linear-gradient(90deg,var(--cs-accent),var(--cs-accent-2))}
+.cs-hero{background:linear-gradient(180deg,var(--cs-tint),#fbfbfd)}
+.cs-shot figcaption{border-left-color:var(--cs-accent-2)}
+.cs-type .big{background:linear-gradient(90deg,var(--cs-accent),var(--cs-accent-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em}
+.cs-persona .avatar,.cs-steps li b,.cs-how .n{background:linear-gradient(135deg,var(--cs-accent),var(--cs-accent-2))}
+
+/* ═══════════ ABOUT — the glass carriage ═══════════
+   Portrait left, the unchanged story copy right, on a frosted card. Arrives
+   from the right as you scroll out of the hero (GSAP scrub in v2.js) while
+   cloud streaks race past the portrait's window, then settles. */
+.about-card{position:relative;display:grid;grid-template-columns:minmax(220px,34%) 1fr;
+  gap:clamp(24px,4vw,56px);align-items:center;padding:clamp(20px,3vw,40px);border-radius:28px;
+  background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.85);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 40px 90px -50px rgba(40,50,120,.35);will-change:transform,opacity}
+.about-card .story{margin:0}
+.about-card .story-line{font-size:clamp(21px,2.45vw,36px);line-height:1.22}
+.about-card .story-line + .story-line{margin-top:.7em}
+.about-portrait{position:relative;margin:0;aspect-ratio:4/5;border-radius:20px;overflow:hidden;isolation:isolate;
+  /* white window with a soft pale-blue cumulus behind the shoulders (generated, assets/about-cloud.jpg) */
+  background:#fff url(../assets/about-cloud.jpg) center/cover no-repeat}
+.about-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;
+  transform-origin:50% 100%;filter:drop-shadow(0 22px 28px rgba(30,30,80,.18))}
+/* the window: motion streaks behind the portrait, faded out by the scrub */
+.about-portrait .win{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.about-portrait img{z-index:1}
+.about-portrait img.cover{object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.05)}
+.about-portrait .streaks{position:absolute;inset:-10% -60%;opacity:0;
+  background:repeating-linear-gradient(90deg,rgba(110,125,225,0) 0 16px,rgba(110,125,225,.55) 16px 20px,
+    rgba(110,125,225,0) 20px 50px,rgba(190,140,230,.45) 50px 52px,rgba(110,125,225,0) 52px 104px);
+  filter:blur(1.2px);animation:streak .5s linear infinite}
+@keyframes streak{to{transform:translateX(-110px)}}
+.about-v2 .counters{border-top:0;padding-top:0}
+body[data-chapter="night"] .about-card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14)}
+@media(max-width:819px){
+  .about-card{grid-template-columns:1fr;padding:18px}
+  .about-portrait{aspect-ratio:4/3;max-height:340px}
+  .about-card .story-line{font-size:clamp(22px,5.4vw,30px)}
+}
+@media(prefers-reduced-motion:reduce){.about-portrait .streaks{animation:none;display:none}}
+
+/* ═══════════ SKY PRESET "soft" (?sky=soft) — paler, airier, photographic-feel
+   sky with white fluffy clouds spread across the whole fold, like the
+   StackNote / Craiteria references ═══════════ */
+body.sky-soft{--sk1:#bcd6f3; --sk2:#dfeaf9; --sk3:#ffffff; --sunc:#fff6e0; --sun-o:.5;
+  --cl:#ffffff; --cllit:#f8fafd; --clmid:#dfe7f3; --clsh:#bfcbdf; --veil-max:.42}
+body.sky-soft .hero::before{background:radial-gradient(60% 52% at 50% 46%,rgba(255,255,255,.62) 0%,rgba(255,255,255,.3) 55%,rgba(255,255,255,0) 100%)}
+
+/* ── calmer atmosphere: fewer drifting details so they frame the copy instead
+   of competing with it (counts are seeded in site.js; thinned here) ── */
+.flies i:nth-child(n+9){display:none}                 /* 22 → 8 fireflies */
+.flies i{width:3px;height:3px;box-shadow:0 0 9px 3px rgba(255,197,120,.32)}
+.flies{opacity:.75}
+.leaves i:nth-child(n+6){display:none}                /* 9 → 5 leaves */
+.birds .bird:nth-child(n+6){display:none}             /* 9 → 5 birds */
+.stars i:nth-child(3n){display:none}                  /* 70 → ~47 stars */

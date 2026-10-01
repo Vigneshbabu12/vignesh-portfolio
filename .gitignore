@@ -15,3 +15,9 @@ assets/sounds/*preview*
 scratchpad-*.png
 assets/_cs-preview.html
 assets/1742283947746*
+
+# v2 redesign — work in progress, local-only until finalized & promoted
+/v2/
+
+# portrait source (the site ships the processed cutout only)
+assets/vignesh-cutout-src.png

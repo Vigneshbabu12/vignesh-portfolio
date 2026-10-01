@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vignesh B — Product & Visual Designer</title>
 <meta name="description" content="Product and visual designer crafting delightful digital experiences. Six years designing SaaS products, design systems and AI experiences.">
-<meta name="theme-color" content="#fdfbf7">
+<meta name="theme-color" content="#faf7f3">
 <link rel="canonical" href="https://vigneshb-portfolio.vercel.app/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
@@ -33,8 +33,9 @@
      be widened to sit close to Sharp Grotesk's wider cuts. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..700;1,62..125,300..700&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/v2.css?v=1">
 </head>
-<body class="is-loading" data-chapter="morning">
+<body class="is-loading sky-soft" data-chapter="morning">
 
 <!-- ══════════════ LOADER ══════════════ -->
 <div id="loader" aria-hidden="true">
@@ -66,6 +67,17 @@
   <div class="sky sky-river"></div>
   <div class="sky sky-sunset"></div>
   <div class="sky sky-night"></div>
+
+  <!-- ══ v2 SCENE — a living sky drawn on the GPU (WebGL, see v2.js). Real
+       volumetric-looking clouds from layered noise, lit from the sun, drifting
+       on their own and parting as you scroll. No stock, no filters, no images.
+       .sc-sky is the CSS fallback when WebGL is unavailable. -->
+  <div id="scene">
+    <div class="sc-sky"></div>
+    <canvas class="sc-gl" id="skyGL" aria-hidden="true"></canvas>
+    <div class="sc-veil"></div>
+    <div class="sc-paint"></div>
+  </div>
 
   <div class="sun" id="sun"></div>
   <div class="moon" id="moon"></div>
@@ -197,14 +209,25 @@
   </section>
 
   <!-- ══════════════ ABOUT — FOREST ══════════════ -->
-  <section id="about" class="blk" data-ch="forest">
+  <section id="about" class="blk about-v2" data-ch="forest">
     <div class="wrap">
       <p class="ch-label mono"><i>02</i> Into the forest</p>
+      <!-- v2: the story rides in on a glass "carriage" with the portrait in its
+           window — clouds streak past the glass as it arrives, then settle -->
+      <div class="about-card" id="aboutCard">
+        <figure class="about-portrait">
+          <span class="win" aria-hidden="true"><i class="streaks"></i></span>
+          <!-- drop the full-res cutout (transparent PNG) at assets/vignesh-cutout.png;
+               until then the square portrait fills the window as a fallback -->
+          <img src="assets/vignesh-cutout.png" alt="Vignesh B — product and visual designer" width="1400" height="780"
+               onerror="this.onerror=null;this.src='assets/portrait-og.jpg';this.classList.add('cover')">
+        </figure>
       <div class="story">
         <p class="story-line" data-split="words">I transform complex problems into <em>elegant</em> digital experiences.</p>
         <p class="story-line" data-split="words">For over 6 years, I've designed enterprise products that simplify the way thousands of people work.</p>
         <p class="story-line" data-split="words">Today, I build scalable design systems, AI-powered experiences, and intelligent workflows that make great products feel <em>effortless.</em></p>
       </div>
+      </div><!-- /about-card -->
       <ul class="counters">
         <li class="rv"><b><span class="count" data-to="18">0</span><span class="cu">K+</span></b><i class="mono">LinkedIn followers</i></li>
         <li class="rv"><b><span class="count" data-to="40">0</span><span class="cu">+</span></b><i class="mono">Projects shipped</i></li>
@@ -646,7 +669,7 @@
   </div>
 </div>
 
-<template class="cs-tpl" data-case="kanakku" data-accent="#005a63" data-accent2="#0b7c86" data-tint="#e7f1f0">
+<template class="cs-tpl" data-case="kanakku" data-accent="#2a62dc" data-accent2="#5a85e8" data-tint="#eaf0fc">
   <article class="cs">
     <header class="cs-hero">
       <div class="cs-eyebrow"><span class="dot"></span>Case study · FinTech</div>
@@ -808,7 +831,7 @@
   </article>
 </template>
 
-<template class="cs-tpl" data-case="ringsizer" data-accent="#2f6fd0" data-accent2="#5a8fe0" data-tint="#eaf1fb">
+<template class="cs-tpl" data-case="ringsizer" data-accent="#4a58d6" data-accent2="#7a84e6" data-tint="#ecedfb">
   <article class="cs">
     <header class="cs-hero">
       <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
@@ -982,7 +1005,7 @@
   </article>
 </template>
 
-<template class="cs-tpl" data-case="radius" data-accent="#5a2fd0" data-accent2="#7a52e6" data-tint="#efeafc">
+<template class="cs-tpl" data-case="radius" data-accent="#6a4ad0" data-accent2="#8f74e0" data-tint="#f0ebfb">
   <article class="cs">
     <header class="cs-hero">
       <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
@@ -1152,7 +1175,7 @@
   </article>
 </template>
 
-<template class="cs-tpl" data-case="subscription" data-accent="#8b2fd6" data-accent2="#a24fe6" data-tint="#f5eafc">
+<template class="cs-tpl" data-case="subscription" data-accent="#b24a95" data-accent2="#c86fae" data-tint="#f8ecf4">
   <article class="cs">
     <header class="cs-hero">
       <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
@@ -1324,7 +1347,7 @@
   </article>
 </template>
 
-<template class="cs-tpl" data-case="bugtracker" data-accent="#1f9d63" data-accent2="#2fb877" data-tint="#e7f5ee">
+<template class="cs-tpl" data-case="bugtracker" data-accent="#d5602a" data-accent2="#e58a5c" data-tint="#fbeee6">
   <article class="cs">
     <header class="cs-hero">
       <div class="cs-eyebrow"><span class="dot"></span>Case study · Web app</div>
@@ -1505,5 +1528,6 @@
         integrity="sha384-O55L/6rhHr9CFvrxqv5luxOCcmVaBmETbZbJDP+Do8T0pztTACsFBD/IXCNkj7DV"
         crossorigin="anonymous"></script>
 <script src="js/site.js" defer></script>
+<script src="js/v2.js?v=1" defer></script>
 </body>
 </html>
