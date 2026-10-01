@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- OG card, v2 palette. Render at 1200×630:
+     ?v=a  → recoloured version of the current card (sky band + paper band)
+     ?v=b  → same content, with the portrait-window streak lines behind the photo -->
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Sharp Grotesk Book 20';src:url(fonts/SharpGrotesk-Book20.woff2) format('woff2');font-weight:400}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden;background:#fff}
+.card{position:relative;width:1200px;height:630px;overflow:hidden;background:#faf7f3;font-family:'Archivo',sans-serif;color:#121412}
+/* top band: the soft sky */
+.sky{position:absolute;inset:0;
+  background:
+    radial-gradient(90% 120% at 12% 0%,rgba(255,255,255,.9) 0%,rgba(255,255,255,0) 60%),
+    radial-gradient(70% 90% at 85% 10%,rgba(255,255,255,.75) 0%,rgba(255,255,255,0) 55%),
+    radial-gradient(60% 80% at 50% 110%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 70%),
+    linear-gradient(180deg,#8fb5ea 0%,#c6daf5 50%,#eef4fb 100%)}
+.cloud{position:absolute;border-radius:999px;background:radial-gradient(closest-side,#fff 0%,#fff 48%,rgba(255,255,255,.7) 72%,rgba(255,255,255,0));filter:blur(5px)}
+/* lit puff on top, cool shaded underside — so the puffs read as cumulus, not haze */
+.cloud::after{content:'';position:absolute;left:16%;top:-52%;width:54%;height:125%;border-radius:999px;background:radial-gradient(closest-side,#fff 0%,#fff 50%,rgba(255,255,255,0))}
+.cloud::before{content:'';position:absolute;left:6%;right:6%;top:38%;height:72%;border-radius:999px;background:radial-gradient(closest-side,rgba(168,190,225,.55),rgba(168,190,225,0));filter:blur(8px)}
+.sky i{position:absolute;inset:0;background:url(about-cloud.jpg) center/cover;opacity:.3;mix-blend-mode:screen}
+/* bottom band: paper */
+.paper{position:absolute;left:0;right:0;top:300px;bottom:0;background:#faf7f3}
+.paper::before{content:'';position:absolute;inset:0;opacity:.07;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)'/%3E%3C/svg%3E")}
+/* the gradient band between the two, like the roles line */
+.rule{position:absolute;left:0;right:0;top:298px;height:3px;background:linear-gradient(90deg,#2a62dc,#6a4ad0 42%,#b24a95 68%,#e0692f)}
+.copy{position:absolute;left:112px;top:330px}
+.glow{position:absolute;left:-40px;top:200px;width:820px;height:460px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.85),rgba(255,255,255,.45) 55%,rgba(255,255,255,0));filter:blur(18px)}
+.name{font-family:'Sharp Grotesk Book 20','Archivo',sans-serif;font-stretch:112%;font-size:104px;line-height:.92;letter-spacing:-.03em;color:#121412}
+.role{margin-top:14px;font-size:40px;font-weight:500;letter-spacing:-.01em;
+  background:linear-gradient(90deg,#2a62dc,#6a4ad0 45%,#b24a95 72%,#e0692f);-webkit-background-clip:text;background-clip:text;color:transparent;
+  display:inline-block;padding-right:.06em}
+.tag{margin-top:18px;font-family:'Instrument Serif',serif;font-style:italic;font-size:36px;color:#3b423c}
+.tag b{font-weight:400;color:#4a58d6}
+/* portrait: a cut-out sticker standing on the paper */
+.who{position:absolute;right:88px;bottom:0;width:470px;height:560px}
+.who img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:560px;width:auto;
+  filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 0 #fff) drop-shadow(0 0 1px #fff) drop-shadow(4px 0 0 #fff) drop-shadow(-4px 0 0 #fff) drop-shadow(0 4px 0 #fff) drop-shadow(0 -4px 0 #fff) drop-shadow(0 26px 30px rgba(30,30,80,.22))}
+/* streaks (variant b): the portrait-window lines from the About section */
+.streaks{display:none;position:absolute;left:640px;right:20px;top:40px;height:560px;
+  -webkit-mask-image:radial-gradient(55% 60% at 50% 55%,#000 35%,transparent 100%);mask-image:radial-gradient(55% 60% at 50% 55%,#000 35%,transparent 100%);
+  background:repeating-linear-gradient(90deg,rgba(110,125,225,0) 0 26px,rgba(110,125,225,.5) 26px 31px,rgba(110,125,225,0) 31px 78px,rgba(190,140,230,.42) 78px 81px,rgba(110,125,225,0) 81px 160px);
+  filter:blur(1.2px)}
+body.b .streaks{display:block}
+body.b .who img{filter:drop-shadow(0 0 1px #fff) drop-shadow(4px 0 0 #fff) drop-shadow(-4px 0 0 #fff) drop-shadow(0 4px 0 #fff) drop-shadow(0 -4px 0 #fff) drop-shadow(0 26px 30px rgba(30,30,80,.22))}
+.mark{position:absolute;right:56px;bottom:40px;width:46px;height:46px}
+.url{position:absolute;left:112px;bottom:38px;font-family:ui-monospace,'Geist Mono',monospace;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:#6a746c}
+</style></head>
+<body>
+<div class="card">
+  <div class="sky"><i></i>
+    <span class="cloud" style="left:-60px;top:20px;width:520px;height:190px"></span>
+    <span class="cloud" style="left:120px;top:-30px;width:360px;height:150px;opacity:.9"></span>
+    <span class="cloud" style="left:420px;top:110px;width:300px;height:110px;opacity:.8"></span>
+    <span class="cloud" style="left:880px;top:-20px;width:420px;height:170px"></span>
+    <span class="cloud" style="left:1000px;top:120px;width:300px;height:130px;opacity:.85"></span>
+    <span class="cloud" style="left:-80px;top:470px;width:420px;height:150px;opacity:.75"></span>
+  </div>
+  <div class="glow"></div>
+  <div class="streaks"></div>
+  <div class="copy">
+    <div class="name">Vignesh B</div>
+    <div class="role">Product &amp; Visual Designer</div>
+    <div class="tag">Let’s build something <b>amazing.</b></div>
+  </div>
+  <div class="who"><img src="vignesh-cutout.png" alt=""></div>
+  <svg class="mark" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#2a62dc"/><stop offset="1" stop-color="#b24a95"/></linearGradient></defs>
+    <path d="M40 70 C40 44 52 22 74 14 C70 38 58 60 40 70 Z" fill="url(#g)" opacity=".95"/>
+    <path d="M40 70 C40 44 28 22 6 14 C10 38 22 60 40 70 Z" fill="url(#g)" opacity=".6"/></svg>
+</div>
+<script>if(/[?&]v=b/.test(location.search))document.body.classList.add('b');</script>
+</body></html>
