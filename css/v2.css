@@ -61,7 +61,9 @@ body[data-chapter="sunset"]{
   --sk1:#8f93c9; --sk2:#e9b3a6; --sk3:#ffd8a8; --sunc:#ffb066; --sun-o:1; --cl:#fff4e6; --cllit:#fbdcc8; --clmid:#e6b3ae; --clsh:#b07a90; --veil:#fdf3ea;
 }
 body[data-chapter="night"]{
-  --sk1:#070f1e; --sk2:#0e1f33; --sk3:#173042; --sunc:#8fd0ab; --sun-o:.14; --cl:#33466b; --cllit:#263858; --clmid:#1a2a47; --clsh:#0b1428; --cl-o:.55; --veil:#0b1620; --veil-max:.5;
+  --sk1:#070f1e; --sk2:#0c1a2e; --sk3:#12263a; --sunc:#8fd0ab; --sun-o:.12;
+  /* night clouds: a faint deep-navy wisp, not a grey haze — low opacity, colours close to the sky */
+  --cl:#1b2b4a; --cllit:#172540; --clmid:#101c33; --clsh:#081225; --cl-o:.22; --veil:#0b1620; --veil-max:.55;
 }
 
 /* ═══════════ SCENE ═══════════ */
@@ -278,7 +280,9 @@ body[data-chapter="night"] .about-card{background:rgba(255,255,255,.07);border-c
 /* ═══════════ SKY PRESET "soft" (?sky=soft) — paler, airier, photographic-feel
    sky with white fluffy clouds spread across the whole fold, like the
    StackNote / Craiteria references ═══════════ */
-body.sky-soft{--sk1:#bcd6f3; --sk2:#dfeaf9; --sk3:#ffffff; --sunc:#fff6e0; --sun-o:.5;
+/* scoped to the morning chapter — the other chapters keep their own palettes
+   (an unscoped rule here out-cascaded them and left night on a light-blue sky) */
+body.sky-soft[data-chapter="morning"],body.sky-soft:not([data-chapter]){--sk1:#bcd6f3; --sk2:#dfeaf9; --sk3:#ffffff; --sunc:#fff6e0; --sun-o:.5;
   --cl:#ffffff; --cllit:#f8fafd; --clmid:#dfe7f3; --clsh:#bfcbdf; --veil-max:.42}
 body.sky-soft .hero::before{background:radial-gradient(60% 52% at 50% 46%,rgba(255,255,255,.62) 0%,rgba(255,255,255,.3) 55%,rgba(255,255,255,0) 100%)}
 
