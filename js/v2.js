@@ -42,7 +42,7 @@
     precision highp float;
     varying vec2 v;
     uniform vec2  uRes;
-    uniform float uTime, uProg, uDrift, uCloudO, uSunO, uCover, uSoft, uRoomMix;
+    uniform float uTime, uProg, uDrift, uCloudO, uSunO, uCover, uSoft, uRoomMix, uZoom;
     uniform vec3  uSky1, uSky2, uSky3, uLit, uMid, uShade, uSunC;
 
     float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
@@ -100,6 +100,7 @@
       sky += uSunC * (exp(-sd * 3.2) * .55 + exp(-sd * 9.) * .25) * uSunO;
 
       vec2 toSun = normalize(sunP - vec2(.5, .5));
+      uv = (uv - .5) / uZoom + .5;                   // dive: push the camera into the decks
       vec2 q = vec2(uv.x * ar, uv.y);
       float open = smoothstep(0., 1., uProg);
       vec3 col = sky;
@@ -134,7 +135,7 @@
   const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
   const aLoc = gl.getAttribLocation(pgm, 'a'); gl.enableVertexAttribArray(aLoc); gl.vertexAttribPointer(aLoc, 2, gl.FLOAT, false, 0, 0);
-  const U = {}; ['uRes','uTime','uProg','uDrift','uCloudO','uSunO','uCover','uSoft','uRoomMix','uSky1','uSky2','uSky3','uLit','uMid','uShade','uSunC']
+  const U = {}; ['uRes','uTime','uProg','uDrift','uCloudO','uSunO','uCover','uSoft','uRoomMix','uZoom','uSky1','uSky2','uSky3','uLit','uMid','uShade','uSunC']
     .forEach(n => U[n] = gl.getUniformLocation(pgm, n));
 
   /* ── size: render a little under native resolution — the clouds are soft, the
@@ -206,6 +207,7 @@
     gl.uniform1f(U.uDrift, drift);
     gl.uniform1f(U.uCloudO, cur.uCloudO);
     gl.uniform1f(U.uSunO, cur.uSunO);
+    gl.uniform1f(U.uZoom, window.__skyZoom || 1);
     gl.uniform1f(U.uCover, PRESET.cover); gl.uniform1f(U.uSoft, PRESET.soft); gl.uniform1f(U.uRoomMix, PRESET.room);
     for (const n in VARS) if (cur[n]) gl.uniform3fv(U[n], cur[n]);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
@@ -233,25 +235,120 @@
   // hang half off-screen while the copy is already being read — rise instead,
   // and finish early
   const PHONE = innerWidth < 820;
+  // ?t=paper  — the card arrives like a sheet of paper on the wind
+  // ?t=dive   — pmkrishna-style: the hero pins, the camera dives through the
+  //             clouds, the copy flies past, then the card rises over the sky
+  // (default) — the carriage slide
+  const T = (location.search.match(/[?&]t=(paper|dive)/) || [])[1] || 'slide';
+  if (T === 'dive' && !PHONE) {
+    const hero = document.getElementById('hero'), inner = hero.querySelector('.hero-inner'), foot = hero.querySelector('.hero-foot');
+    const zoom = { v: 1 };
+    const dive = gsap.timeline({ scrollTrigger: { trigger: '#hero', start: 'top top', end: '+=110%', pin: true, pinSpacing: true, scrub: .8, invalidateOnRefresh: true } })
+      .to(inner, { scale: 1.9, y: -60, opacity: 0, filter: 'blur(6px)', ease: 'power2.in', duration: .55 }, 0)
+      .to(foot,  { opacity: 0, duration: .25 }, 0)
+      .to(zoom,  { v: 2.6, ease: 'power1.in', duration: 1, onUpdate: () => { window.__skyZoom = zoom.v; } }, 0);
+    const mine = new Set(dive.getChildren());
+    // site.js adds its own hero "camera push" on .hero-inner once the loader
+    // finishes; two scrubs on the same props fight and the hero looks stuck
+    // mid-pin. Retire the other one as soon as it appears.
+    const killOthers = () => gsap.getTweensOf(inner).forEach(t => { if (!mine.has(t)) { t.scrollTrigger && t.scrollTrigger.kill(); t.kill(); } });
+    const poll = setInterval(killOthers, 250); setTimeout(() => clearInterval(poll), 12000);
+    ScrollTrigger.addEventListener('refresh', killOthers);
+    document.body.classList.add('t-dive');
+  }
+  // ARRIVAL — scrubbed to the card's own entry: from the moment it appears at
+  // the bottom until it reaches its resting spot. Desktop: the carriage pulls
+  // in from the right with a tilt and levels off; phones: it rises.
   const tl = gsap.timeline({
-    scrollTrigger: { trigger: '#about', start: 'top 100%', end: PHONE ? 'top 55%' : 'top 22%', scrub: .9, invalidateOnRefresh: true }
+    scrollTrigger: { trigger: card, start: 'top 100%', end: PHONE ? 'top 55%' : 'top 14%', scrub: .9, invalidateOnRefresh: true }
   });
-  // the carriage pulls in from the right and levels off; the portrait settles
-  // a beat later; the window streaks are brightest mid-arrival, gone at rest
   if (PHONE) {
     tl.fromTo(card, { y: 90, opacity: .2 }, { y: 0, opacity: 1, ease: 'power2.out' }, 0);
-  } else {
-    tl.fromTo(card, { x: () => Math.min(innerWidth * .6, 720), rotate: 1.4, opacity: .15 },
-                    { x: 0, rotate: 0, opacity: 1, ease: 'power2.out' }, 0);
+  } else if (T === 'dive') {
+    tl.fromTo(card, { y: '45vh', opacity: 0, scale: .96 }, { y: 0, opacity: 1, scale: 1, ease: 'power2.out' }, 0);
+  } else if (T !== 'paper') {
+    gsap.set(card, { transformOrigin: '50% 50%' });
+    tl.fromTo(card, { x: () => Math.min(innerWidth * .55, 680), y: 70, rotate: 3.2, opacity: .15 },
+                    { x: 0, y: 0, rotate: 0, opacity: 1, ease: 'power2.out' }, 0);
   }
-  tl.fromTo(img, { y: 40, scale: .9, transformOrigin: '50% 100%' }, { y: 0, scale: 1, ease: 'power2.out' }, .1)
+  if (T !== 'paper') tl.fromTo(img, { y: 40, scale: .9, transformOrigin: '50% 100%' }, { y: 0, scale: 1, ease: 'power2.out' }, .1)
     .fromTo(streaks, { opacity: 0 }, { opacity: 1, ease: 'power1.out', duration: .35 }, 0)
     .to(streaks, { opacity: 0, ease: 'power1.in', duration: .45 }, .55);
+
+  if (!PHONE && T === 'paper' && document.getElementById('aboutPaper')) {
+    document.body.classList.add('t-paper');
+    const words = [].concat(...[...card.querySelectorAll('.story-line')].map(l => [...l.querySelectorAll('.w')]));
+    const content = [...card.children].filter(el => !el.classList.contains('about-paper'));
+    const cv = document.getElementById('aboutPaper'), ctx = cv.getContext('2d'), disp = document.getElementById('paperDisp');
+    // the keyed stop-motion sheet: 48 frames, 0 = tight ball, 47 = flat
+    const N = 48, frames = [], seq = { i: 0 };
+    for (let i = 0; i < N; i++) { const im = new Image(); im.decoding = 'async'; im.src = `assets/paper/f${String(i).padStart(2, '0')}.webp`; im.onload = () => { if (i === 0) draw(); }; frames.push(im); }
+    let box = { w: 0, h: 0 };
+    function fit() {
+      const r = card.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+      box = { w: r.width, h: r.height };
+      cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d);
+      // content scales from the sheet's centre, so the portrait and copy grow with the paper
+      content.forEach(el => { const e = el.getBoundingClientRect(); el.style.transformOrigin = `${r.left + r.width / 2 - e.left}px ${r.top + r.height / 2 - e.top}px`; });
+    }
+    function draw() {
+      const k = Math.min(N - 1, Math.max(0, Math.round(seq.i))), im = frames[k]; if (!im || !im.complete || !im.naturalWidth) return;
+      if (!cv.width) fit();
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      const s = Math.max(cv.width / im.naturalWidth, cv.height / im.naturalHeight), w = im.naturalWidth * s, h = im.naturalHeight * s;
+      ctx.drawImage(im, (cv.width - w) / 2, (cv.height - h) / 2, w, h);
+      // mask strip: frame height follows the card width (16:9), centred vertically like the canvas
+      const fh = box.w * 270 / 480, y = (box.h - fh) / 2 - k * fh;
+      card.style.webkitMaskPosition = card.style.maskPosition = `0 ${y.toFixed(1)}px`;
+      card.classList.toggle('flat', k >= N - 1);
+      // the content un-crumples with the sheet
+      const p = k / (N - 1); if (disp) disp.setAttribute('scale', (52 * (1 - p) * (1 - p)).toFixed(1));
+      card.classList.toggle('unopened', k < N - 1);
+    }
+    addEventListener('resize', () => { fit(); draw(); }, { passive: true });
+    requestAnimationFrame(() => { fit(); draw(); });
+    card.classList.add('unopened');
+    gsap.set(content, { scale: .3 });
+    gsap.set(words, { opacity: .16 });
+    // 1) the sheet unfolds WHILE it scrolls up into place — from the moment it
+    //    enters at the bottom until it reaches its resting spot
+    gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 96%', end: 'top 14%', scrub: .45, invalidateOnRefresh: true } })
+      .to(seq, { i: N - 1, ease: 'none', onUpdate: draw }, 0)
+      .to(content, { scale: 1, ease: 'power1.inOut' }, 0)
+      .to(cv, { opacity: .62, ease: 'none' }, 0);
+    // 2) then it pins: streaks, the word-by-word story, a held beat, release
+    const paper = gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 14%', end: '+=150%', pin: true, pinSpacing: true, scrub: .6, anticipatePin: 1, invalidateOnRefresh: true } });
+    paper.fromTo(streaks, { opacity: 0 }, { opacity: 1, duration: .06 }, 0).to(streaks, { opacity: 0, duration: .14 }, .08)
+         .to(words, { opacity: 1, ease: 'none', duration: .016, stagger: .014 }, .06)
+         .to({}, { duration: .14 });                                  // hold before release
+    // site.js scrubs the same words against the (now pinned) story block — retire it
+    const storyBlock = card.querySelector('.story');
+    const killStory = () => ScrollTrigger.getAll().forEach(st => { if (st.trigger === storyBlock) st.kill(); });
+    const poll2 = setInterval(killStory, 250); setTimeout(() => clearInterval(poll2), 12000); ScrollTrigger.addEventListener('refresh', killStory);
+    tl.kill();                                                      // no second arrival tween on the card
+  }
+
+  // DWELL — desktop only: once home, the card pins and the story reveals word
+  // by word as you scroll; a held beat after the last word, then it releases.
+  if (!PHONE && T !== 'paper') {
+    const words = [].concat(...[...card.querySelectorAll('.story-line')].map(l => [...l.querySelectorAll('.w')]));
+    if (words.length) {
+      gsap.set(words, { opacity: .16 });
+      gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 14%', end: '+=130%', pin: true, pinSpacing: true, scrub: .6, anticipatePin: 1, invalidateOnRefresh: true } })
+        .to(words, { opacity: 1, ease: 'none', duration: .016, stagger: .016 }, .04)
+        .to({}, { duration: .16 });
+      // site.js scrubs the same words against the (now pinned) story block — retire it
+      const storyBlock = card.querySelector('.story');
+      const killStory = () => ScrollTrigger.getAll().forEach(st => { if (st.trigger === storyBlock) st.kill(); });
+      const pollS = setInterval(killStory, 250); setTimeout(() => clearInterval(pollS), 12000); ScrollTrigger.addEventListener('refresh', killStory);
+    }
+  }
+
   // landed on a refresh with the card already in view? play the arrival once
   // anyway so the streaks are seen, then hand control back to the scrub
   requestAnimationFrame(() => {
     const r = card.getBoundingClientRect();
-    if (r.top < innerHeight * .9 && r.bottom > 0 && tl.scrollTrigger.progress > .6) {
+    if (r.top < innerHeight * .9 && r.bottom > 0 && tl.scrollTrigger && tl.scrollTrigger.progress > .6) {
       gsap.fromTo(streaks, { opacity: 1 }, { opacity: 0, duration: 1.8, ease: 'power2.in', delay: .3, overwrite: 'auto' });
     }
   });
