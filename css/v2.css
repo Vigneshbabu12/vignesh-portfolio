@@ -268,7 +268,8 @@ body[data-chapter="night"] .finale-btn .dot{background:var(--grad-soft);box-shad
     rgba(110,125,225,0) 20px 50px,rgba(190,140,230,.45) 50px 52px,rgba(110,125,225,0) 52px 104px);
   filter:blur(1.2px);animation:streak .5s linear infinite}
 @keyframes streak{to{transform:translateX(-110px)}}
-.about-v2 .counters{border-top:0;padding-top:0}
+.about-v2 .counters{border-top:0;padding-top:0;margin-top:clamp(110px,16vh,180px)}
+@media(max-width:819px){.about-v2 .counters{margin-top:64px}}
 body[data-chapter="night"] .about-card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14)}
 @media(max-width:819px){
   .about-card{grid-template-columns:1fr;padding:18px}
