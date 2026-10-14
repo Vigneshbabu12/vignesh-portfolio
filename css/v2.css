@@ -327,3 +327,378 @@ body.t-paper .about-card.flat{-webkit-mask-image:none;mask-image:none;backdrop-f
 body.t-paper .about-card > :not(.about-paper){position:relative;z-index:1;will-change:transform,filter}
 body.t-paper .about-card.unopened > :not(.about-paper){filter:url(#paperCrumple)}
 body.t-paper .about-card::before{display:none}
+
+/* ═══════════ CASE STUDY — full-page reader ═══════════
+   The shared #csModal shell becomes a white, full-viewport article: a 720px
+   reading column with wide figures, a progress bar, a back control and a
+   "next case study" list. Markup and templates are unchanged; this is skin. */
+.cs-modal{align-items:stretch!important;padding:0!important}
+.cs-backdrop{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}
+.cs-card{width:100%;max-width:none;max-height:none;height:100%;border-radius:0!important;background:#fff;
+  transform:translateY(14px);box-shadow:none}
+.cs-modal.is-open .cs-card{transform:none}
+.cs-scroll{scroll-behavior:auto}
+/* a soft white fade under the top controls so copy scrolls beneath them cleanly */
+.cs-card::before{content:'';position:absolute;left:0;right:0;top:0;height:84px;z-index:5;pointer-events:none;background:linear-gradient(#fff 35%,rgba(255,255,255,0))}
+/* top chrome */
+.cs-progress{position:absolute;left:0;top:0;height:3px;width:0;z-index:7;background:var(--grad);transition:width .12s linear}
+.cs-back{position:absolute;top:18px;left:clamp(16px,3vw,40px);z-index:6;display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 16px 0 12px;
+  border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font:500 13px/1 var(--f);color:var(--ink);cursor:pointer;transition:transform .2s var(--e),border-color .2s}
+.cs-back:hover{transform:translateX(-2px);border-color:var(--cs-accent)}
+.cs-back svg{width:16px;height:16px}
+.cs-close{top:18px;right:clamp(16px,3vw,40px);border:1px solid var(--line);box-shadow:none}
+/* reading column */
+.cs{font-size:18px;line-height:1.72;color:#1b1f1c}
+.cs-hero{background:#fff;padding:clamp(88px,12vh,140px) 24px 36px;max-width:820px;margin:0 auto}
+.cs-eyebrow{justify-content:flex-start}
+.cs-read{color:var(--muted);margin-left:4px}
+.cs-title{font-size:clamp(44px,7vw,84px);letter-spacing:-.035em;line-height:.98;font-weight:400;font-family:var(--f-display);font-stretch:112%}
+.cs-lead{font-size:clamp(20px,2.3vw,26px);line-height:1.45;color:#3b423c;max-width:34em;margin-top:22px;font-weight:300}
+.cs-chips{margin-top:30px}
+.cs-chip{background:#fff}
+.cs-body{max-width:820px;margin:0 auto;padding:0 24px 24px}
+.cs-sec{padding:38px 0}
+.cs-sec > .cs-label{margin-bottom:16px}
+.cs-sec > p,.cs-sec h4{max-width:720px}
+.cs-sec h4{font-size:clamp(24px,2.6vw,32px);line-height:1.2;letter-spacing:-.02em;margin:0 0 14px;font-weight:600}
+.cs-sec > p + p{margin-top:1.1em}
+.cs-sec em{font-style:italic;color:#111}
+/* new blocks */
+.cs-tldr{border:1px solid var(--line);border-left:3px solid var(--cs-accent);border-radius:14px;padding:22px 24px 20px;background:var(--cs-tint);margin-top:4px}
+.cs-tldr .cs-label{margin-bottom:10px}
+.cs-tldr ul{margin:0;padding-left:1.1em}
+.cs-tldr li{margin:6px 0;font-size:17px;line-height:1.5}
+.cs-quote{margin:30px 0 6px;padding:0 0 0 26px;border-left:3px solid var(--cs-accent);max-width:720px}
+.cs-quote p{font-family:var(--f-accent);font-style:italic;font-size:clamp(24px,2.8vw,34px);line-height:1.25;color:#111;letter-spacing:-.01em}
+.cs-quote cite{display:block;margin-top:10px;font-style:normal;font-size:14px;color:var(--muted)}
+.cs-principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:18px}
+.cs-principle{padding:20px;border-radius:16px;border:1px solid var(--line-2);background:#fafbfd}
+.cs-principle .n{font-family:var(--fm);font-size:12px;color:var(--cs-accent);font-weight:600}
+.cs-principle h5{font-size:17px;margin:8px 0 6px;font-weight:600}
+.cs-principle p{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.cs-decisions{list-style:none;margin:6px 0 0;padding:0;counter-reset:dec}
+.cs-decisions li{position:relative;padding:22px 0 22px 56px;border-top:1px solid var(--line-2);counter-increment:dec}
+.cs-decisions li::before{content:counter(dec,decimal-leading-zero);position:absolute;left:0;top:24px;font-family:var(--fm);font-size:13px;color:var(--cs-accent);font-weight:600}
+.cs-decisions h5{font-size:20px;font-weight:600;margin:0 0 8px;letter-spacing:-.01em}
+.cs-decisions p{max-width:680px}
+.cs-decisions .why{margin-top:10px;font-size:16px;color:var(--ink-2)}
+.cs-decisions .why span{font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cs-accent);margin-right:10px}
+.cs-learn{list-style:none;margin:0;padding:0}
+.cs-learn li{padding:14px 0;border-top:1px solid var(--line-2);max-width:720px}
+.cs-learn li strong{color:#111}
+/* wide visuals break out of the column */
+.cs-shot,.cs-gallery,.cs-webgrid,.cs-phones,.cs-how,.cs-wire{width:min(1120px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+.cs-shot{margin-top:26px}
+.cs-shot figcaption{max-width:720px;margin-left:auto;margin-right:auto;border-left:0;padding-left:0;text-align:center}
+.cs-impact{max-width:720px;background:var(--cs-tint);border-radius:18px;padding:26px 28px}
+/* footer links + next */
+.cs-foot{max-width:820px;margin:0 auto;padding:10px 24px 40px;display:flex;flex-wrap:wrap;gap:12px}
+.cs-next{max-width:1120px;margin:0 auto;padding:40px 24px 80px;border-top:1px solid var(--line)}
+.cs-next .cs-label{margin-bottom:18px}
+.cs-next-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.cs-next-grid a{display:block;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;color:inherit;text-decoration:none;
+  transition:transform .3s var(--e),box-shadow .3s var(--e),border-color .3s}
+.cs-next-grid a:hover{transform:translateY(-4px);box-shadow:0 24px 50px -30px rgba(30,40,90,.35);border-color:var(--acc-a2)}
+.cs-next .thumb{aspect-ratio:16/10;background:#f3f5fa center 14%/cover no-repeat}
+.cs-next .meta{padding:14px 16px 16px}
+.cs-next .meta .k{font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cs-next .meta .t{display:block;margin-top:6px;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.cs-next .all{display:inline-flex;align-items:center;gap:10px;margin-top:28px;padding:12px 20px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:500;color:var(--forest);text-decoration:none;transition:border-color .2s,transform .2s var(--e)}
+.cs-next .all:hover{border-color:var(--forest);transform:translateX(-2px)}
+@media(max-width:720px){
+  .cs{font-size:17px}
+  .cs-hero{padding-top:84px}
+  .cs-back span{display:none}
+  .cs-back{padding:0 12px}
+  .cs-shot,.cs-gallery,.cs-webgrid,.cs-phones,.cs-how,.cs-wire{width:100%;margin-left:0;transform:none}
+}
+
+/* ── case study: research blocks (pain points, journey map, HMW, IA, flow) ── */
+.cs-pains{list-style:none;margin:0;padding:0;max-width:720px}
+.cs-pains li{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line-2)}
+.cs-pains .x{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:11px;color:#fff;background:var(--cs-accent);margin-top:2px}
+.cs-pains strong{display:block;font-size:17px;margin-bottom:3px}
+.cs-pains p{font-size:16px;color:var(--ink-2);line-height:1.55}
+.cs-journey-wrap{width:min(1120px,calc(100vw - 48px));margin:22px 0 0 50%;transform:translateX(-50%);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cs-journey{border-collapse:separate;border-spacing:0;width:100%;min-width:780px;font-size:14.5px;line-height:1.45}
+.cs-journey th,.cs-journey td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--line-2);text-align:left}
+.cs-journey thead th,.cs-journey tr:first-child th{font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cs-accent);border-bottom:2px solid var(--cs-accent);padding-top:0}
+.cs-journey tbody th,.cs-journey tr th:first-child{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);width:92px;font-weight:500}
+.cs-journey tr.think td{font-family:var(--f-accent);font-style:italic;font-size:17px;color:#1b1f1c}
+.cs-journey tr.feel td{color:var(--ink-2)}
+.cs-journey tr.opp td{background:var(--cs-tint);font-weight:500}
+.cs-journey tr.opp td:first-of-type{border-radius:10px 0 0 10px}
+.cs-hmw{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:6px}
+.cs-hmw-card{padding:20px 22px;border-radius:16px;background:var(--cs-tint);border:1px solid var(--line-2)}
+.cs-hmw-card .q{font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cs-accent)}
+.cs-hmw-card p{margin-top:8px;font-size:18px;line-height:1.4;font-weight:500;letter-spacing:-.01em}
+.cs-ia ul{list-style:none;margin:0;padding:0}
+.cs-ia > ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:6px}
+.cs-ia > ul > li{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff}
+.cs-ia > ul > li > span{display:block;font-weight:600;font-size:16px;padding-bottom:8px;margin-bottom:8px;border-bottom:2px solid var(--cs-accent)}
+.cs-ia > ul > li li{font-size:14.5px;color:var(--ink-2);padding:4px 0 4px 12px;position:relative}
+.cs-ia > ul > li li::before{content:'';position:absolute;left:0;top:13px;width:5px;height:5px;border-radius:50%;background:var(--cs-accent);opacity:.6}
+.cs-flow{list-style:none;margin:6px 0 0;padding:0;max-width:720px;counter-reset:fl}
+.cs-flow li{display:flex;gap:16px;padding:16px 0;border-top:1px solid var(--line-2)}
+.cs-flow .n{flex:0 0 32px;height:32px;border-radius:50%;display:grid;place-items:center;font-family:var(--fm);font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--cs-accent),var(--cs-accent-2))}
+.cs-flow strong{display:block;font-size:17px;margin-bottom:3px}
+.cs-flow p{font-size:16px;color:var(--ink-2);line-height:1.55}
+@media(max-width:720px){.cs-journey-wrap{width:100%;margin-left:0;transform:none}}
+
+/* ── rhythm between blocks inside a section ── */
+.cs-sec > * + *{margin-top:20px}
+.cs-sec > .cs-label + *{margin-top:0}
+.cs-sec > h4 + p{margin-top:0}
+.cs-sec > p + p{margin-top:1.1em}
+.cs-persona + p,.cs-insights + .cs-note,.cs-journey-wrap + p{margin-top:26px}
+.cs-persona .cols{padding-bottom:4px}
+
+/* ── left-side section navigation (desktop) ── */
+.cs-toc{display:none}
+@media(min-width:1240px){
+  .cs-toc{display:block;position:fixed;left:clamp(16px,3vw,40px);top:50%;transform:translateY(-50%);z-index:6;width:200px;max-height:72vh;overflow:auto;
+    padding:4px 0;scrollbar-width:none}
+  .cs-toc::-webkit-scrollbar{display:none}
+  .cs-toc .cs-label{margin:0 0 10px 14px}
+  .cs-toc a{display:block;padding:6px 14px;border-left:2px solid var(--line-2);font-size:13px;line-height:1.3;color:var(--muted);text-decoration:none;
+    transition:color .2s,border-color .2s}
+  .cs-toc a:hover{color:var(--ink)}
+  .cs-toc a.on{color:var(--cs-accent);border-color:var(--cs-accent);font-weight:500}
+}
+
+/* ── hand-sketched wireframes: graph-paper board, rough SVG strokes, handwritten notes ── */
+.cs-sketch{width:min(1120px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%);padding:26px 26px 22px;border-radius:20px;
+  border:1px solid var(--line);background:#fbfaf6;
+  background-image:linear-gradient(rgba(60,80,120,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(60,80,120,.07) 1px,transparent 1px);background-size:22px 22px}
+.cs-sketch-intro{font-family:'Caveat',cursive;font-size:22px;line-height:1.25;color:#2f3542;max-width:52ch;margin-bottom:18px}
+.cs-sketch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.cs-sketch figure{margin:0;position:relative}
+.cs-sketch svg{width:100%;height:auto;display:block;background:#fff;border-radius:12px;box-shadow:0 10px 30px -22px rgba(30,40,60,.35)}
+.cs-sketch text{font-family:'Caveat',cursive;fill:#2f3542}
+.cs-sketch text.s{fill:#5b6270}
+.cs-sketch text.note{fill:var(--cs-accent);font-size:14px}
+.cs-sketch figcaption{font-family:'Caveat',cursive;font-size:19px;line-height:1.2;color:#3a3f4a;margin-top:10px;padding:0 4px}
+.cs-sketch-grid figure:not(:last-child)::after{content:'→';position:absolute;right:-16px;top:38%;font-family:'Caveat',cursive;font-size:28px;color:var(--cs-accent)}
+.cs-sketch-flow{font-family:'Caveat',cursive;font-size:20px;color:#2f3542;margin-top:18px;border-top:1px dashed rgba(60,80,120,.25);padding-top:14px}
+@media(max-width:720px){.cs-sketch{width:100%;margin-left:0;transform:none;padding:18px}.cs-sketch-grid figure::after{display:none}}
+@media(max-width:1200px){.cs-sketch-grid figure:nth-child(2n)::after{display:none}}
+/* with the left contents rail showing, wide visuals stop short of it */
+@media(min-width:1240px){
+  .cs-shot,.cs-gallery,.cs-webgrid,.cs-phones,.cs-how,.cs-wire,.cs-sketch,.cs-journey-wrap{width:min(1120px,calc(100vw - 560px))}
+}
+
+/* ═══════════ CASE STUDY — fresh editorial layout (v3) ═══════════
+   Numbered sections with real headings, a cover band, an at-a-glance grid
+   instead of bullets, a label/value meta strip instead of pills. */
+.cs{font-size:19px;line-height:1.75;color:#1f2420;counter-reset:csn}
+/* hero: tinted band + cover frame */
+.cs-hero{max-width:none;padding:0 0 0;background:linear-gradient(180deg,var(--cs-tint) 0%,#fff 100%)}
+.cs-hero-in{max-width:1120px;margin:0 auto;padding:clamp(96px,13vh,150px) 24px 0;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,72px);align-items:end}
+.cs-hero .cs-eyebrow{margin-bottom:22px}
+.cs-title{font-size:clamp(46px,6.4vw,84px);line-height:.96;letter-spacing:-.035em}
+.cs-lead{font-size:clamp(19px,1.9vw,23px);line-height:1.5;color:#3b423c;margin-top:22px;max-width:30em}
+.cs-cover{position:relative;border-radius:22px 22px 0 0;overflow:hidden;background:#fff;box-shadow:0 40px 80px -40px rgba(30,40,90,.35);border:1px solid rgba(255,255,255,.8);border-bottom:0;aspect-ratio:4/3}
+.cs-cover img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+/* meta strip */
+.cs-chips{max-width:1120px;margin:0 auto;padding:26px 24px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.cs-chip{border:0;border-radius:0;padding:4px 18px 0 0;background:transparent;font-size:16px;display:block}
+.cs-chip .mono{display:block;margin:0 0 6px;font-size:10.5px;color:var(--muted)}
+.cs-chip b{color:#1f2420;font-weight:500}
+.cs-chip + .cs-chip{border-left:1px solid var(--line-2);padding-left:18px}
+/* sections: a number, then a real heading */
+.cs-body{max-width:820px;padding-top:28px}
+.cs-sec{padding:52px 0 18px;border-top:0;counter-increment:csn}
+.cs-sec + .cs-sec{border-top:1px solid var(--line-2)}
+.cs-sec > .cs-label{font-family:var(--f-display);font-stretch:112%;font-size:clamp(26px,2.8vw,34px);letter-spacing:-.025em;line-height:1.1;text-transform:none;color:#111;margin:0 0 20px;position:relative;padding-top:26px}
+.cs-sec > .cs-label::before{content:counter(csn,decimal-leading-zero);position:absolute;top:0;left:0;font-family:var(--fm);font-size:12px;letter-spacing:.14em;color:var(--cs-accent)}
+/* when the section has its own h4 headline, the label steps down to a kicker */
+.cs-sec:has(> h4) > .cs-label{font-family:var(--fm);font-stretch:100%;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cs-accent);margin-bottom:12px;padding-top:0}
+.cs-sec:has(> h4) > .cs-label::before{position:static;margin-right:14px}
+.cs-sec > h4{font-size:clamp(28px,3vw,38px);line-height:1.12;letter-spacing:-.025em;font-weight:500;font-family:var(--f-display);font-stretch:112%;margin:0 0 18px}
+.cs-sec > p{max-width:680px}
+.cs-sec > p + p{margin-top:1.25em}
+/* at a glance */
+.cs-tldr{border:0;border-radius:20px;background:var(--cs-tint);padding:28px;margin-top:0}
+.cs-tldr .cs-label{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cs-accent);padding:0;margin:0 0 18px}
+.cs-tldr .cs-label::before{display:none}
+.cs-tldr ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.cs-tldr li{margin:0;font-size:16px;line-height:1.55;color:#1f2420}
+.cs-tldr li::before{display:block;font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.cs-tldr li:nth-child(1)::before{content:'Problem'}
+.cs-tldr li:nth-child(2)::before{content:'Approach'}
+.cs-tldr li:nth-child(3)::before{content:'Outcome'}
+/* quotes & lists */
+.cs-quote{margin:34px 0 10px;padding:0;border:0;max-width:720px}
+.cs-quote p{font-family:var(--f-accent);font-size:clamp(26px,3vw,38px);line-height:1.2;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.08em;display:inline-block}
+.cs-pains li,.cs-learn li,.cs-flow li,.cs-decisions li{border-top-color:var(--line)}
+.cs-decisions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:4px}
+.cs-decisions li{border:1px solid var(--line);border-radius:18px;padding:22px 22px 22px 58px;background:#fff}
+.cs-decisions li::before{left:22px;top:26px}
+.cs-decisions h5{font-size:18px}
+.cs-decisions p{font-size:16px;line-height:1.55}
+.cs-insight,.cs-principle,.cs-hmw-card{border-radius:18px}
+.cs-impact{background:linear-gradient(135deg,var(--cs-tint),#fff);border:1px solid var(--line)}
+/* next: full-width tinted footer */
+.cs-next{max-width:none;padding:56px 24px 90px;background:linear-gradient(180deg,#fff,var(--cs-tint));border-top:1px solid var(--line)}
+.cs-next > *{max-width:1120px;margin-left:auto;margin-right:auto}
+.cs-next > .cs-label{display:block;font-family:var(--f-display);font-stretch:112%;font-size:28px;letter-spacing:-.02em;text-transform:none;color:#111;margin-bottom:22px}
+.cs-next .all{display:inline-flex;margin-top:28px}
+.cs-next-grid a{border-radius:20px}
+/* contents rail: numbered */
+.cs-toc{counter-reset:toc}
+.cs-toc a{counter-increment:toc;padding-left:40px;position:relative}
+.cs-toc a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:14px;top:7px;font-family:var(--fm);font-size:10px;letter-spacing:.08em;color:var(--faint)}
+.cs-toc a.on::before{color:var(--cs-accent)}
+@media(max-width:960px){
+  .cs-hero-in{grid-template-columns:1fr;padding-top:88px}
+  .cs-cover{aspect-ratio:16/10;border-radius:18px;border-bottom:1px solid rgba(255,255,255,.8);margin-top:8px}
+  .cs-chips{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}
+  .cs-chip:nth-child(3){border-left:0;padding-left:0}
+  .cs-decisions{grid-template-columns:1fr}
+  .cs-tldr ul{grid-template-columns:1fr;gap:16px}
+}
+@media(max-width:720px){.cs{font-size:17.5px}.cs-sec{padding-top:40px}}
+/* keep the hero, meta strip and next-up grid clear of the contents rail too */
+@media(min-width:1240px){
+  .cs-hero-in,.cs-chips,.cs-next > *{max-width:min(1120px,calc(100vw - 560px))}
+}
+/* hero rhythm: copy centred against the cover, breathing room above the rule and the at-a-glance card */
+.cs-hero-in{align-items:center}
+.cs-hero-copy{padding:0 0 44px}
+.cs-cover{align-self:end}
+.cs-chips{padding-top:30px}
+.cs-body{padding-top:64px}
+.cs-sec:first-child{padding-top:0}
+.cs-tldr{padding:32px 32px 30px}
+.cs-tldr .cs-label{margin-bottom:22px}
+@media(max-width:960px){.cs-hero-copy{padding-bottom:0}.cs-body{padding-top:44px}}
+/* ── contents rail: compact (numbers only) on laptops, expands on hover; full labels on wide screens ──
+   so the article keeps its full 1120px measure instead of shrinking to dodge the rail */
+@media(min-width:1240px){
+  .cs-hero-in,.cs-chips,.cs-next > *,.cs-shot,.cs-gallery,.cs-webgrid,.cs-phones,.cs-how,.cs-wire,.cs-sketch,.cs-journey-wrap{max-width:min(1120px,calc(100vw - 200px));width:min(1120px,calc(100vw - 200px))}
+  .cs-hero-in,.cs-chips,.cs-next > *{width:auto}
+  .cs-toc{width:48px;transition:width .25s var(--e);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:14px;padding:8px 0}
+  .cs-toc .cs-label{display:none}
+  .cs-toc a{white-space:nowrap;overflow:hidden;color:transparent;padding-left:40px}
+  .cs-toc a::before{color:var(--faint);left:16px}
+  .cs-toc a.on::before{color:var(--cs-accent)}
+  .cs-toc:hover{width:240px}
+  .cs-toc:hover .cs-label{display:block}
+  .cs-toc:hover a{color:var(--muted);padding-left:44px}
+  .cs-toc:hover a.on{color:var(--cs-accent)}
+  .cs-toc:hover a:hover{color:var(--ink)}
+}
+@media(min-width:1680px){
+  .cs-toc{width:240px;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .cs-toc .cs-label{display:block}
+  .cs-toc a{color:var(--muted);padding-left:44px}
+  .cs-toc a.on{color:var(--cs-accent)}
+}
+/* pull quotes: black type, only the key phrase carries the gradient */
+.cs-quote p{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#111;-webkit-text-fill-color:#111;display:block;padding-right:0}
+.cs-quote mark{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em}
+
+/* ═══════════ screenshot lightbox ═══════════ */
+.cs-shot img,.cs-phone img,.cs-gallery img,.cs-webgrid img,.cs-browser img,.cs-how img{cursor:zoom-in}
+.cs-lightbox{position:fixed;inset:0;z-index:400;display:grid;place-items:center;padding:clamp(16px,4vw,48px);visibility:hidden;pointer-events:none;transition:visibility 0s .3s}
+.cs-lightbox.is-open{visibility:visible;pointer-events:auto;transition:visibility 0s 0s}
+.lb-backdrop{position:absolute;inset:0;background:rgba(10,12,18,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .3s var(--e)}
+.cs-lightbox.is-open .lb-backdrop{opacity:1}
+.lb-fig{position:relative;z-index:2;margin:0;max-width:min(1400px,100%);max-height:100%;display:flex;flex-direction:column;align-items:center;gap:14px;
+  transform:translateY(16px) scale(.98);opacity:0;transition:transform .35s var(--e),opacity .3s var(--e)}
+.cs-lightbox.is-open .lb-fig{transform:none;opacity:1}
+.lb-fig img{max-width:100%;max-height:calc(100vh - 150px);width:auto;height:auto;border-radius:14px;box-shadow:0 40px 100px -30px rgba(0,0,0,.7);background:#fff}
+.lb-fig figcaption{color:rgba(255,255,255,.82);font-size:15px;text-align:center;max-width:70ch;line-height:1.5}
+.lb-count{font-family:var(--fm);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.5)}
+.lb-close,.lb-nav{position:absolute;z-index:3;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;display:grid;place-items:center;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .2s,transform .2s var(--e)}
+.lb-close:hover,.lb-nav:hover{background:rgba(255,255,255,.18);transform:scale(1.06)}
+.lb-close{top:18px;right:18px}
+.lb-close svg,.lb-nav svg{width:20px;height:20px}
+.lb-nav{top:50%;transform:translateY(-50%)}
+.lb-nav:hover{transform:translateY(-50%) scale(1.06)}
+.lb-prev{left:18px}.lb-next{right:18px}
+.cs-lightbox.single .lb-nav{display:none}
+body.lb-open{cursor:auto!important}
+body.lb-open .cursor,body.lb-open .cursor-dot{opacity:0!important}
+@media(max-width:720px){.lb-nav{width:40px;height:40px;top:auto;bottom:18px;transform:none}.lb-nav:hover{transform:none}.lb-fig img{max-height:calc(100vh - 170px)}}
+
+/* ═══ alignment pass: one left edge for everything ═══
+   The body column is as wide as the hero (1120). Text keeps a readable measure
+   inside it; visuals fill the column from the same left edge — no centred
+   break-outs. */
+.cs-body{max-width:1120px}
+.cs-sec > p{max-width:680px}
+.cs-sec > h4,.cs-sec > .cs-label{max-width:760px}
+.cs-tldr,.cs-decisions,.cs-principles,.cs-hmw,.cs-ia,.cs-insights,.cs-persona,.cs-steps,.cs-impact,.cs-pains,.cs-flow,.cs-learn,.cs-quote,.cs-type,.cs-swatches,.cs-note,.cs-goals,.cs-facts{max-width:860px}
+.cs-shot,.cs-gallery,.cs-webgrid,.cs-phones,.cs-how,.cs-wire,.cs-sketch,.cs-journey-wrap{width:100%;max-width:none;margin-left:0;transform:none}
+.cs-shot figcaption{margin-left:0;text-align:left;max-width:680px}
+/* a bare screenshot (no browser/phone frame) sits at text width, not full bleed */
+.cs-shot:not(:has(.cs-browser)):not(.cs-shot-bleed) img{max-width:680px}
+.cs-shot-bleed img{max-width:100%}
+/* phone rows: compact, left-aligned, no stretching across the column */
+.cs-phones{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,220px));gap:22px 20px;justify-content:start}
+.cs-phones figure{margin:0}
+.cs-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,170px));gap:18px 16px;justify-content:start}
+.cs-gallery.web{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.cs-webgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.cs-how{display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:28px 40px;align-items:start}
+.cs-foot{max-width:1120px}
+.cs-next > *{max-width:1120px}
+@media(min-width:1240px){
+  .cs-hero-in,.cs-chips,.cs-next > *,.cs-shot,.cs-gallery,.cs-webgrid,.cs-phones,.cs-how,.cs-wire,.cs-sketch,.cs-journey-wrap{max-width:none;width:auto}
+  .cs-hero-in,.cs-chips,.cs-next > *{max-width:1120px}
+  .cs-shot,.cs-gallery,.cs-webgrid,.cs-phones,.cs-how,.cs-wire,.cs-sketch,.cs-journey-wrap{width:100%}
+}
+@media(max-width:720px){
+  .cs-phones{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .cs-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .cs-webgrid,.cs-how{grid-template-columns:1fr}
+}
+
+/* ═══ centred reading column ═══
+   One column, centred on the page. Text, headings, cards and visuals all share
+   its edges; a few deliberately wide pieces break out symmetrically. */
+:root{--cs-col:900px;--cs-wide:min(1120px,calc(100vw - 200px))}
+.cs-hero-in,.cs-chips,.cs-body,.cs-foot,.cs-next > *{max-width:var(--cs-col);margin-left:auto;margin-right:auto}
+.cs-sec > p,.cs-sec > h4,.cs-sec > .cs-label,.cs-shot figcaption{max-width:none}
+.cs-tldr,.cs-decisions,.cs-principles,.cs-hmw,.cs-ia,.cs-insights,.cs-persona,.cs-steps,.cs-impact,.cs-pains,.cs-flow,.cs-learn,.cs-quote,.cs-type,.cs-swatches,.cs-note,.cs-goals,.cs-facts{max-width:none}
+.cs-shot:not(:has(.cs-browser)):not(.cs-shot-bleed) img{max-width:100%}
+.cs-phones{justify-content:start}
+@media(min-width:1240px){
+  .cs-hero-in,.cs-chips,.cs-next > *{max-width:var(--cs-col)}
+  /* symmetric break-outs for the pieces that need room */
+  .cs-shot-bleed,.cs-journey-wrap,.cs-webgrid,.cs-gallery.web,.cs-shot:has(.cs-browser){width:var(--cs-wide);margin-left:50%;transform:translateX(-50%)}
+  .cs-sketch{width:100%;margin-left:0;transform:none}
+  .cs-shot-bleed img{max-width:100%}
+}
+@media(max-width:1239px){
+  .cs-shot-bleed,.cs-sketch,.cs-journey-wrap,.cs-webgrid,.cs-gallery.web,.cs-shot:has(.cs-browser){width:100%;margin-left:0;transform:none}
+}
+/* sketch board at column width: keep all four frames on one row */
+.cs-sketch{padding:22px 22px 18px}
+.cs-sketch-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.cs-sketch-grid figcaption{font-size:.95em}
+@media(max-width:720px){.cs-sketch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* no break-outs at all: every visual stays inside the reading column */
+@media(min-width:1240px){
+  .cs-shot-bleed,.cs-journey-wrap,.cs-webgrid,.cs-gallery.web,.cs-shot:has(.cs-browser),.cs-sketch,.cs-shot,.cs-gallery,.cs-phones,.cs-how,.cs-wire{width:100%;margin-left:0;transform:none}
+}
+/* web screenshot galleries: three per row inside the column */
+.cs-gallery.web{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 20px;width:100%;margin-left:0;transform:none}
+@media(max-width:720px){.cs-gallery.web{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+/* contents rail: wide enough for the longest label, wrap as a fallback */
+@media(min-width:1240px){
+  .cs-toc:hover{width:300px}
+  .cs-toc:hover a{white-space:normal;overflow:visible;text-overflow:clip}
+}
+@media(min-width:1680px){
+  .cs-toc{width:300px}
+  .cs-toc a{white-space:normal;overflow:visible}
+}
+/* persona photo: real portrait when present, initials as fallback */
+.cs-persona .avatar{position:relative;overflow:hidden;flex:none}
+.cs-persona .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:50%}
+.cs-persona .avatar.has-photo{background:#e9e6f6;color:transparent}
+.cs-persona .avatar.has-photo{width:64px;height:64px}

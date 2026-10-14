@@ -353,3 +353,181 @@
     }
   });
 })();
+
+/* ═══════════ CASE STUDY — reader chrome, routing, next-up ═══════════
+   Layers on the existing modal (site.js owns open/close): adds a back control,
+   a reading-progress bar, a "next case study" list, #case/<key> deep links,
+   and browser-back support. */
+(() => {
+  'use strict';
+  const modal = document.getElementById('csModal'), scroll = document.getElementById('csScroll');
+  if (!modal || !scroll) return;
+  const card = modal.querySelector('.cs-card');
+  const tpls = {}; document.querySelectorAll('.cs-tpl').forEach(t => { tpls[t.dataset.case] = t; });
+  const keys = Object.keys(tpls);
+  const triggerFor = key => document.querySelector(`.panel-cs[data-case="${key}"], [data-case="${key}"]:not(template)`);
+  let current = null, closingFromHash = false;
+
+  // ── chrome: back button + progress bar (once)
+  const back = document.createElement('button');
+  back.type = 'button'; back.className = 'cs-back'; back.setAttribute('data-cs-close', '');
+  back.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span>All work</span>';
+  const bar = document.createElement('div'); bar.className = 'cs-progress';
+  card.prepend(back); card.prepend(bar);
+  scroll.addEventListener('scroll', () => {
+    const max = scroll.scrollHeight - scroll.clientHeight;
+    bar.style.width = max > 0 ? (scroll.scrollTop / max * 100).toFixed(1) + '%' : '0%';
+  }, { passive: true });
+
+  // ── metadata for the next-up cards, read from the templates
+  const meta = key => {
+    const c = tpls[key].content;
+    const title = c.querySelector('.cs-title')?.textContent.trim() || key;
+    const eyebrow = (c.querySelector('.cs-eyebrow')?.textContent || '').replace(/·\s*\d+ min read/, '').replace(/Case study\s*·\s*/i, '').trim();
+    const img = tpls[key].dataset.thumb || c.querySelector('.cs-shot img, .cs-phone img, img')?.getAttribute('src') || '';
+    return { title, eyebrow, img };
+  };
+
+  function decorate(key) {
+    current = key;
+    const art = scroll.querySelector('article.cs'); if (!art) return;
+    if (art.querySelector('.cs-next')) return;
+    // hero: copy on the left, cover frame on the right; the meta strip below both
+    const hero = art.querySelector('.cs-hero');
+    if (hero && !hero.querySelector('.cs-hero-in')) {
+      const chips = hero.querySelector('.cs-chips');
+      const inner = document.createElement('div'); inner.className = 'cs-hero-in';
+      const copy = document.createElement('div'); copy.className = 'cs-hero-copy';
+      [...hero.children].forEach(el => { if (el !== chips) copy.appendChild(el); });
+      const cover = document.createElement('div'); cover.className = 'cs-cover';
+      const m = meta(key); if (m.img) cover.innerHTML = `<img src="${m.img}" alt="">`;
+      inner.appendChild(copy); inner.appendChild(cover);
+      hero.prepend(inner); if (chips) hero.appendChild(chips);
+    }
+    const others = keys.filter(k => k !== key);
+    const nav = document.createElement('nav'); nav.className = 'cs-next'; nav.setAttribute('aria-label', 'More case studies');
+    nav.innerHTML = '<div class="cs-label">Next case study</div><div class="cs-next-grid">' +
+      others.map(k => { const m = meta(k); return `<a href="#works" data-next="${k}"><div class="thumb" style="background-image:url('${m.img}')"></div><div class="meta"><span class="k">${m.eyebrow}</span><span class="t">${m.title}</span></div></a>`; }).join('') +
+      '</div><a class="all" href="#works" data-cs-close>← Back to all work</a>';
+    art.appendChild(nav);
+    nav.addEventListener('click', e => {
+      const a = e.target.closest('[data-next]'); if (!a) return;
+      e.preventDefault(); e.stopPropagation();
+      const t = triggerFor(a.dataset.next); if (t) { t.click(); scroll.scrollTop = 0; }
+    });
+    // keep the custom accent on the back control
+    back.style.setProperty('--cs-accent', card.style.getPropertyValue('--cs-accent'));
+    buildToc(art);
+  }
+
+  // ── left-side section navigation with scroll-spy
+  let toc = null, spy = null;
+  function buildToc(art) {
+    if (toc) toc.remove(); if (spy) spy.disconnect();
+    const secs = [...art.querySelectorAll('.cs-sec')].filter(s => s.querySelector(':scope > .cs-label'));
+    if (!secs.length) return;
+    toc = document.createElement('nav'); toc.className = 'cs-toc'; toc.setAttribute('aria-label', 'On this page');
+    toc.innerHTML = '<div class="cs-label">Contents</div>';
+    secs.forEach((s, i) => {
+      s.id = s.id || 'cs-s' + i;
+      const a = document.createElement('a'); a.href = '#' + s.id; a.textContent = s.querySelector(':scope > .cs-label').textContent.trim();
+      a.addEventListener('click', e => { e.preventDefault(); scroll.scrollTo({ top: s.offsetTop - 72, behavior: 'smooth' }); });
+      toc.appendChild(a);
+    });
+    card.appendChild(toc);
+    const links = [...toc.querySelectorAll('a')];
+    spy = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { links.forEach(l => l.classList.remove('on')); const l = links[secs.indexOf(en.target)]; if (l) { l.classList.add('on'); l.scrollIntoView({ block: 'nearest' }); } } });
+    }, { root: scroll, rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+    secs.forEach(s => spy.observe(s));
+  }
+
+  // ── react to site.js opening/closing the shell
+  new MutationObserver(() => {
+    const open = modal.classList.contains('is-open');
+    if (open) {
+      const t = scroll.querySelector('.cs-title')?.textContent.trim();
+      const key = keys.find(k => tpls[k].content.querySelector('.cs-title')?.textContent.trim() === t) || keys[0];
+      decorate(key);
+      if (location.hash !== '#case/' + key) history.pushState({ cs: key }, '', '#case/' + key);
+    } else if (current) {
+      current = null;
+      if (!closingFromHash && /^#case\//.test(location.hash)) history.pushState({}, '', '#works');
+      closingFromHash = false;
+    }
+  }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+
+  // ── deep link + browser back
+  const openFromHash = () => {
+    const m = location.hash.match(/^#case\/([a-z]+)/);
+    if (m && tpls[m[1]]) { if (current !== m[1]) { const t = triggerFor(m[1]); if (t) t.click(); } }
+    else if (current) { closingFromHash = true; (modal.querySelector('.cs-close') || back).click(); }
+  };
+  addEventListener('popstate', openFromHash);
+  addEventListener('hashchange', openFromHash);
+  // after boot, honour a shared #case/… link
+  const boot = () => { if (/^#case\//.test(location.hash)) setTimeout(openFromHash, 900); };
+  if (document.readyState === 'complete') boot(); else addEventListener('load', boot);
+})();
+
+/* ═══════════ CASE STUDY — screenshot lightbox ═══════════
+   Click any product screen inside a case study to see it full size, with
+   caption, ←/→ between the screens of that study, Esc / × / backdrop to close. */
+(() => {
+  'use strict';
+  const scroll = document.getElementById('csScroll');
+  if (!scroll) return;
+  const lb = document.createElement('div');
+  lb.className = 'cs-lightbox'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Screenshot');
+  lb.innerHTML = '<div class="lb-backdrop" data-lb-close></div>' +
+    '<button type="button" class="lb-close" data-lb-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+    '<button type="button" class="lb-nav lb-prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>' +
+    '<button type="button" class="lb-nav lb-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>' +
+    '<figure class="lb-fig"><img alt=""><figcaption></figcaption><div class="lb-count"></div></figure>';
+  document.body.appendChild(lb);
+  const img = lb.querySelector('img'), cap = lb.querySelector('figcaption'), count = lb.querySelector('.lb-count');
+  let list = [], i = 0, lastFocus = null;
+
+  const shots = () => [...scroll.querySelectorAll('.cs-shot img, .cs-phone img, .cs-gallery img, .cs-webgrid img, .cs-browser img, .cs-how img')]
+    .filter((el, idx, arr) => arr.indexOf(el) === idx);
+  const captionFor = el => {
+    const fig = el.closest('figure'); const fc = fig && fig.querySelector('figcaption');
+    return (fc && fc.textContent.trim()) || el.getAttribute('alt') || '';
+  };
+  function show(n) {
+    i = (n + list.length) % list.length;
+    const el = list[i];
+    img.src = el.currentSrc || el.src; img.alt = el.alt || '';
+    cap.textContent = captionFor(el);
+    count.textContent = list.length > 1 ? `${i + 1} / ${list.length}` : '';
+    lb.classList.toggle('single', list.length < 2);
+  }
+  function open(el) {
+    list = shots(); if (!list.length) return;
+    lastFocus = document.activeElement;
+    show(Math.max(0, list.indexOf(el)));
+    lb.classList.add('is-open'); document.body.classList.add('lb-open');
+    lb.querySelector('.lb-close').focus();
+  }
+  function close() {
+    lb.classList.remove('is-open'); document.body.classList.remove('lb-open');
+    setTimeout(() => { if (!lb.classList.contains('is-open')) img.removeAttribute('src'); }, 300);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  scroll.addEventListener('click', e => {
+    const el = e.target.closest('.cs-shot img, .cs-phone img, .cs-gallery img, .cs-webgrid img, .cs-browser img, .cs-how img');
+    if (!el || e.target.closest('a')) return;
+    e.preventDefault(); open(el);
+  });
+  lb.addEventListener('click', e => {
+    if (e.target.closest('[data-lb-close]')) return close();
+    if (e.target.closest('.lb-prev')) return show(i - 1);
+    if (e.target.closest('.lb-next')) return show(i + 1);
+  });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { e.stopPropagation(); close(); }
+    else if (e.key === 'ArrowLeft') show(i - 1);
+    else if (e.key === 'ArrowRight') show(i + 1);
+  }, true);
+})();

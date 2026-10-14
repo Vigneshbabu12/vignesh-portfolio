@@ -31,9 +31,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Archivo is requested with its width axis (wdth 62–125) so the fallback can
      be widened to sit close to Sharp Grotesk's wider cuts. -->
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..700;1,62..125,300..700&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..700;1,62..125,300..700&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
-<link rel="stylesheet" href="css/v2.css?v=3">
+<link rel="stylesheet" href="css/v2.css?v=4">
 </head>
 <body class="is-loading sky-soft" data-chapter="morning">
 
@@ -669,98 +669,96 @@
   </div>
 </div>
 
-<template class="cs-tpl" data-case="kanakku" data-accent="#2a62dc" data-accent2="#5a85e8" data-tint="#eaf0fc">
+<template class="cs-tpl" data-case="kanakku" data-accent="#2a62dc" data-accent2="#5a85e8" data-tint="#eaf0fc" data-thumb="assets/kanakku-cover.png">
   <article class="cs">
     <header class="cs-hero">
-      <div class="cs-eyebrow"><span class="dot"></span>Case study · FinTech</div>
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · FinTech<span class="cs-read">· 12 min read</span></div>
       <h1 class="cs-title" id="csTitle">Kanakku AI</h1>
-      <p class="cs-lead">A fee-collection platform for institutions — taken from idea to launch: brand, product, dashboard and marketing site.</p>
-      <div class="cs-chips">
-        <span class="cs-chip"><span class="mono">Role</span><b>End-to-end Product Design</b></span>
-        <span class="cs-chip"><span class="mono">Year</span><b>2025</b></span>
-        <span class="cs-chip"><span class="mono">Platform</span><b>Web</b></span>
-        <span class="cs-chip"><span class="mono">Stack</span><b>Figma Make AI · Supabase</b></span>
-      </div>
+      <p class="cs-lead">How I took a fee-collection product from a blank page to a live platform — brand, product, dashboard and marketing site — building prompt-first in Figma Make AI with Supabase behind it.</p>
+      <div class="cs-chips"><span class="cs-chip"><span class="mono">Role</span><b>End-to-end Product Design</b></span><span class="cs-chip"><span class="mono">Year</span><b>2025</b></span><span class="cs-chip"><span class="mono">Platform</span><b>Web</b></span><span class="cs-chip"><span class="mono">Stack</span><b>Figma Make AI · Supabase</b></span></div>
     </header>
     <div class="cs-body">
-      <section class="cs-sec">
-        <div class="cs-label">Overview</div>
-        <p>Kanakku AI gives institutions — schools, coaching centres and small finance teams — one place to track, reconcile and collect fees. I owned it end to end: brand, product UX, dashboard UI and the marketing site, built prompt-first in Figma Make AI with Supabase powering real data.</p>
-        <dl class="cs-facts">
-          <div class="row"><dt>Project</dt><dd>Kanakku AI</dd></div>
-          <div class="row"><dt>Category</dt><dd>FinTech · Fee collection</dd></div>
-          <div class="row"><dt>Role</dt><dd>End-to-end Product Design</dd></div>
-          <div class="row"><dt>Platform</dt><dd>Web</dd></div>
-          <div class="row"><dt>Year</dt><dd>2025</dd></div>
-          <div class="row"><dt>Built with</dt><dd>Figma Make AI · Supabase</dd></div>
-        </dl>
+        <div class="cs-tldr"><div class="cs-label">In short</div><ul><li>Institutions were chasing fees across WhatsApp, paper receipts and spreadsheets; nobody had one real-time view of who had paid.</li><li>I framed the product as the smallest thing that fixes that: one ledger, automated reconciliation and effortless reminders.</li><li>Owned everything from brand to shipped UI, built prompt-first in Figma Make AI and wired to real data with Supabase.</li></ul></div>
+      <section class="cs-sec ">
+        <div class="cs-label">Where this started</div>
+        <p><strong>Kanakku means “account” in Tamil — and that’s the whole problem.</strong> Schools, coaching centres and small finance teams collect fees from hundreds of people every term, and almost none of them have a system for it. They have a WhatsApp group, a drawer of receipts, and a spreadsheet one person understands.</p>
+        <p>I set out to answer two questions. Could one small product replace that improvised stack? And could I design <em>and</em> build it myself, AI-first, instead of handing a Figma file to a team? Kanakku AI is the answer to both — first as an experiment, then as a live product.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Problem</div>
-        <h4>Payments lived in WhatsApp threads and spreadsheets</h4>
-        <p>Institutions were chasing fees across chat messages, paper receipts and ad-hoc spreadsheets. Reconciliation was manual and error-prone, reminders were inconsistent, and no one had a clear, real-time picture of who had paid and who hadn't.</p>
+      <section class="cs-sec ">
+        <div class="cs-label">The problem</div>
+        <h4>Payments lived in chat threads and spreadsheets</h4>
+        <p><strong>Every institution told the same story.</strong> A fee is announced in a group. Payments trickle in by UPI, cash and bank transfer — often from a parent’s number, not the student’s name. Someone screenshots the confirmation. Someone else types it into a sheet, later, if they remember.</p>
+        <p>The visible symptom: missed and duplicated payments. The real cost: reconciliation — hours every week matching money to people. Reminders were uneven because sending one meant scrolling a chat to work out who still owed. And the question leadership asks — <em>how much have we collected this term?</em> — had no honest answer on any given day.</p>
+        <blockquote class="cs-quote"><p>Nobody was failing at bookkeeping. They were succeeding at it, by hand, every single week — <mark>and it was eating the job.</mark></p></blockquote>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Insights that shaped it</div>
-        <div class="cs-insights">
-          <div class="cs-insight"><div class="n">01</div><h5>Chasing was social</h5><p>Most follow-ups happened in chat, so collection had to feel as quick and familiar as sending a message.</p></div>
-          <div class="cs-insight"><div class="n">02</div><h5>Reconciliation was the real cost</h5><p>Matching payments to people ate the most time — automating it was the highest-leverage bet.</p></div>
-          <div class="cs-insight"><div class="n">03</div><h5>Trust is the product</h5><p>To move money-tracking here, the brand and UI had to read as credible from the very first screen.</p></div>
-        </div>
-        <p class="cs-note">Qualitative insights drawn from the problem space and stakeholder conversations — directional, not a formal survey.</p>
+      <section class="cs-sec ">
+        <div class="cs-label">What I heard</div>
+        <div class="cs-insights"><div class="cs-insight"><div class="n">01</div><h5>Chasing was social</h5><p>Almost every follow-up happened in chat. Collection had to feel as quick and familiar as sending a message, or people would fall back to the group.</p></div><div class="cs-insight"><div class="n">02</div><h5>Reconciliation was the real cost</h5><p>Matching payments to people ate more time than everything else combined. Automating it was the highest-leverage bet in the product.</p></div><div class="cs-insight"><div class="n">03</div><h5>Trust is the product</h5><p>You don’t move an institution’s money-tracking into a new tool unless it reads as credible from the first screen. Brand and UI were doing real work here.</p></div></div>
+        <p class="cs-note">These are qualitative insights from the problem space and stakeholder conversations — directional, not a formal study.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Who it's for</div>
-        <div class="cs-persona">
-          <div class="who">
-            <div class="avatar">FA</div>
-            <div>
-              <div class="role">Finance admin</div>
-              <div class="ctx">Growing institution · hundreds of payers</div>
-            </div>
-          </div>
-          <div class="cols">
-            <div>
-              <h6>Goals</h6>
-              <ul>
-                <li>See who has paid at a glance</li>
-                <li>Send reminders without manual nagging</li>
-                <li>Close the books without hunting</li>
-              </ul>
-            </div>
-            <div>
-              <h6>Frustrations</h6>
-              <ul>
-                <li>Manual reconciliation across tools</li>
-                <li>Missed or duplicated payments</li>
-                <li>No single, real-time view</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Research approach</div>
+        <p>This was a solo project, so I kept research scrappy and honest. I had conversations with people who run collections at three kinds of institution — a school office, a coaching centre and a small finance team — and asked each of them to walk me through their last collection cycle while I mapped it. I also audited the tools they were actually using (WhatsApp, Google Sheets, UPI apps, paper) and the fee-management products on the market, most of which assumed an accounts department that these institutions simply don’t have.</p>
+        <p>What I did <em>not</em> do was a formal survey or usability lab. Everything below is directional and qualitative — enough to make confident design decisions, not enough to quote as statistics.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Goals</div>
-        <ul class="cs-goals">
-          <li>Create a single source of truth for every fee and payment.</li>
-          <li>Automate reconciliation to remove manual matching.</li>
-          <li>Make reminders effortless, consistent and trackable.</li>
-          <li>Build a finance-grade brand and interface people trust.</li>
-        </ul>
+      <section class="cs-sec ">
+        <div class="cs-label">Pain points</div>
+        <ul class="cs-pains"><li><span class="x">✕</span><div><strong>No single source of truth</strong><p>Payments lived in three places at once — a chat thread, a sheet and a bank app — and none of them agreed.</p></div></li><li><span class="x">✕</span><div><strong>Reconciliation by memory</strong><p>Matching a UPI payment from “Ravi’s dad’s number” to the right student was done from memory, late at night.</p></div></li><li><span class="x">✕</span><div><strong>Reminders were awkward and uneven</strong><p>Chasing meant scrolling a group chat and messaging people one by one; some were nudged twice, others never.</p></div></li><li><span class="x">✕</span><div><strong>Leadership had no live answer</strong><p>“How much is still outstanding?” took an afternoon of spreadsheet work to answer honestly.</p></div></li><li><span class="x">✕</span><div><strong>Tools assumed an accountant</strong><p>Existing fee software was built for finance departments, with vocabulary and setup these teams didn’t have.</p></div></li></ul>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Design process</div>
-        <div class="cs-steps">
-          <div class="cs-step"><h5>Discover</h5><p>Mapped the collection flow across WhatsApp, receipts and spreadsheets to find where money and time leaked.</p></div>
-          <div class="cs-step"><h5>Define</h5><p>Framed the product as one ledger + automated reconciliation + reminders — the smallest set that fixes the chaos.</p></div>
-          <div class="cs-step"><h5>Wireframe</h5><p>Blocked out the dashboard and collection views low-fi first, settling hierarchy before any visual polish.</p></div>
-          <div class="cs-step"><h5>Design &amp; system</h5><p>Built the brand, type scale, colour and components, then the high-fi UI — iterating fast in Figma Make AI.</p></div>
-          <div class="cs-step"><h5>Ship</h5><p>Wired Supabase for real data and launched a live product alongside a focused marketing site.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Who I designed for</div>
+        <div class="cs-persona"><div class="who"><div class="avatar has-photo"><img src="assets/personas/kanakku.jpg" alt="" loading="lazy">FA</div><div><div class="role">Finance admin</div><div class="ctx">Growing institution · hundreds of payers</div></div></div><div class="cols"><div><h6>Goals</h6><ul><li>See who has paid at a glance</li><li>Send reminders without manual nagging</li><li>Close the books without hunting</li></ul></div><div><h6>Frustrations</h6><ul><li>Manual reconciliation across tools</li><li>Missed or duplicated payments</li><li>No single, real-time view</li></ul></div></div></div>
+        <p>The admin is not a finance professional. They are usually a teacher or coordinator who inherited the job. That shaped the tone of every screen: plain language, totals before tables, and nothing that assumes accounting vocabulary.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Wireframes &amp; structure</div>
-        <p>I worked the hierarchy out in low fidelity first — deciding what each screen leads with before any styling.</p>
+      <section class="cs-sec ">
+        <div class="cs-label">User journey — one collection cycle</div>
+        <p>Mapping a single term’s fee cycle made the emotional shape of the problem obvious: it starts calm and ends in a late-night reconciliation scramble. The last row is where the product opportunities fell out.</p>
+        <div class="cs-journey-wrap"><table class="cs-journey"><tr><th></th><th>Announce</th><th>Collect</th><th>Reconcile</th><th>Chase</th><th>Report</th></tr><tr class=""><th>Doing</th><td>Posts the fee notice in the WhatsApp group</td><td>Payments arrive by UPI, cash, transfer over two weeks</td><td>Matches screenshots and bank entries to names in a sheet</td><td>Scrolls the chat, messages non-payers individually</td><td>Builds a total for leadership</td></tr><tr class="think"><th>Thinking</th><td>“Hope everyone sees this.”</td><td>“Who was that transfer from?”</td><td>“Did I count this twice?”</td><td>“This feels like nagging.”</td><td>“I think this is right.”</td></tr><tr class="feel"><th>Feeling</th><td>Hopeful</td><td>Scattered</td><td>Anxious</td><td>Awkward</td><td>Uncertain</td></tr><tr class="opp"><th>Opportunity</th><td>Structured fee notice with a trackable link</td><td>Every payment lands in one ledger, auto-tagged where possible</td><td>Suggested matches with one-tap confirm</td><td>Reminder as a status, sent consistently by the system</td><td>Live dashboard — collected vs. outstanding, always current</td></tr></table></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">How might we</div>
+        <div class="cs-hmw"><div class="cs-hmw-card"><span class="q">How might we</span><p>…give an admin one trustworthy place where every fee and payment lives?</p></div><div class="cs-hmw-card"><span class="q">How might we</span><p>…remove the matching work without taking the decision away from a human?</p></div><div class="cs-hmw-card"><span class="q">How might we</span><p>…make reminders consistent and trackable, and far less socially awkward?</p></div><div class="cs-hmw-card"><span class="q">How might we</span><p>…make a finance product feel credible to someone who isn’t a finance person?</p></div></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Reframing the brief</div>
+        <p>The temptation with a fintech product is to build everything — invoicing, payment gateways, accounting exports. I resisted that and wrote down three principles that decided what made the first version and what didn’t.</p>
+        <div class="cs-principles"><div class="cs-principle"><div class="n">01</div><h5>One ledger, one truth</h5><p>Every fee and every payment lands in a single place. If it isn’t in Kanakku, it didn’t happen.</p></div><div class="cs-principle"><div class="n">02</div><h5>Automate the matching, not the judgment</h5><p>The system proposes which payment belongs to whom; the admin confirms. Confidence, not magic.</p></div><div class="cs-principle"><div class="n">03</div><h5>Reminders should feel like a nudge</h5><p>Consistent, trackable, and never shaming — a status update, not a demand.</p></div></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Information architecture</div>
+        <p>A deliberately flat structure: four primary areas, each one answering a question the admin actually asks.</p>
+        <div class="cs-ia"><ul><li><span>Dashboard</span><ul><li><span>Collected vs. outstanding</span></li><li><span>Trend this term</span></li><li><span>Needs attention</span></li></ul></li><li><span>Collections</span><ul><li><span>Fee plans</span></li><li><span>Payers & status</span></li><li><span>Payment detail</span></li></ul></li><li><span>Reconcile</span><ul><li><span>Suggested matches</span></li><li><span>Unmatched payments</span></li><li><span>Confirmed</span></li></ul></li><li><span>Reminders</span><ul><li><span>Schedules</span></li><li><span>Reminder status per payer</span></li><li><span>History</span></li></ul></li><li><span>Settings</span><ul><li><span>Institution</span></li><li><span>Team</span></li><li><span>Payment methods</span></li></ul></li></ul></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Core user flow — confirming a payment</div>
+        <ol class="cs-flow"><li><span class="n">1</span><div><strong>A payment arrives</strong><p>It appears in Reconcile as an unmatched item with amount, method and the sender’s details.</p></div></li><li><span class="n">2</span><div><strong>Kanakku proposes a match</strong><p>Using amount, due fee and sender number, it suggests the most likely payer — shown as a proposal, not a fact.</p></div></li><li><span class="n">3</span><div><strong>Admin confirms or corrects</strong><p>One tap to confirm; a search field to pick someone else if the guess is wrong.</p></div></li><li><span class="n">4</span><div><strong>Status updates everywhere</strong><p>The payer flips to Paid, the dashboard totals move, and any pending reminder for them is cancelled.</p></div></li></ol>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Process</div>
+        <p>I ran this like a small product team of one, moving in short loops rather than long phases. Because I was building in Figma Make AI, the gap between a sketch and a working screen was hours, not weeks — which changed how I made decisions. Instead of debating hierarchy on a whiteboard, I would build two versions and use them.</p>
+        <div class="cs-steps"><div class="cs-step"><h5>Discover</h5><p>Mapped the collection flow across WhatsApp, receipts and spreadsheets to find where money and time leaked.</p></div><div class="cs-step"><h5>Define</h5><p>Framed the product as one ledger + automated reconciliation + reminders — the smallest set that fixes the chaos.</p></div><div class="cs-step"><h5>Wireframe</h5><p>Blocked out the dashboard and collection views low-fi first, settling hierarchy before any visual polish.</p></div><div class="cs-step"><h5>Design & system</h5><p>Built the brand, type scale, colour and components, then the high-fi UI — iterating fast in Figma Make AI.</p></div><div class="cs-step"><h5>Ship</h5><p>Wired Supabase for real data and launched a live product alongside a focused marketing site.</p></div></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Sketches & early flows</div>
+        <p>The dashboard had to answer one question in the first second — <em>how are we doing?</em> — and the second question in the next: <em>who do I need to chase?</em> I sketched the four core screens on paper first, then redrew them as quick digital sketches so the flow between them could be argued about before any colour or type got involved.</p>
+        <div class="cs-sketch"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="skRough" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="cs-sketch-intro">First-pass sketches of the four core screens, drawn before any colour or type — the job here was to settle what each screen leads with.</div><div class="cs-sketch-grid"><figure><svg viewBox="0 0 360 250" filter="url(#skRough)"><rect x="6" y="6" width="348" height="238" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="34" x2="354" y2="34" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="24" class="h" font-size="15">Dashboard</text><rect x="18" y="46" width="324" height="16" rx="3" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="22" y="58" class="s" font-size="10">Kanakku · term 2025</text><rect x="18" y="72" width="100" height="44" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="88" class="s" font-size="10">Collected</text><text x="26" y="108" class="h" font-size="13">₹ ——</text><rect x="128" y="72" width="100" height="44" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="136" y="88" class="s" font-size="10">Outstanding</text><text x="136" y="108" class="h" font-size="13">₹ ——</text><rect x="238" y="72" width="100" height="44" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="246" y="88" class="s" font-size="10">Overdue</text><text x="246" y="108" class="h" font-size="13">₹ ——</text><rect x="18" y="126" width="324" height="66" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 180 L70 160 L110 170 L150 140 L190 150 L230 135 L270 148 L310 130 L332 138" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="24" y="140" class="s" font-size="10">trend this term</text><text x="18" y="210" class="s" font-size="10">needs attention</text><path d="M18 222 q38.879999999999995 -3 81.0 0 t81.0 0 t81.0 0 t64.8 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M18 231 q38.879999999999995 -3 81.0 0 t81.0 0 t81.0 0 t64.8 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="240" y="70" class="note" font-size="12">totals first ↑</text></svg><figcaption>Totals, trend, then the table. “How are we doing?” answered in a second.</figcaption></figure><figure><svg viewBox="0 0 360 250" filter="url(#skRough)"><rect x="6" y="6" width="348" height="238" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="34" x2="354" y2="34" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="24" class="h" font-size="15">Collections</text><rect x="18" y="46" width="130" height="186" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="64" r="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#2f3542"/><path d="M42 62 q11.52 -3 24.0 0 t24.0 0 t24.0 0 t19.200000000000003 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M42 72 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="30" cy="92" r="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M42 90 q11.52 -3 24.0 0 t24.0 0 t24.0 0 t19.200000000000003 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M42 100 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="30" cy="120" r="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M42 118 q11.52 -3 24.0 0 t24.0 0 t24.0 0 t19.200000000000003 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M42 128 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="30" cy="148" r="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#2f3542"/><path d="M42 146 q11.52 -3 24.0 0 t24.0 0 t24.0 0 t19.200000000000003 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M42 156 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="30" cy="176" r="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M42 174 q11.52 -3 24.0 0 t24.0 0 t24.0 0 t19.200000000000003 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M42 184 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="30" cy="204" r="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M42 202 q11.52 -3 24.0 0 t24.0 0 t24.0 0 t19.200000000000003 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M42 212 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="160" y="46" width="182" height="186" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><text x="170" y="64" class="h" font-size="12">Priya S · Term fee</text><line x1="170" y1="72" x2="330" y2="72" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="170" y="90" class="s" font-size="10">₹12,000  ·  due 10 Jun</text><text x="170" y="112" class="s" font-size="10">payments</text><path d="M170 124 q19.2 -3 40.0 0 t40.0 0 t40.0 0 t32.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M170 133 q19.2 -3 40.0 0 t40.0 0 t40.0 0 t32.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="170" y="150" width="100" height="24" rx="12" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="182" y="166" class="s" font-size="10">reminder: sent</text><rect x="170" y="186" width="160" height="30" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="190" y="205" class="h" font-size="11">Record payment</text><text x="60" y="246" class="note" font-size="12">list stays put →</text></svg><figcaption>List on the left, payer detail on the right — you never lose your place.</figcaption></figure><figure><svg viewBox="0 0 360 250" filter="url(#skRough)"><rect x="6" y="6" width="348" height="238" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="34" x2="354" y2="34" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="24" class="h" font-size="15">Reconcile</text><text x="18" y="58" class="s" font-size="10">unmatched payments (3)</text><rect x="18" y="68" width="324" height="66" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="28" y="86" class="h" font-size="12">₹2,500 · UPI · 98xxx 4421</text><text x="28" y="104" class="s" font-size="11">looks like →  Priya S  (term fee)</text><rect x="28" y="112" width="74" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="40" y="124" class="s" font-size="9">✓ confirm</text><rect x="110" y="112" width="96" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><text x="120" y="124" class="s" font-size="9">someone else…</text><rect x="18" y="144" width="324" height="66" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="28" y="162" class="h" font-size="12">₹2,500 · UPI · 98xxx 4421</text><text x="28" y="180" class="s" font-size="11">looks like →  Priya S  (term fee)</text><rect x="28" y="188" width="74" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="40" y="200" class="s" font-size="9">✓ confirm</text><rect x="110" y="188" width="96" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><text x="120" y="200" class="s" font-size="9">someone else…</text><text x="200" y="232" class="note" font-size="12">propose, don’t decide</text></svg><figcaption>Kanakku suggests the match; the admin confirms with one tap.</figcaption></figure><figure><svg viewBox="0 0 360 250" filter="url(#skRough)"><rect x="6" y="6" width="348" height="238" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="34" x2="354" y2="34" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="24" class="h" font-size="15">Reminders</text><text x="18" y="58" class="s" font-size="10">reminder schedule</text><rect x="140" y="48" width="40" height="14" rx="7" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="172" cy="55" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#2f3542"/><text x="190" y="59" class="s" font-size="9">3 days before · on due · +7</text><path d="M22 88 q13.2 -3 27.5 0 t27.5 0 t27.5 0 t22.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="22" y="84" class="h" font-size="11">Arun K</text><rect x="250" y="74" width="80" height="20" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="262" y="88" class="s" font-size="10">paid</text><path d="M22 118 q13.2 -3 27.5 0 t27.5 0 t27.5 0 t22.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="22" y="114" class="h" font-size="11">Priya S</text><rect x="250" y="104" width="80" height="20" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="262" y="118" class="s" font-size="10">sent 2d</text><path d="M22 148 q13.2 -3 27.5 0 t27.5 0 t27.5 0 t22.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="22" y="144" class="h" font-size="11">Meera V</text><rect x="250" y="134" width="80" height="20" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="262" y="148" class="s" font-size="10">due</text><path d="M22 178 q13.2 -3 27.5 0 t27.5 0 t27.5 0 t22.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="22" y="174" class="h" font-size="11">Rahul D</text><rect x="250" y="164" width="80" height="20" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="262" y="178" class="s" font-size="10">paid</text><path d="M22 208 q13.2 -3 27.5 0 t27.5 0 t27.5 0 t22.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="22" y="204" class="h" font-size="11">Divya N</text><rect x="250" y="194" width="80" height="20" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="262" y="208" class="s" font-size="10">sent 5d</text><text x="150" y="240" class="note" font-size="12">a status, not a message</text></svg><figcaption>Every payer has a visible reminder state the system keeps consistent.</figcaption></figure></div><p class="cs-sketch-flow">Flow: Dashboard → Collections (tap a payer) → Reconcile (payment arrives) → Reminders. Each arrow is one tap.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Structure before style</div>
+        <p>From the sketches I blocked out the two screens that carry the most weight as low-fidelity wireframes — settling hierarchy, proportions and the list/detail split.</p>
         <div class="cs-wire">
           <div class="cs-frame">
             <div class="cap">Dashboard — structure</div>
@@ -779,29 +777,26 @@
             <div class="sk-rows"><span class="r"></span><span class="r"></span></div>
           </div>
         </div>
+        <p>The collections view splits into a list and a detail pane so the admin never loses their place while resolving a payment — a direct answer to the “scrolling the chat” problem.</p>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
+        <div class="cs-label">Key decisions</div>
+        <ol class="cs-decisions"><li><h5>Lead with totals, not transactions</h5><p>The home screen opens on collected vs. outstanding and a trend, then the table. Early versions opened on the table.</p><p class="why"><span>Why</span>The table is where work happens, but the totals are why someone opens the app. Leading with them made the dashboard feel like a status report instead of a spreadsheet.</p></li><li><h5>Reconciliation as a suggestion queue</h5><p>Unmatched payments appear as proposals — “this ₹2,500 from this number looks like Priya’s term fee” — with a one-tap confirm.</p><p class="why"><span>Why</span>Fully automatic matching would be wrong often enough to destroy trust. A confirm step keeps the admin in control while removing the searching.</p></li><li><h5>Reminders are a status, not a message</h5><p>Each payer has a reminder state the admin can see and reset, rather than a free-text message composer.</p><p class="why"><span>Why</span>It made reminders consistent, trackable and far less socially awkward — the system is nudging, not the person.</p></li><li><h5>A finance-grade brand on purpose</h5><p>Deep teal, a clear geometric sans, generous whitespace and no playful illustration.</p><p class="why"><span>Why</span>Institutions are handing over money data. The visual language had to read as careful before it read as friendly.</p></li></ol>
+
+      </section>
+      <section class="cs-sec ">
         <div class="cs-label">Design system</div>
         <h4>A calm, finance-grade visual language</h4>
-        <div class="cs-type">
-          <div class="big">Ag</div>
-          <div class="scale">
-            <div><span class="s1">Clear, geometric sans</span><span class="lab">Display</span></div>
-            <div><span class="s2">Confident headings, tight tracking</span><span class="lab">Heading</span></div>
-            <div><span class="s3">Readable body for numbers &amp; tables</span><span class="lab">Body</span></div>
-          </div>
-        </div>
-        <div class="cs-swatches">
-          <div class="cs-swatch"><div class="chip" style="background:#005a63"></div><div class="meta"><div class="nm">Deep Teal</div><div class="hex">#005A63</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#a6bc8a"></div><div class="meta"><div class="nm">Sage</div><div class="hex">#A6BC8A</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
-        </div>
+        <div class="cs-type"><div class="big">Ag</div><div class="scale"><div><span class="s1">Clear, geometric sans</span><span class="lab">Display</span></div><div><span class="s2">Confident headings, tight tracking</span><span class="lab">Heading</span></div><div><span class="s3">Readable body for numbers &amp; tables</span><span class="lab">Body</span></div></div></div>
+        <div class="cs-swatches"><div class="cs-swatch"><div class="chip" style="background:#005a63"></div><div class="meta"><div class="nm">Deep Teal</div><div class="hex">#005A63</div></div></div><div class="cs-swatch"><div class="chip" style="background:#a6bc8a"></div><div class="meta"><div class="nm">Sage</div><div class="hex">#A6BC8A</div></div></div><div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div><div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div></div>
+        <p>Numbers do most of the talking in this product, so the type scale was tuned around tabular figures and tight headings. Teal carries status and action; sage is reserved for “paid”, and nothing else is allowed to be green.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Final design</div>
+      <section class="cs-sec ">
+        <div class="cs-label">The design</div>
         <h4>One ledger, clear reminders, real-time status</h4>
-        <p>The product turns scattered payment chatter into a structured, trustworthy workflow — with a marketing site that gets people to the value fast.</p>
+        <p>The finished product turns scattered payment chatter into a structured, trustworthy workflow. The marketing site has one job — get an institution to the value quickly — and hands off to the product.</p>
         <figure class="cs-shot">
           <div class="cs-browser">
             <div class="bar"><i></i><i></i><i></i><span class="url"></span></div>
@@ -816,99 +811,98 @@
           </div>
           <figcaption>Collections dashboard — totals and payment status at a glance, reconciliation surfaced where the work happens.</figcaption>
         </figure>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Impact</div>
-        <div class="cs-impact">
-          <p>Shipped as a live product with a complete brand and design system, an end-to-end collections dashboard and a marketing site — designed and built prompt-first in Figma Make AI with Supabase behind it. <em>(Adoption and volume metrics to be added as the product grows.)</em></p>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Building it prompt-first</div>
+        <p>This was my first end-to-end product built in Figma Make AI. The honest summary: it collapsed the distance between design and reality. I described screens, components and states in plain language, refined the output by hand, and connected Supabase so the dashboard ran on real rows rather than placeholder data.</p>
+        <p>What I had to stay disciplined about was system consistency — generated screens drift. I kept a small component library and a written set of rules (spacing, status colours, number formatting) and re-applied them after every generation pass. The tooling was fast; the design judgment still had to be mine.</p>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Validation</div>
+        <p>Before launch I ran informal walkthroughs of the live build with the same people I had interviewed, asking them to find three things: how much is outstanding, who hasn’t paid, and how to record a cash payment. Two changes came straight out of those sessions — the dashboard originally opened on the collections table (people hunted for the total), and “Reconcile” was renamed from “Match payments”, which nobody understood. I did not run a formal usability study; these were conversations over a screen.</p>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Outcome</div>
+        <div class="cs-impact"><p>Shipped as a live product with a complete brand and design system, an end-to-end collections dashboard and a marketing site — designed and built prompt-first in Figma Make AI with Supabase behind it. <em>Adoption and volume metrics will be added here as the product grows; I would rather show nothing than invent a number.</em></p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What I learned</div>
+        <ul class="cs-learn"><li><strong>Automate the search, keep the decision.</strong> Users forgave a system that asked them to confirm; they would not have forgiven one that guessed wrong silently.</li><li><strong>Trust is designed, not declared.</strong> The restraint in the brand did more for credibility than any copy about security could.</li><li><strong>AI tooling moves the bottleneck to taste.</strong> When screens are cheap, the scarce skill is knowing which one is right.</li></ul>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What’s next</div>
+        <p>Payment-gateway collection inside the ledger, per-institution reminder schedules, and a lightweight parent view so the people paying can see their own status without asking.</p>
+
       </section>
     </div>
-    <footer class="cs-foot">
-      <a href="https://www.kanakkuai.com/" target="_blank" rel="noopener">Visit website ↗</a>
-      <a class="ghost" href="https://kanakkuaidemo.figma.site/#/signin" target="_blank" rel="noopener">Open demo product ↗</a>
-    </footer>
+    <footer class="cs-foot"><a href="https://www.kanakkuai.com/" target="_blank" rel="noopener">Visit website ↗</a><a class="ghost" href="https://kanakkuaidemo.figma.site/#/signin" target="_blank" rel="noopener">Open demo product ↗</a></footer>
   </article>
 </template>
 
-<template class="cs-tpl" data-case="ringsizer" data-accent="#4a58d6" data-accent2="#7a84e6" data-tint="#ecedfb">
+<template class="cs-tpl" data-case="ringsizer" data-accent="#4a58d6" data-accent2="#7a84e6" data-tint="#ecedfb" data-thumb="assets/ringsizer-launch.png">
   <article class="cs">
     <header class="cs-hero">
-      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app<span class="cs-read">· 7 min read</span></div>
       <h1 class="cs-title" id="csTitle">Ring Sizer</h1>
-      <p class="cs-lead">A single screen that removes the biggest reason people don't buy rings online — shipped as JustFitIt on Google Play.</p>
-      <div class="cs-chips">
-        <span class="cs-chip"><span class="mono">Role</span><b>UX case study → Live app</b></span>
-        <span class="cs-chip"><span class="mono">Year</span><b>2024–2025</b></span>
-        <span class="cs-chip"><span class="mono">Platform</span><b>Android</b></span>
-        <span class="cs-chip"><span class="mono">Focus</span><b>Interaction</b></span>
-      </div>
+      <p class="cs-lead">A single screen that removes the biggest reason people don’t buy rings online — and how a UX case study became JustFitIt, a live app on Google Play.</p>
+      <div class="cs-chips"><span class="cs-chip"><span class="mono">Role</span><b>UX case study → Live app</b></span><span class="cs-chip"><span class="mono">Year</span><b>2024–2025</b></span><span class="cs-chip"><span class="mono">Platform</span><b>Android</b></span><span class="cs-chip"><span class="mono">Focus</span><b>Interaction design</b></span></div>
     </header>
     <div class="cs-body">
-      <section class="cs-sec">
-        <div class="cs-label">Overview</div>
-        <p>Buying a ring online stalls at one question: what size? Ring Sizer answers it in seconds — place a real ring on the screen, drag to match, read the size. It grew from a UX case study into JustFitIt, a live Android app.</p>
-        <dl class="cs-facts">
-          <div class="row"><dt>Project</dt><dd>Ring Sizer · JustFitIt</dd></div>
-          <div class="row"><dt>Category</dt><dd>Mobile · E-commerce utility</dd></div>
-          <div class="row"><dt>Role</dt><dd>UX case study → Live app</dd></div>
-          <div class="row"><dt>Platform</dt><dd>Android</dd></div>
-          <div class="row"><dt>Year</dt><dd>2024–2025</dd></div>
-          <div class="row"><dt>Focus</dt><dd>Interaction design</dd></div>
-        </dl>
+        <div class="cs-tldr"><div class="cs-label">In short</div><ul><li>Jewellery carts die at one question — <em>what size am I?</em> — because nobody knows, and printable guides are fiddly.</li><li>I reduced the whole product to one interaction: lay a ring you own on the screen, drag a circle to match, read the size.</li><li>The concept shipped as JustFitIt on Android; the launch post reached 553K+ impressions, 10K+ likes and 500+ comments.</li></ul></div>
+      <section class="cs-sec ">
+        <div class="cs-label">Where this started</div>
+        <p>This began as a pure UX exercise. I was looking for a problem small enough to solve completely and real enough to matter, and ring sizing kept coming up: a tiny unknown that quietly kills a high-value purchase. Most “solutions” were PDFs you print at exactly 100% scale and wrap around your finger. Nobody does that.</p>
+        <p>The phone in your hand is a precisely calibrated flat surface with a known pixel density. That was the whole insight. If the screen can be a ruler, the sizing problem is an interaction-design problem — and those I can solve.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Problem</div>
+      <section class="cs-sec ">
+        <div class="cs-label">The problem</div>
         <h4>Nobody knows their ring size, so nobody checks out</h4>
-        <p>Ring sizing is the silent conversion killer in jewellery e-commerce. Shoppers don't know their size, printable guides are fiddly, and that uncertainty ends most purchases before they start.</p>
+        <p>Ring sizing is the silent conversion killer of jewellery e-commerce. The shopper has found the ring, decided on the budget, and then meets a size chart in millimetres and a note about “ordering a size up for wide bands.” Uncertainty does the rest. The ones who do order often return — and a returned ring is an expensive, slow failure for everyone.</p>
+        <blockquote class="cs-quote"><p>The purchase doesn’t fail at price or taste. It fails at <mark>a number the shopper has no way to know.</mark></p></blockquote>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Insights that shaped it</div>
-        <div class="cs-insights">
-          <div class="cs-insight"><div class="n">01</div><h5>It's one unknown</h5><p>The whole purchase hinges on a single number — solve that and the funnel opens.</p></div>
-          <div class="cs-insight"><div class="n">02</div><h5>Physical beats abstract</h5><p>People trust measuring against a ring they already own more than typing in millimetres.</p></div>
-          <div class="cs-insight"><div class="n">03</div><h5>No setup, or no use</h5><p>The tool has to work instantly — before any account, cart or friction.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">What I heard</div>
+        <div class="cs-insights"><div class="cs-insight"><div class="n">01</div><h5>It’s one unknown</h5><p>The whole purchase hinges on a single number. Solve that honestly and the rest of the funnel opens.</p></div><div class="cs-insight"><div class="n">02</div><h5>Physical beats abstract</h5><p>People trust measuring against a ring they already own far more than typing millimetres or printing a guide.</p></div><div class="cs-insight"><div class="n">03</div><h5>No setup, or no use</h5><p>The tool has to work in the moment of hesitation — before any account, cart or friction.</p></div></div>
         <p class="cs-note">Qualitative insights from the e-commerce problem space — directional, not a formal survey.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Who it's for</div>
-        <div class="cs-persona">
-          <div class="who">
-            <div class="avatar">RS</div>
-            <div>
-              <div class="role">Online ring shopper</div>
-              <div class="ctx">Buying a ring, unsure of size</div>
-            </div>
-          </div>
-          <div class="cols">
-            <div><h6>Goals</h6><ul><li>Get an accurate size fast</li><li>Trust the result</li><li>Finish the purchase</li></ul></div>
-            <div><h6>Frustrations</h6><ul><li>Confusing size charts</li><li>Fear of ordering wrong</li><li>Returns and reorders</li></ul></div>
-          </div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Pain points</div>
+        <ul class="cs-pains"><li><span class="x">✕</span><div><strong>Size charts assume you already know</strong><p>Charts convert between US, UK and Indian standards — but every one of them starts from a number the shopper doesn’t have.</p></div></li><li><span class="x">✕</span><div><strong>Printable guides fail quietly</strong><p>“Print at 100% scale” is the instruction nobody follows; a few percent of scaling error is a whole size out.</p></div></li><li><span class="x">✕</span><div><strong>Guessing leads to returns</strong><p>Shoppers who order anyway often order wrong, and a returned ring is slow, costly and discouraging for both sides.</p></div></li><li><span class="x">✕</span><div><strong>Help arrives too late</strong><p>Sizing help lived in FAQs and support chat — after the moment of hesitation, not inside it.</p></div></li><li><span class="x">✕</span><div><strong>Every tool wanted a sign-up first</strong><p>Existing apps asked for an account before they would measure anything, which is exactly when the shopper is least patient.</p></div></li></ul>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Goals</div>
-        <ul class="cs-goals">
-          <li>Remove the size unknown in under a minute.</li>
-          <li>Make the result feel trustworthy.</li>
-          <li>Require zero setup or signup.</li>
-          <li>Turn a UX concept into a shippable product.</li>
-        </ul>
+      <section class="cs-sec ">
+        <div class="cs-label">Who I designed for</div>
+        <div class="cs-persona"><div class="who"><div class="avatar has-photo"><img src="assets/personas/ringsizer.jpg" alt="" loading="lazy">RS</div><div><div class="role">Online ring shopper</div><div class="ctx">Buying a ring, unsure of size</div></div></div><div class="cols"><div><h6>Goals</h6><ul><li>Get an accurate size fast</li><li>Trust the result</li><li>Finish the purchase</li></ul></div><div><h6>Frustrations</h6><ul><li>Confusing size charts</li><li>Fear of ordering wrong</li><li>Returns and reorders</li></ul></div></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Design process</div>
-        <div class="cs-steps">
-          <div class="cs-step"><h5>Discover</h5><p>Mapped why jewellery carts get abandoned — sizing uncertainty led the list.</p></div>
-          <div class="cs-step"><h5>Define</h5><p>Reduced it to one interaction: calibrate against a real ring, then read the size.</p></div>
-          <div class="cs-step"><h5>Wireframe</h5><p>Set the hierarchy — circle target, slider, size readout — so nothing competes.</p></div>
-          <div class="cs-step"><h5>Design &amp; motion</h5><p>Tuned the tactile drag and a confident size readout that feels accurate.</p></div>
-          <div class="cs-step"><h5>Ship</h5><p>Built and launched JustFitIt on Google Play; shared the story on LinkedIn.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Reframing the brief</div>
+        <p>I wrote the product down in one sentence — <em>measure a real ring on the screen and read the size</em> — and then treated every feature request as a threat to that sentence. Three principles kept it honest.</p>
+        <div class="cs-principles"><div class="cs-principle"><div class="n">01</div><h5>One screen, one number</h5><p>If the user has to navigate, the product has already failed. The sizer is the home screen.</p></div><div class="cs-principle"><div class="n">02</div><h5>Confidence over cleverness</h5><p>The readout must look and feel accurate: steady, legible, unhurried. No animation that undermines the number.</p></div><div class="cs-principle"><div class="n">03</div><h5>Zero setup</h5><p>No account, no cart, no permissions. Open, measure, done — then offer to save.</p></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Wireframes &amp; structure</div>
-        <p>The whole product is one screen, so hierarchy was everything — the sizing target leads, the result reassures.</p>
+      <section class="cs-sec ">
+        <div class="cs-label">Process</div>
+        <div class="cs-steps"><div class="cs-step"><h5>Discover</h5><p>Mapped why jewellery carts get abandoned — sizing uncertainty led the list.</p></div><div class="cs-step"><h5>Define</h5><p>Reduced it to one interaction: calibrate against a real ring, then read the size.</p></div><div class="cs-step"><h5>Wireframe</h5><p>Set the hierarchy — circle target, slider, size readout — so nothing competes.</p></div><div class="cs-step"><h5>Design & motion</h5><p>Tuned the tactile drag and a confident size readout that feels accurate.</p></div><div class="cs-step"><h5>Ship</h5><p>Built and launched JustFitIt on Google Play; shared the story on LinkedIn.</p></div></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Sketches & early flows</div>
+        <p>Before any pixels I sketched the whole app on paper — and kept cutting until the core was a single screen.</p>
+        <div class="cs-sketch"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="skRough" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="cs-sketch-intro">Paper-first: the four screens that make up the whole app, sketched before any UI. The point was to prove the product could be one screen with everything else hanging off it.</div><div class="cs-sketch-grid"><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Welcome</text><rect x="30" y="70" width="140" height="140" rx="70" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="100" cy="140" r="38" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/><text x="40" y="240" class="h" font-size="12">Measure effortlessly</text><path d="M30 256 q16.8 -3 35.0 0 t35.0 0 t35.0 0 t28.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M30 265 q16.8 -3 35.0 0 t35.0 0 t35.0 0 t28.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="30" y="300" width="140" height="22" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="40" y="315" class="s" font-size="10">Get started</text><text x="120" y="70" class="note" font-size="11">no sign-in ↑</text></svg><figcaption>No account, no setup — the first tap goes straight to measuring.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Your details</text><text x="16" y="70" class="s" font-size="10">name</text><rect x="16" y="76" width="168" height="24" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="120" class="s" font-size="10">country</text><rect x="16" y="126" width="168" height="24" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="24" y="142" class="h" font-size="11">India  ▾</text><text x="16" y="172" class="s" font-size="10">sets the size standard</text><rect x="16" y="300" width="168" height="22" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="26" y="315" class="s" font-size="10">Continue</text><text x="60" y="200" class="note" font-size="11">asked once, up front</text></svg><figcaption>Country sets the standard (US / UK / IN…) so the result never looks wrong.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Measure</text><circle cx="100" cy="150" r="56" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><circle cx="100" cy="150" r="48" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/><text x="74" y="120" class="s" font-size="9">ring here</text><line x1="30" y1="236" x2="170" y2="236" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="112" cy="236" r="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="50" y="260" class="s" font-size="10">drag to match</text><rect x="30" y="276" width="140" height="44" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="42" y="294" class="h" font-size="14">16.71 mm</text><text x="42" y="312" class="s" font-size="12">→ size 12</text><text x="118" y="80" class="note" font-size="11">one screen</text></svg><figcaption>Circle target, slider under the thumb, readout in mm and size.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Save & history</text><text x="16" y="66" class="s" font-size="10">name this measurement</text><rect x="16" y="72" width="168" height="24" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="16" y="104" width="168" height="22" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="26" y="119" class="s" font-size="10">Save</text><rect x="16" y="150" width="168" height="36" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="166" class="h" font-size="11">Mum · ring finger</text><text x="26" y="180" class="s" font-size="9">16.5 mm · size 11</text><rect x="16" y="194" width="168" height="36" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="210" class="h" font-size="11">Me · index</text><text x="26" y="224" class="s" font-size="9">17.3 mm · size 13</text><rect x="16" y="238" width="168" height="36" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="254" class="h" font-size="11">Gift — Arun</text><text x="26" y="268" class="s" font-size="9">18.1 mm · size 15</text><text x="100" y="300" class="note" font-size="10">share / edit / delete</text></svg><figcaption>Only appears after a measurement — the utility earns the account.</figcaption></figure></div><p class="cs-sketch-flow">Flow: Welcome → Details (once) → Measure → Save. Measure is home; everything else is optional.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Structure before style</div>
+        <p>With a single screen, hierarchy is the entire design. The target circle leads, the slider sits where a thumb rests, and the result is large enough to read at arm’s length — because people hold the phone flat on a table while they measure.</p>
         <div class="cs-wire">
           <div class="cs-frame">
             <div class="cap">Sizer — one screen</div>
@@ -924,35 +918,31 @@
             <div class="sk-rows"><span class="r"></span><span class="r"></span></div>
           </div>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
+        <div class="cs-label">Key decisions</div>
+        <ol class="cs-decisions"><li><h5>Drag, don’t type</h5><p>A continuous slider resizes the circle; there is no numeric input on the main screen.</p><p class="why"><span>Why</span>Matching a circle to a ring’s inner edge is a visual act. Typing a guess reintroduces the exact uncertainty the product exists to remove.</p></li><li><h5>Readout in two units at once</h5><p>The result shows the inside diameter in millimetres <em>and</em> the regional ring size — e.g. 16.71&nbsp;mm → size 12.</p><p class="why"><span>Why</span>The millimetre value is what makes the size feel earned rather than asserted; the size is what the shop actually asks for.</p></li><li><h5>Country sets the standard</h5><p>A one-time country choice maps readings to US, UK, Indian and other standards.</p><p class="why"><span>Why</span>Size “7” means different things in different markets. Asking once, up front, avoids a wrong-looking answer later.</p></li><li><h5>Save and share, after the fact</h5><p>History and sharing exist, but only appear once a measurement is made.</p><p class="why"><span>Why</span>Keeping the first run friction-free was more important than exposing every feature. The utility earns the account, not the other way round.</p></li></ol>
+
+      </section>
+      <section class="cs-sec ">
         <div class="cs-label">Design system</div>
         <h4>Confident, tactile, single-purpose</h4>
-        <div class="cs-type">
-          <div class="big">Ag</div>
-          <div class="scale">
-            <div><span class="s1">Bold size readout</span><span class="lab">Display</span></div>
-            <div><span class="s2">Clear step labels</span><span class="lab">Heading</span></div>
-            <div><span class="s3">Quiet helper text</span><span class="lab">Body</span></div>
-          </div>
-        </div>
-        <div class="cs-swatches">
-          <div class="cs-swatch"><div class="chip" style="background:#2f6fd0"></div><div class="meta"><div class="nm">Cobalt</div><div class="hex">#2F6FD0</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#e58d99"></div><div class="meta"><div class="nm">Blush</div><div class="hex">#E58D99</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
-        </div>
+        <div class="cs-type"><div class="big">Ag</div><div class="scale"><div><span class="s1">Bold size readout</span><span class="lab">Display</span></div><div><span class="s2">Clear step labels</span><span class="lab">Heading</span></div><div><span class="s3">Quiet helper text</span><span class="lab">Body</span></div></div></div>
+        <div class="cs-swatches"><div class="cs-swatch"><div class="chip" style="background:#2f6fd0"></div><div class="meta"><div class="nm">Cobalt</div><div class="hex">#2F6FD0</div></div></div><div class="cs-swatch"><div class="chip" style="background:#e58d99"></div><div class="meta"><div class="nm">Blush</div><div class="hex">#E58D99</div></div></div><div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div><div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Final design</div>
+      <section class="cs-sec ">
+        <div class="cs-label">The design</div>
         <h4>One screen, one number, done</h4>
         <p>Ring Sizer shipped as JustFitIt — a focused Android app that turns a purchase-blocking question into a five-second interaction.</p>
         <figure class="cs-shot"><img src="assets/ringsizer-launch.png" alt="JustFitIt — find your perfect ring size in seconds" loading="lazy"><figcaption>Launch — JustFitIt, live on Google Play.</figcaption></figure>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">How it works</div>
         <h4>Measure a real ring, right on the screen</h4>
-        <p>The whole product hangs on one screen. You calibrate against a ring you already own, and the app does the maths — diameter to ring size, in the standard for your country.</p>
+        <p>You calibrate against a ring you already own, and the app does the maths — diameter to ring size, in the standard for your country.</p>
         <div class="cs-how">
           <div class="cs-phone"><img src="assets/rs-measure.png" alt="Ring Sizer measurement screen — a ring on the circle with a size slider" loading="lazy"></div>
           <ol>
@@ -963,16 +953,18 @@
             <li><h5>Save it</h5><p>Name the measurement and keep it in your history to reuse or share later.</p></li>
           </ol>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">Key screens</div>
         <div class="cs-phones">
           <figure><div class="cs-phone"><img src="assets/rs-welcome.png" alt="JustFitIt welcome screen" loading="lazy"></div><figcaption>Welcome — measure effortlessly</figcaption></figure>
           <figure><div class="cs-phone"><img src="assets/rs-save.png" alt="Save ring size with a name" loading="lazy"></div><figcaption>Save with a name</figcaption></figure>
           <figure><div class="cs-phone"><img src="assets/rs-history.png" alt="History of saved measurements" loading="lazy"></div><figcaption>History of measurements</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">Every screen</div>
         <p>The full flow — onboarding, measuring, saving, managing units and standards, and sharing.</p>
         <div class="cs-gallery">
@@ -990,99 +982,86 @@
           <figure><img src="assets/rs-conversion.png" alt="Conversion table" loading="lazy"><figcaption>Conversion table</figcaption></figure>
           <figure><img src="assets/rs-rate.png" alt="Rate us" loading="lazy"><figcaption>Rate &amp; review</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Impact</div>
-        <div class="cs-impact">
-          <p>Shipped as <strong>JustFitIt</strong> on Google Play. The concept resonated widely — <strong>553K+ impressions</strong>, <strong>10K+ likes</strong> and <strong>500+ comments</strong> on the launch post.</p>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Outcome</div>
+        <div class="cs-impact"><p>Shipped as <strong>JustFitIt</strong> on Google Play. The concept resonated widely — <strong>553K+ impressions</strong>, <strong>10K+ likes</strong> and <strong>500+ comments</strong> on the launch post. A case study became a product people actually use.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What I learned</div>
+        <ul class="cs-learn"><li><strong>Scope is a feature.</strong> Everything I refused to add made the one thing that mattered feel more trustworthy.</li><li><strong>Make the maths visible.</strong> Showing the millimetre reading alongside the size turned a black box into something people believed.</li><li><strong>Ship the case study.</strong> The reaction to a live app was an order of magnitude beyond what any mock-up had earned.</li></ul>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What’s next</div>
+        <p>Camera-assisted calibration for people without a reference ring, and an embeddable widget so jewellery stores can offer the sizer inside their own checkout.</p>
+
       </section>
     </div>
-    <footer class="cs-foot">
-      <a href="https://play.google.com/store/apps/details?id=com.justfitit" target="_blank" rel="noopener">Get it on Google Play ↗</a>
-      <a class="ghost" href="https://www.linkedin.com/posts/vignesh-babu-91a756159_humanexperience-mobileapp-uiux-ugcPost-7276535725351690240-8IGe/" target="_blank" rel="noopener">View LinkedIn post ↗</a>
-    </footer>
+    <footer class="cs-foot"><a href="https://play.google.com/store/apps/details?id=com.justfitit" target="_blank" rel="noopener">Get it on Google Play ↗</a><a class="ghost" href="https://www.linkedin.com/posts/vignesh-babu-91a756159_humanexperience-mobileapp-uiux-ugcPost-7276535725351690240-8IGe/" target="_blank" rel="noopener">View LinkedIn post ↗</a></footer>
   </article>
 </template>
 
-<template class="cs-tpl" data-case="radius" data-accent="#6a4ad0" data-accent2="#8f74e0" data-tint="#f0ebfb">
+<template class="cs-tpl" data-case="radius" data-accent="#6a4ad0" data-accent2="#8f74e0" data-tint="#f0ebfb" data-thumb="assets/radius-cover.png">
   <article class="cs">
     <header class="cs-hero">
-      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app<span class="cs-read">· 8 min read</span></div>
       <h1 class="cs-title" id="csTitle">Radius Agent</h1>
-      <p class="cs-lead">A community-first mobile network that brings a real-estate agent's whole working day into one app.</p>
-      <div class="cs-chips">
-        <span class="cs-chip"><span class="mono">Role</span><b>Product Design · Mobile</b></span>
-        <span class="cs-chip"><span class="mono">Year</span><b>2024</b></span>
-        <span class="cs-chip"><span class="mono">Platform</span><b>iOS · Android</b></span>
-        <span class="cs-chip"><span class="mono">Focus</span><b>Design system</b></span>
-      </div>
+      <p class="cs-lead">Designing one home for a real-estate agent’s working day — live rooms, referrals, marketplace and brokerage tools — on a design system that holds across iOS and Android.</p>
+      <div class="cs-chips"><span class="cs-chip"><span class="mono">Role</span><b>Product Design · Mobile</b></span><span class="cs-chip"><span class="mono">Year</span><b>2024</b></span><span class="cs-chip"><span class="mono">Platform</span><b>iOS · Android</b></span><span class="cs-chip"><span class="mono">Focus</span><b>Design system</b></span></div>
     </header>
     <div class="cs-body">
-      <section class="cs-sec">
-        <div class="cs-label">Overview</div>
-        <p>Radius Agent helps real-estate agents connect, learn and grow. I designed a mobile experience that unifies live rooms, referrals, marketplace discovery and brokerage tools — the things agents previously juggled across separate apps.</p>
-        <dl class="cs-facts">
-          <div class="row"><dt>Project</dt><dd>Radius Agent</dd></div>
-          <div class="row"><dt>Category</dt><dd>Mobile · Real-estate network</dd></div>
-          <div class="row"><dt>Role</dt><dd>Product Design · Mobile</dd></div>
-          <div class="row"><dt>Platform</dt><dd>iOS · Android</dd></div>
-          <div class="row"><dt>Year</dt><dd>2024</dd></div>
-          <div class="row"><dt>Focus</dt><dd>Cross-platform design system</dd></div>
-        </dl>
+        <div class="cs-tldr"><div class="cs-label">In short</div><ul><li>Agents were living across five apps; context and momentum leaked at every switch.</li><li>I framed Radius as a single hub organised around the working day, with community — live rooms — at its heart.</li><li>Delivered a clickable prototype and a cross-platform design system the team could build against.</li></ul></div>
+      <section class="cs-sec ">
+        <div class="cs-label">Where this started</div>
+        <p>Radius is a network for real-estate agents: a place to find leads, learn from peers, and grow a referral business. The brief was to design the mobile experience — but the first thing I learned was that “the app” didn’t really exist as one thing yet. It existed as a set of jobs an agent did in a set of unrelated tools.</p>
+        <p>So before any screens, I spent time understanding the day: when an agent looks for leads, when they learn, when they network, and what breaks when those happen in different places.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Problem</div>
-        <h4>An agent's day was scattered across five apps</h4>
-        <p>Agents were juggling leads, learning and networking across separate tools. Context lived in different places, momentum leaked between them, and there was no single home for the working day.</p>
+      <section class="cs-sec ">
+        <div class="cs-label">The problem</div>
+        <h4>An agent’s day was scattered across five apps</h4>
+        <p>Leads in one tool, a learning community somewhere else, networking in a chat app, brokerage admin in a portal. Every switch cost context — a conversation half-remembered, a lead that went cold while you were elsewhere. There was no place to <em>start</em> the day, which meant there was no place to come back to.</p>
+        <blockquote class="cs-quote"><p>Fragmentation doesn’t just waste time. <mark>It drops leads.</mark></p></blockquote>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Insights that shaped it</div>
-        <div class="cs-insights">
-          <div class="cs-insight"><div class="n">01</div><h5>Fragmentation kills momentum</h5><p>Every app-switch is a chance to lose a lead or a conversation.</p></div>
-          <div class="cs-insight"><div class="n">02</div><h5>Community is retention</h5><p>Agents stay for the people and live rooms, not just the tools.</p></div>
-          <div class="cs-insight"><div class="n">03</div><h5>Trust needs a face</h5><p>In a referral network, profiles and credibility do real work.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">What I heard</div>
+        <div class="cs-insights"><div class="cs-insight"><div class="n">01</div><h5>Fragmentation kills momentum</h5><p>Every app-switch is a chance to lose a lead or a conversation. The hub had to keep the whole day in one place.</p></div><div class="cs-insight"><div class="n">02</div><h5>Community is retention</h5><p>Agents stay for the people and the live rooms, not just the tools. Community couldn’t be a tab — it had to be the centre.</p></div><div class="cs-insight"><div class="n">03</div><h5>Trust needs a face</h5><p>In a referral network, profiles and credibility do real work. Who you are matters as much as what you post.</p></div></div>
         <p class="cs-note">Qualitative insights from the agent workflow — directional, not a formal survey.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Who it's for</div>
-        <div class="cs-persona">
-          <div class="who">
-            <div class="avatar">RA</div>
-            <div>
-              <div class="role">Real-estate agent</div>
-              <div class="ctx">Chasing leads, building a network</div>
-            </div>
-          </div>
-          <div class="cols">
-            <div><h6>Goals</h6><ul><li>Find and claim quality leads</li><li>Learn from peers in live rooms</li><li>Grow referrals and reputation</li></ul></div>
-            <div><h6>Frustrations</h6><ul><li>Scattered, disconnected tools</li><li>Cold or low-quality leads</li><li>No single hub for the day</li></ul></div>
-          </div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Pain points</div>
+        <ul class="cs-pains"><li><span class="x">✕</span><div><strong>Five apps, five contexts</strong><p>Leads, learning, networking, brokerage admin and messaging each lived in a different tool, and every switch dropped context.</p></div></li><li><span class="x">✕</span><div><strong>Leads went cold in the gaps</strong><p>A new lead landed in one app while the agent was busy in another; by the time they saw it, someone else had claimed it.</p></div></li><li><span class="x">✕</span><div><strong>Community lived in a chat app</strong><p>Live rooms and peer learning happened somewhere the agent’s work wasn’t, so they stayed a side activity.</p></div></li><li><span class="x">✕</span><div><strong>Profiles carried no credibility</strong><p>In a referral network, trust is built on who you are — but profiles were thin, scattered and inconsistent across tools.</p></div></li><li><span class="x">✕</span><div><strong>No place to start the day</strong><p>With no single home screen, agents had no routine to come back to and no sense of what needed attention first.</p></div></li></ul>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Goals</div>
-        <ul class="cs-goals">
-          <li>Unify the daily tools in one app.</li>
-          <li>Make community and live rooms effortless to join.</li>
-          <li>Surface quality leads and referrals.</li>
-          <li>Ship a coherent cross-platform design system.</li>
-        </ul>
+      <section class="cs-sec ">
+        <div class="cs-label">Who I designed for</div>
+        <div class="cs-persona"><div class="who"><div class="avatar has-photo"><img src="assets/personas/radius.jpg" alt="" loading="lazy">RA</div><div><div class="role">Real-estate agent</div><div class="ctx">Chasing leads, building a network</div></div></div><div class="cols"><div><h6>Goals</h6><ul><li>Find and claim quality leads</li><li>Learn from peers in live rooms</li><li>Grow referrals and reputation</li></ul></div><div><h6>Frustrations</h6><ul><li>Scattered, disconnected tools</li><li>Cold or low-quality leads</li><li>No single hub for the day</li></ul></div></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Design process</div>
-        <div class="cs-steps">
-          <div class="cs-step"><h5>Discover</h5><p>Mapped the agent's fragmented day across the apps they were forced to switch between.</p></div>
-          <div class="cs-step"><h5>Define</h5><p>Framed one hub — rooms, referrals, marketplace and brokerage — around the working day.</p></div>
-          <div class="cs-step"><h5>Wireframe</h5><p>Set the tab structure and feed hierarchy so the important things surface first.</p></div>
-          <div class="cs-step"><h5>Design system</h5><p>Built components that hold up across iOS and Android with one visual language.</p></div>
-          <div class="cs-step"><h5>Ship</h5><p>Delivered a clickable prototype and a system the team could build against.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Reframing the brief</div>
+        <div class="cs-principles"><div class="cs-principle"><div class="n">01</div><h5>Organise around the day, not the features</h5><p>Home shows what is live now, what needs a reply, and what’s worth joining — not a menu of modules.</p></div><div class="cs-principle"><div class="n">02</div><h5>Make rooms effortless</h5><p>Hosting a live room is a broadcast-grade feature; it should feel like a few taps, not a production.</p></div><div class="cs-principle"><div class="n">03</div><h5>One language, two platforms</h5><p>iOS and Android should feel like the same product. The system carries that, not per-screen heroics.</p></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Wireframes &amp; structure</div>
-        <p>I worked the navigation and feed hierarchy out low-fi first — what an agent lands on, and how they move between rooms, leads and profile.</p>
+      <section class="cs-sec ">
+        <div class="cs-label">Process</div>
+        <div class="cs-steps"><div class="cs-step"><h5>Discover</h5><p>Mapped the agent’s fragmented day across the apps they were forced to switch between.</p></div><div class="cs-step"><h5>Define</h5><p>Framed one hub — rooms, referrals, marketplace and brokerage — around the working day.</p></div><div class="cs-step"><h5>Wireframe</h5><p>Set the tab structure and feed hierarchy so the important things surface first.</p></div><div class="cs-step"><h5>Design system</h5><p>Built components that hold up across iOS and Android with one visual language.</p></div><div class="cs-step"><h5>Ship</h5><p>Delivered a clickable prototype and a system the team could build against.</p></div></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Sketches & early flows</div>
+        <p>I started with the agent’s day on paper: where it begins, how a room gets hosted, and how a lead changes hands.</p>
+        <div class="cs-sketch"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="skRough" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="cs-sketch-intro">I sketched the agent’s day as four screens — where they start, how they host, what a room feels like, and how a lead becomes theirs.</div><div class="cs-sketch-grid"><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Home</text><text x="16" y="62" class="s" font-size="10">live now</text><rect x="16" y="68" width="52" height="64" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="42" cy="88" r="9" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 110 q4.8 -3 10.0 0 t10.0 0 t10.0 0 t8.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="74" y="68" width="52" height="64" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="100" cy="88" r="9" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M80 110 q4.8 -3 10.0 0 t10.0 0 t10.0 0 t8.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="132" y="68" width="52" height="64" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="158" cy="88" r="9" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M138 110 q4.8 -3 10.0 0 t10.0 0 t10.0 0 t8.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="16" y="152" class="s" font-size="10">community</text><circle cx="28" cy="172" r="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 168 q14.399999999999999 -3 30.0 0 t30.0 0 t30.0 0 t24.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M44 177 q14.399999999999999 -3 30.0 0 t30.0 0 t30.0 0 t24.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="28" cy="216" r="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 212 q14.399999999999999 -3 30.0 0 t30.0 0 t30.0 0 t24.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M44 221 q14.399999999999999 -3 30.0 0 t30.0 0 t30.0 0 t24.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="28" cy="260" r="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 256 q14.399999999999999 -3 30.0 0 t30.0 0 t30.0 0 t24.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M44 265 q14.399999999999999 -3 30.0 0 t30.0 0 t30.0 0 t24.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="28" cy="304" r="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 300 q14.399999999999999 -3 30.0 0 t30.0 0 t30.0 0 t24.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M44 309 q14.399999999999999 -3 30.0 0 t30.0 0 t30.0 0 t24.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="96" y="62" class="note" font-size="11">rooms first ↑</text></svg><figcaption>Rooms sit above the feed — opening the app means joining something.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Create a room</text><text x="16" y="62" class="s" font-size="10">room type</text><rect x="16" y="70" width="168" height="44" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="28" y="88" class="h" font-size="11">Open room</text><text x="28" y="102" class="s" font-size="9">anyone can join</text><rect x="16" y="122" width="168" height="44" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="28" y="140" class="h" font-size="11">Private</text><text x="28" y="154" class="s" font-size="9">invite only</text><rect x="16" y="174" width="168" height="44" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="28" y="192" class="h" font-size="11">Scheduled</text><text x="28" y="206" class="s" font-size="9">pick date & time</text><text x="16" y="240" class="s" font-size="10">topic</text><rect x="16" y="246" width="168" height="24" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="16" y="300" width="168" height="22" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="26" y="315" class="s" font-size="10">Next · add co-hosts</text><text x="110" y="232" class="note" font-size="11">4 taps to live</text></svg><figcaption>Type → topic & privacy → co-hosts → live. Scheduling reuses the flow.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Live room</text><text x="16" y="62" class="h" font-size="11">Buying in 2025 · live</text><circle cx="44" cy="100" r="18" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 126 q4.08 -3 8.5 0 t8.5 0 t8.5 0 t6.800000000000001 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="100" cy="100" r="18" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M84 126 q4.08 -3 8.5 0 t8.5 0 t8.5 0 t6.800000000000001 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="156" cy="100" r="18" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M140 126 q4.08 -3 8.5 0 t8.5 0 t8.5 0 t6.800000000000001 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="44" cy="158" r="18" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 184 q4.08 -3 8.5 0 t8.5 0 t8.5 0 t6.800000000000001 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="100" cy="158" r="18" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M84 184 q4.08 -3 8.5 0 t8.5 0 t8.5 0 t6.800000000000001 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="156" cy="158" r="18" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M140 184 q4.08 -3 8.5 0 t8.5 0 t8.5 0 t6.800000000000001 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="16" y="232" class="s" font-size="10">listeners (42)</text><path d="M16 246 q20.16 -3 42.0 0 t42.0 0 t42.0 0 t33.6 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M16 255 q20.16 -3 42.0 0 t42.0 0 t42.0 0 t33.6 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="100" cy="300" r="18" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="92" y="305" class="s" font-size="9">mic</text><text x="130" y="290" class="note" font-size="10">raise hand →</text></svg><figcaption>Speakers up top, listeners below, one control that matters.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Referrals</text><rect x="16" y="60" width="44" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="24" y="72" class="s" font-size="9">all</text><rect x="66" y="60" width="52" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="74" y="72" class="s" font-size="9">nearby</text><rect x="124" y="60" width="60" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="132" y="72" class="s" font-size="9">claimed</text><rect x="16" y="90" width="168" height="62" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="108" class="h" font-size="11">3BHK · Anna Nagar</text><text x="26" y="122" class="s" font-size="9">buyer · ₹1.2 Cr · 2 d ago</text><rect x="112" y="118" width="64" height="18" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="122" y="133" class="s" font-size="10">Claim</text><rect x="16" y="162" width="168" height="62" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="180" class="h" font-size="11">Plot · OMR</text><text x="26" y="194" class="s" font-size="9">seller · ₹60 L · 5 d ago</text><rect x="112" y="190" width="64" height="18" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="122" y="205" class="s" font-size="10">Claim</text><rect x="16" y="234" width="168" height="62" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="252" class="h" font-size="11">2BHK rent · Velachery</text><text x="26" y="266" class="s" font-size="9">tenant · 1 d ago</text><rect x="112" y="262" width="64" height="18" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="122" y="277" class="s" font-size="10">Claim</text><text x="100" y="318" class="note" font-size="10">claimed state is explicit</text></svg><figcaption>Leads are browsable and claimable; who has what is never ambiguous.</figcaption></figure></div><p class="cs-sketch-flow">Flow: Home → Create room → Live room; Home → Referrals → Claim. Both start from the same place.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Structure before style</div>
+        <p>I worked the navigation and feed hierarchy out in low fidelity first — what an agent lands on, and how they move between rooms, leads and profile without losing their place.</p>
         <div class="cs-wire">
           <div class="cs-frame">
             <div class="cap">Home — rooms &amp; feed</div>
@@ -1098,32 +1077,28 @@
             <div class="sk-rows"><span class="r"></span><span class="r"></span></div>
           </div>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
+        <div class="cs-label">Key decisions</div>
+        <ol class="cs-decisions"><li><h5>Rooms on the home feed</h5><p>Live and upcoming rooms sit at the top of home, above the community feed.</p><p class="why"><span>Why</span>Community is why agents open the app. Putting rooms first turns opening the app into joining something.</p></li><li><h5>Hosting in four taps</h5><p>Room type → topic & privacy → co-hosts → live. Scheduling reuses the same flow with a date and time step.</p><p class="why"><span>Why</span>If hosting felt heavy, only the most confident agents would do it. Lowering the bar grows the community.</p></li><li><h5>Referrals as a marketplace</h5><p>Leads are browsable, claimable and tracked — claimed and submitted states are explicit.</p><p class="why"><span>Why</span>A referral network runs on clarity about who has what. Ambiguity here costs real money.</p></li><li><h5>Profiles that carry credibility</h5><p>The agent profile leads with track record and specialities, not a bio.</p><p class="why"><span>Why</span>Trust is the currency in a referral exchange; the profile is where it’s minted.</p></li></ol>
+
+      </section>
+      <section class="cs-sec ">
         <div class="cs-label">Design system</div>
         <h4>One language across iOS and Android</h4>
-        <div class="cs-type">
-          <div class="big">Ag</div>
-          <div class="scale">
-            <div><span class="s1">Friendly, rounded display</span><span class="lab">Display</span></div>
-            <div><span class="s2">Clear section headings</span><span class="lab">Heading</span></div>
-            <div><span class="s3">Readable feed &amp; list body</span><span class="lab">Body</span></div>
-          </div>
-        </div>
-        <div class="cs-swatches">
-          <div class="cs-swatch"><div class="chip" style="background:#5a2fd0"></div><div class="meta"><div class="nm">Violet</div><div class="hex">#5A2FD0</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#00964e"></div><div class="meta"><div class="nm">Emerald</div><div class="hex">#00964E</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
-        </div>
+        <div class="cs-type"><div class="big">Ag</div><div class="scale"><div><span class="s1">Friendly, rounded display</span><span class="lab">Display</span></div><div><span class="s2">Clear section headings</span><span class="lab">Heading</span></div><div><span class="s3">Readable feed &amp; list body</span><span class="lab">Body</span></div></div></div>
+        <div class="cs-swatches"><div class="cs-swatch"><div class="chip" style="background:#5a2fd0"></div><div class="meta"><div class="nm">Violet</div><div class="hex">#5A2FD0</div></div></div><div class="cs-swatch"><div class="chip" style="background:#00964e"></div><div class="meta"><div class="nm">Emerald</div><div class="hex">#00964E</div></div></div><div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div><div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div></div>
+        <p>Violet is the brand and the primary action; emerald is reserved for “live” and success. Components were built once with platform-aware spacing and controls so the same card, list and sheet feel native on both.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Final design</div>
+      <section class="cs-sec ">
+        <div class="cs-label">The design</div>
         <h4>The whole working day, in one app</h4>
-        <p>Live rooms, referrals, marketplace discovery and brokerage tools — cohesive across screens and platforms.</p>
         <figure class="cs-shot cs-shot-bleed"><img src="assets/radius-cover.png?v=2" alt="Radius Agent — key screens" loading="lazy"><figcaption>Sign-in, rooms and profile — one connected experience.</figcaption></figure>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">How it works</div>
         <h4>Hosting a live room, end to end</h4>
         <p>Live rooms are the heart of Radius — where agents connect with clients and each other. The flow keeps a broadcast-grade feature down to a few taps.</p>
@@ -1134,8 +1109,9 @@
           <figure><div class="cs-phone"><img src="assets/ra-roomcreated.png" alt="Room created successfully" loading="lazy"></div><figcaption>4 · You're live</figcaption></figure>
         </div>
         <p class="cs-note">Scheduling a room reuses the same flow with a date &amp; time step — shown in the gallery below.</p>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">Key screens</div>
         <div class="cs-phones">
           <figure><div class="cs-phone"><img src="assets/ra-rooms.png" alt="Rooms and topics" loading="lazy"></div><figcaption>Rooms &amp; topics</figcaption></figure>
@@ -1143,8 +1119,9 @@
           <figure><div class="cs-phone"><img src="assets/ra-profile.png" alt="Agent profile" loading="lazy"></div><figcaption>Agent profile</figcaption></figure>
           <figure><div class="cs-phone"><img src="assets/ra-notifications.png" alt="Notifications" loading="lazy"></div><figcaption>Notifications</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">Every screen</div>
         <p>Onboarding, community, scheduling, messaging and the full referral flow — one connected system across the app.</p>
         <div class="cs-gallery">
@@ -1161,98 +1138,86 @@
           <figure><img src="assets/ra-leads-claimed.png" alt="Claimed leads" loading="lazy"><figcaption>Claimed leads</figcaption></figure>
           <figure><img src="assets/ra-leads-submitted.png" alt="Submitted lead" loading="lazy"><figcaption>Submitted lead</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Impact</div>
-        <div class="cs-impact">
-          <p>One connected home for the agent's working day — live rooms, referrals, marketplace and brokerage tools in a single, cohesive experience, backed by a cross-platform design system.</p>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Outcome</div>
+        <div class="cs-impact"><p>One connected home for the agent’s working day — live rooms, referrals, marketplace and brokerage tools in a single, cohesive experience, backed by a cross-platform design system the team could build against.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What I learned</div>
+        <ul class="cs-learn"><li><strong>Design the day, then the screens.</strong> Mapping when things happen told me the information architecture before any wireframe did.</li><li><strong>Community is a structural decision.</strong> Where rooms sat in the hierarchy mattered more than how they looked.</li><li><strong>A system is a promise to engineers.</strong> Documenting platform differences up front saved every later conversation about “why does Android look different”.</li></ul>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What’s next</div>
+        <p>Room replays and highlights for agents who missed a session, and smarter lead matching based on an agent’s claimed history.</p>
+
       </section>
     </div>
-    <footer class="cs-foot">
-      <a href="https://www.figma.com/proto/a3YAGRaDyjDni0PSv6rsor/Radius-Agent---Task---Vignesh?node-id=1-381&amp;viewport=1587%2C2596%2C0.42&amp;t=Hg2hWGd69ET731JH-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=1%3A59&amp;page-id=0%3A1" target="_blank" rel="noopener">Open prototype ↗</a>
-    </footer>
+    <footer class="cs-foot"><a href="https://www.figma.com/proto/a3YAGRaDyjDni0PSv6rsor/Radius-Agent---Task---Vignesh?node-id=1-381&amp;viewport=1587%2C2596%2C0.42&amp;t=Hg2hWGd69ET731JH-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=1%3A59&amp;page-id=0%3A1" target="_blank" rel="noopener">Open prototype ↗</a></footer>
   </article>
 </template>
 
-<template class="cs-tpl" data-case="subscription" data-accent="#b24a95" data-accent2="#c86fae" data-tint="#f8ecf4">
+<template class="cs-tpl" data-case="subscription" data-accent="#b24a95" data-accent2="#c86fae" data-tint="#f8ecf4" data-thumb="assets/sub-home.png">
   <article class="cs">
     <header class="cs-hero">
-      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app</div>
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · Mobile app<span class="cs-read">· 7 min read</span></div>
       <h1 class="cs-title" id="csTitle">Subscription App</h1>
-      <p class="cs-lead">A mobile app to track every subscription, see what you really spend, and split the bill with your household.</p>
-      <div class="cs-chips">
-        <span class="cs-chip"><span class="mono">Role</span><b>Product Design · Mobile</b></span>
-        <span class="cs-chip"><span class="mono">Year</span><b>2025</b></span>
-        <span class="cs-chip"><span class="mono">Platform</span><b>iOS · Android</b></span>
-        <span class="cs-chip"><span class="mono">Focus</span><b>Design system</b></span>
-      </div>
+      <p class="cs-lead">Every recurring charge in one place, the true monthly total, and a fair way to split the bill with your household — a product built on two pillars.</p>
+      <div class="cs-chips"><span class="cs-chip"><span class="mono">Role</span><b>Product Design · Mobile</b></span><span class="cs-chip"><span class="mono">Year</span><b>2025</b></span><span class="cs-chip"><span class="mono">Platform</span><b>iOS · Android</b></span><span class="cs-chip"><span class="mono">Focus</span><b>Design system</b></span></div>
     </header>
     <div class="cs-body">
-      <section class="cs-sec">
-        <div class="cs-label">Overview</div>
-        <p>Subscription App (Subapp) brings all your recurring subscriptions into one place — what's active, what's expiring, and the true monthly total. It adds renewal reminders, cancellation guidance and plan comparison, plus family groups so a household can share subscriptions and split the cost fairly.</p>
-        <dl class="cs-facts">
-          <div class="row"><dt>Project</dt><dd>Subscription App · Subapp</dd></div>
-          <div class="row"><dt>Category</dt><dd>Mobile · Subscriptions</dd></div>
-          <div class="row"><dt>Role</dt><dd>Product Design · Mobile</dd></div>
-          <div class="row"><dt>Platform</dt><dd>iOS · Android</dd></div>
-          <div class="row"><dt>Year</dt><dd>2025</dd></div>
-          <div class="row"><dt>Focus</dt><dd>Design system</dd></div>
-        </dl>
+        <div class="cs-tldr"><div class="cs-label">In short</div><ul><li>Subscriptions scatter across apps and dates; nobody knows the real total or who in the household is paying for what.</li><li>I set two pillars: manage your own subscriptions clearly, and share and split them with a family group.</li><li>Delivered a prototype covering tracking, renewal alerts, cancellation guidance, plan comparison and household splitting.</li></ul></div>
+      <section class="cs-sec ">
+        <div class="cs-label">Where this started</div>
+        <p>Most people can’t tell you what they spend on subscriptions each month. Not because they’re careless, but because the charges arrive on different days from different apps, and several of them are shared with family on a login nobody remembers setting up.</p>
+        <p>I wanted to design the app that makes that visible — and then goes one step further than the usual tracker by acknowledging how people actually use subscriptions: together.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Problem</div>
+      <section class="cs-sec ">
+        <div class="cs-label">The problem</div>
         <h4>Subscriptions pile up in the background</h4>
-        <p>Different apps, different renewal dates, different prices — the charges scatter across the month. Nobody knows the real total, when things renew, or who in the household is actually paying for what.</p>
+        <p>Different apps, different renewal dates, different prices. The total is a surprise, renewals are discovered on the bank statement, and cancelling means hunting through settings designed to hide the exit. Inside a household it’s worse: one person pays, three people use, and nobody can say whether that’s fair.</p>
+        <blockquote class="cs-quote"><p>The shock isn’t any single subscription. It’s <mark>seeing all of them in one list</mark> for the first time.</p></blockquote>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Insights that shaped it</div>
-        <div class="cs-insights">
-          <div class="cs-insight"><div class="n">01</div><h5>The total is the shock</h5><p>People badly underestimate their monthly spend until every subscription sits in one list.</p></div>
-          <div class="cs-insight"><div class="n">02</div><h5>Cancelling shouldn't be a hunt</h5><p>Clear guidance to cancel builds more trust than burying the exit.</p></div>
-          <div class="cs-insight"><div class="n">03</div><h5>Subscriptions are shared</h5><p>Households already share logins, so the app should let them split the bill fairly.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">What I heard</div>
+        <div class="cs-insights"><div class="cs-insight"><div class="n">01</div><h5>The total is the shock</h5><p>People badly underestimate their monthly spend until every subscription sits in one list. The number is the product’s first job.</p></div><div class="cs-insight"><div class="n">02</div><h5>Cancelling shouldn’t be a hunt</h5><p>Clear guidance to cancel builds more trust than any feature that tries to keep you.</p></div><div class="cs-insight"><div class="n">03</div><h5>Subscriptions are shared</h5><p>Households already share logins. The app should let them split the bill fairly instead of pretending each account is one person.</p></div></div>
         <p class="cs-note">Qualitative insights from the subscriptions problem space — directional, not a formal survey.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Who it's for</div>
-        <div class="cs-persona">
-          <div class="who">
-            <div class="avatar">SU</div>
-            <div>
-              <div class="role">Subscriber</div>
-              <div class="ctx">Manages a household's subscriptions</div>
-            </div>
-          </div>
-          <div class="cols">
-            <div><h6>Goals</h6><ul><li>See the true monthly total</li><li>Never miss or duplicate a renewal</li><li>Share &amp; split fairly with family</li></ul></div>
-            <div><h6>Frustrations</h6><ul><li>Hidden renewals</li><li>Unclear who pays for what</li><li>Cancellation buried deep</li></ul></div>
-          </div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Pain points</div>
+        <ul class="cs-pains"><li><span class="x">✕</span><div><strong>The total is invisible</strong><p>Each subscription is small on its own; nobody sees the monthly sum until it’s added up by hand.</p></div></li><li><span class="x">✕</span><div><strong>Renewals surprise the bank statement</strong><p>Free trials convert silently and annual plans renew without warning, so the first notice is the charge.</p></div></li><li><span class="x">✕</span><div><strong>Cancelling is designed to be hard</strong><p>Exit flows are buried in settings and padded with retention screens, so people give up and keep paying.</p></div></li><li><span class="x">✕</span><div><strong>Households don’t fit one account</strong><p>One person pays, several people use, and there’s no fair way to see or split who owes what.</p></div></li><li><span class="x">✕</span><div><strong>Tracking lives in a spreadsheet</strong><p>The people who do keep track maintain a manual list that goes stale the moment a price changes.</p></div></li></ul>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Goals</div>
-        <ul class="cs-goals">
-          <li>Put every subscription and the true monthly total in one place.</li>
-          <li>Surface renewals early and guide cancellation.</li>
-          <li>Compare plans before committing.</li>
-          <li>Let a household share and split subscriptions fairly.</li>
-        </ul>
+      <section class="cs-sec ">
+        <div class="cs-label">Who I designed for</div>
+        <div class="cs-persona"><div class="who"><div class="avatar has-photo"><img src="assets/personas/subscription.jpg" alt="" loading="lazy">SU</div><div><div class="role">Subscriber</div><div class="ctx">Manages a household’s subscriptions</div></div></div><div class="cols"><div><h6>Goals</h6><ul><li>See the true monthly total</li><li>Never miss or duplicate a renewal</li><li>Share &amp; split fairly with family</li></ul></div><div><h6>Frustrations</h6><ul><li>Hidden renewals</li><li>Unclear who pays for what</li><li>Cancellation buried deep</li></ul></div></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Design process</div>
-        <div class="cs-steps">
-          <div class="cs-step"><h5>Discover</h5><p>Mapped how subscriptions sprawl — scattered renewals, unclear totals and shared logins.</p></div>
-          <div class="cs-step"><h5>Define</h5><p>Set two pillars: manage your own subscriptions, and split them with a household.</p></div>
-          <div class="cs-step"><h5>Wireframe</h5><p>Blocked the home total and list, and the group-and-split flow.</p></div>
-          <div class="cs-step"><h5>Design system</h5><p>Built clear status, price and date components that stay legible across the app.</p></div>
-          <div class="cs-step"><h5>Ship</h5><p>Delivered a prototype covering tracking, comparison and household splitting.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Reframing the brief</div>
+        <div class="cs-principles"><div class="cs-principle"><div class="n">01</div><h5>Total first</h5><p>The home screen leads with one number — what this month really costs — then the list that explains it.</p></div><div class="cs-principle"><div class="n">02</div><h5>Be on the user’s side</h5><p>Renewal alerts arrive early and cancellation is guided, not hidden. The app earns trust by helping people leave things.</p></div><div class="cs-principle"><div class="n">03</div><h5>Design for the household</h5><p>Groups, invitations, shared credentials and splits are first-class, not an afterthought.</p></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Wireframes &amp; structure</div>
-        <p>Spend and status lead the home screen; creating a group and splitting a bill is a short, guided flow.</p>
+      <section class="cs-sec ">
+        <div class="cs-label">Process</div>
+        <div class="cs-steps"><div class="cs-step"><h5>Discover</h5><p>Mapped how subscriptions sprawl — scattered renewals, unclear totals and shared logins.</p></div><div class="cs-step"><h5>Define</h5><p>Set two pillars: manage your own subscriptions, and split them with a household.</p></div><div class="cs-step"><h5>Wireframe</h5><p>Blocked the home total and list, and the group-and-split flow.</p></div><div class="cs-step"><h5>Design system</h5><p>Built clear status, price and date components that stay legible across the app.</p></div><div class="cs-step"><h5>Ship</h5><p>Delivered a prototype covering tracking, comparison and household splitting.</p></div></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Sketches & early flows</div>
+        <p>Two pillars became two sketched flows — tracking on one side, household splitting on the other.</p>
+        <div class="cs-sketch"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="skRough" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="cs-sketch-intro">Two pillars, sketched as two flows: manage what you pay for, and share it fairly with the people you live with.</div><div class="cs-sketch-grid"><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Home</text><rect x="16" y="60" width="168" height="70" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="78" class="s" font-size="10">your subscriptions</text><text x="26" y="108" class="h" font-size="18">$218.90</text><text x="104" y="108" class="s" font-size="9">/ month</text><rect x="16" y="142" width="40" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="24" y="154" class="s" font-size="9">all 5</text><rect x="62" y="142" width="56" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="70" y="154" class="s" font-size="9">expired 2</text><rect x="124" y="142" width="52" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="132" y="154" class="s" font-size="9">active 3</text><circle cx="30" cy="180" r="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="48" y="178" class="h" font-size="11">Netflix</text><rect x="48" y="184" width="40" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="56" y="196" class="s" font-size="9">expired</text><text x="140" y="180" class="s" font-size="10">$3/mo</text><circle cx="30" cy="220" r="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="48" y="218" class="h" font-size="11">Spotify</text><rect x="48" y="224" width="40" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="56" y="236" class="s" font-size="9">active</text><text x="140" y="220" class="s" font-size="10">$12/mo</text><circle cx="30" cy="260" r="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="48" y="258" class="h" font-size="11">Notion</text><rect x="48" y="264" width="40" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="56" y="276" class="s" font-size="9">expired</text><text x="140" y="260" class="s" font-size="10">$5/mo</text><circle cx="30" cy="300" r="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="48" y="298" class="h" font-size="11">YouTube</text><rect x="48" y="304" width="40" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="56" y="316" class="s" font-size="9">active</text><text x="140" y="300" class="s" font-size="10">$9.99</text><circle cx="168" cy="310" r="14" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="164" y="315" class="h" font-size="12">+</text><text x="96" y="66" class="note" font-size="11">total first ↑</text></svg><figcaption>One big number, then the list that explains it.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Subscription</text><circle cx="40" cy="80" r="16" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="66" y="76" class="h" font-size="12">Spotify · Duo</text><text x="66" y="92" class="s" font-size="10">$12 / month</text><rect x="16" y="110" width="168" height="40" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="126" class="h" font-size="10">renews 23 Apr</text><text x="26" y="142" class="s" font-size="9">remind me 3 days before  ◉</text><text x="16" y="172" class="s" font-size="10">how to cancel</text><path d="M16 186 q20.16 -3 42.0 0 t42.0 0 t42.0 0 t33.6 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M16 195 q20.16 -3 42.0 0 t42.0 0 t42.0 0 t33.6 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M16 204 q20.16 -3 42.0 0 t42.0 0 t42.0 0 t33.6 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="16" y="230" width="168" height="22" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="26" y="245" class="s" font-size="10">Compare plans</text><rect x="16" y="262" width="168" height="22" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="26" y="277" class="s" font-size="10">Share with household</text><text x="96" y="300" class="note" font-size="11">guided, not hidden</text></svg><figcaption>Renewal alert, a real cancellation guide, and the path to sharing.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Create group</text><text x="16" y="62" class="s" font-size="10">group name</text><rect x="16" y="68" width="168" height="24" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="24" y="84" class="h" font-size="11">Home</text><text x="16" y="110" class="s" font-size="10">participants</text><circle cx="30" cy="132" r="9" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="48" y="136" class="h" font-size="11">You</text><text x="150" y="136" class="h" font-size="12">✓</text><circle cx="30" cy="166" r="9" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="48" y="170" class="h" font-size="11">Priya</text><text x="150" y="170" class="h" font-size="12">✓</text><circle cx="30" cy="200" r="9" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="48" y="204" class="h" font-size="11">Arun</text><text x="150" y="204" class="h" font-size="12">+</text><circle cx="30" cy="234" r="9" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="48" y="238" class="h" font-size="11">invite…</text><text x="150" y="238" class="h" font-size="12">+</text><text x="16" y="278" class="s" font-size="10">shared login</text><rect x="16" y="284" width="168" height="22" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><text x="24" y="299" class="s" font-size="9">stored securely · verify wallets</text><text x="96" y="254" class="note" font-size="11">who’s in, visibly</text></svg><figcaption>Members, a securely shared login and wallet verification — one flow.</figcaption></figure><figure><svg viewBox="0 0 200 380" filter="url(#skRough)"><rect x="6" y="6" width="188" height="368" rx="22" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="70" y="12" width="60" height="10" rx="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="340" x2="194" y2="340" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="356" r="5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="40" class="h" font-size="13">Split the bill</text><text x="16" y="62" class="h" font-size="12">Spotify Duo · $12</text><text x="16" y="80" class="s" font-size="10">how to split</text><rect x="16" y="88" width="50" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="24" y="100" class="s" font-size="9">equal</text><rect x="72" y="88" width="56" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="80" y="100" class="s" font-size="9">custom</text><rect x="134" y="88" width="50" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="142" y="100" class="s" font-size="9">by use</text><text x="16" y="126" class="h" font-size="11">You</text><line x1="16" y1="138" x2="184" y2="138" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="100.0" cy="138" r="7" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="150" y="126" class="s" font-size="10">$6.00</text><text x="16" y="172" class="h" font-size="11">Priya</text><line x1="16" y1="184" x2="184" y2="184" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="58.0" cy="184" r="7" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="150" y="172" class="s" font-size="10">$3.00</text><text x="16" y="218" class="h" font-size="11">Arun</text><line x1="16" y1="230" x2="184" y2="230" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="58.0" cy="230" r="7" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="150" y="218" class="s" font-size="10">$3.00</text><rect x="16" y="280" width="168" height="22" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="26" y="295" class="s" font-size="10">Confirm split</text><text x="70" y="318" class="note" font-size="10">everyone sees their share</text></svg><figcaption>Shares are visible and adjustable before anyone commits.</figcaption></figure></div><p class="cs-sketch-flow">Flow: Home → Subscription → Share → Create group → Split. The split screen is where the product earns its place.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Structure before style</div>
+        <p>Spend and status lead the home screen; creating a group and splitting a bill is a short, guided flow rather than a settings maze.</p>
         <div class="cs-wire">
           <div class="cs-frame">
             <div class="cap">Home — spend &amp; list</div>
@@ -1269,31 +1234,27 @@
             </div>
           </div>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
+        <div class="cs-label">Key decisions</div>
+        <ol class="cs-decisions"><li><h5>One big number on home</h5><p>Monthly spend is the hero of the home screen; active, expiring and cancelled subscriptions sit beneath it with clear status colour.</p><p class="why"><span>Why</span>The total is what changes behaviour. Everything else is supporting detail.</p></li><li><h5>Splitting as a guided flow</h5><p>Create a group → add participants → choose how to split → everyone’s share is set. Four screens, no spreadsheet.</p><p class="why"><span>Why</span>Fairness is a negotiation; a guided flow with visible shares takes the awkwardness out of it.</p></li><li><h5>Shared credentials, verified wallets</h5><p>Members can securely share an account login and verify a wallet before a subscription is split.</p><p class="why"><span>Why</span>Households already share passwords in chat. Doing it inside the app is safer and makes the split real.</p></li><li><h5>A cancellation guide, not a cancel button</h5><p>Each subscription has step-by-step guidance for cancelling with the provider.</p><p class="why"><span>Why</span>The app can’t cancel on your behalf, so it should be honest about that and make the real path easy.</p></li></ol>
+
+      </section>
+      <section class="cs-sec ">
         <div class="cs-label">Design system</div>
         <h4>Status, price and dates, always legible</h4>
-        <div class="cs-type">
-          <div class="big">Ag</div>
-          <div class="scale">
-            <div><span class="s1">Bold spend totals</span><span class="lab">Display</span></div>
-            <div><span class="s2">Plan &amp; status headings</span><span class="lab">Heading</span></div>
-            <div><span class="s3">Dates and helper text</span><span class="lab">Body</span></div>
-          </div>
-        </div>
-        <div class="cs-swatches">
-          <div class="cs-swatch"><div class="chip" style="background:#8b2fd6"></div><div class="meta"><div class="nm">Violet</div><div class="hex">#8B2FD6</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#1dd147"></div><div class="meta"><div class="nm">Active</div><div class="hex">#1DD147</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
-        </div>
+        <div class="cs-type"><div class="big">Ag</div><div class="scale"><div><span class="s1">Bold spend totals</span><span class="lab">Display</span></div><div><span class="s2">Plan &amp; status headings</span><span class="lab">Heading</span></div><div><span class="s3">Dates and helper text</span><span class="lab">Body</span></div></div></div>
+        <div class="cs-swatches"><div class="cs-swatch"><div class="chip" style="background:#8b2fd6"></div><div class="meta"><div class="nm">Violet</div><div class="hex">#8B2FD6</div></div></div><div class="cs-swatch"><div class="chip" style="background:#1dd147"></div><div class="meta"><div class="nm">Active</div><div class="hex">#1DD147</div></div></div><div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div><div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Final design</div>
+      <section class="cs-sec ">
+        <div class="cs-label">The design</div>
         <h4>Track everything, split with your household</h4>
         <p>Two pillars in one app — a clear view of every subscription and its true cost, and a simple way to share and split those subscriptions with family.</p>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">How it works</div>
         <h4>Split a subscription with your household</h4>
         <p>The standout flow: turn a shared login into a fair, transparent split in a few taps — no spreadsheets, no awkward reminders.</p>
@@ -1304,8 +1265,9 @@
           <figure><div class="cs-phone"><img src="assets/sub-splitdone.png" alt="Each member's share is set" loading="lazy"></div><figcaption>4 · Everyone's share is set</figcaption></figure>
         </div>
         <p class="cs-note">Members can securely share the account login and verify wallets before a subscription is split — shown in the gallery below.</p>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">Key screens</div>
         <div class="cs-phones">
           <figure><div class="cs-phone"><img src="assets/sub-home.png" alt="Home — subscriptions and monthly spend" loading="lazy"></div><figcaption>All subscriptions &amp; spend</figcaption></figure>
@@ -1313,8 +1275,9 @@
           <figure><div class="cs-phone"><img src="assets/sub-compare.png" alt="Compare plans" loading="lazy"></div><figcaption>Compare plans</figcaption></figure>
           <figure><div class="cs-phone"><img src="assets/sub-notifications.png" alt="Renewal notifications" loading="lazy"></div><figcaption>Renewal alerts</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">Every screen</div>
         <p>Tracking, comparison and cancellation on one side; household groups, invitations and splitting on the other.</p>
         <div class="cs-gallery">
@@ -1333,97 +1296,85 @@
           <figure><img src="assets/sub-credentials.png" alt="Shared credentials" loading="lazy"><figcaption>Shared credentials</figcaption></figure>
           <figure><img src="assets/sub-memberadded.png" alt="Member added" loading="lazy"><figcaption>Member added</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Impact</div>
-        <div class="cs-impact">
-          <p>A subscription manager a household can actually run together — every plan and its true cost in one place, renewals and cancellation made clear, and bills split fairly across the family.</p>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Outcome</div>
+        <div class="cs-impact"><p>A subscription manager a household can actually run together — every plan and its true cost in one place, renewals and cancellation made clear, and bills split fairly across the family.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What I learned</div>
+        <ul class="cs-learn"><li><strong>Honesty is a feature.</strong> Guiding people to cancel made the product feel trustworthy in a way no retention trick could.</li><li><strong>Model how people really behave.</strong> Treating a subscription as shared from the start reshaped the information architecture.</li><li><strong>Status colour needs rules.</strong> One green, one meaning. The system got calmer every time I removed a colour.</li></ul>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What’s next</div>
+        <p>Bank-statement import to populate subscriptions automatically, and settlement reminders so a split actually gets paid.</p>
+
       </section>
     </div>
-    <footer class="cs-foot">
-      <a href="https://www.figma.com/proto/IFy5us83P1pfAYBe5hfXN4/Task-Vignesh?node-id=4301-1372&amp;viewport=647%2C1027%2C0.15&amp;t=uDigE66I1mPo0tFi-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=106%3A2273&amp;page-id=106%3A2161" target="_blank" rel="noopener">Open prototype ↗</a>
-    </footer>
+    <footer class="cs-foot"><a href="https://www.figma.com/proto/IFy5us83P1pfAYBe5hfXN4/Task-Vignesh?node-id=4301-1372&amp;viewport=647%2C1027%2C0.15&amp;t=uDigE66I1mPo0tFi-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=106%3A2273&amp;page-id=106%3A2161" target="_blank" rel="noopener">Open prototype ↗</a></footer>
   </article>
 </template>
 
-<template class="cs-tpl" data-case="bugtracker" data-accent="#d5602a" data-accent2="#e58a5c" data-tint="#fbeee6">
+<template class="cs-tpl" data-case="bugtracker" data-accent="#d5602a" data-accent2="#e58a5c" data-tint="#fbeee6" data-thumb="assets/bt-overview.png">
   <article class="cs">
     <header class="cs-hero">
-      <div class="cs-eyebrow"><span class="dot"></span>Case study · Web app</div>
+      <div class="cs-eyebrow"><span class="dot"></span>Case study · Web app<span class="cs-read">· 7 min read</span></div>
       <h1 class="cs-title" id="csTitle">Bug Tracker</h1>
-      <p class="cs-lead">A tracking dashboard that tells a team where its bugs actually are — by state, by priority, by person.</p>
-      <div class="cs-chips">
-        <span class="cs-chip"><span class="mono">Role</span><b>Product &amp; Visual Design</b></span>
-        <span class="cs-chip"><span class="mono">Year</span><b>2024</b></span>
-        <span class="cs-chip"><span class="mono">Platform</span><b>Web</b></span>
-        <span class="cs-chip"><span class="mono">Focus</span><b>Dashboard system</b></span>
-      </div>
+      <p class="cs-lead">From a list of what’s broken to a dashboard that says what to do next — designing a bug-and-feedback platform around the overview, not the table.</p>
+      <div class="cs-chips"><span class="cs-chip"><span class="mono">Role</span><b>Product &amp; Visual Design</b></span><span class="cs-chip"><span class="mono">Year</span><b>2024</b></span><span class="cs-chip"><span class="mono">Platform</span><b>Web</b></span><span class="cs-chip"><span class="mono">Focus</span><b>Dashboard system</b></span></div>
     </header>
     <div class="cs-body">
-      <section class="cs-sec">
-        <div class="cs-label">Overview</div>
-        <p>Bug Tracker (Bound) is a bug &amp; feedback platform. Testers and clients report issues in context — right on the live site — and each one flows into a project to be triaged on a board or table, topped by a dashboard that shows the whole picture: counts by state, priority and category, and the people responsible.</p>
-        <dl class="cs-facts">
-          <div class="row"><dt>Project</dt><dd>Bug Tracker</dd></div>
-          <div class="row"><dt>Category</dt><dd>Web · Issue tracking</dd></div>
-          <div class="row"><dt>Role</dt><dd>Product &amp; Visual Design</dd></div>
-          <div class="row"><dt>Platform</dt><dd>Web</dd></div>
-          <div class="row"><dt>Year</dt><dd>2024</dd></div>
-          <div class="row"><dt>Focus</dt><dd>Dashboard design system</dd></div>
-        </dl>
+        <div class="cs-tldr"><div class="cs-label">In short</div><ul><li>A flat bug list tells a team an issue exists, not where to focus; priority hides in a column and ownership is unclear.</li><li>I led with an overview — counts by state, breakdowns by priority and category, and the people beside the work.</li><li>Designed the full loop: report in context on the live site, triage on a board, roll up into one legible dashboard.</li></ul></div>
+      <section class="cs-sec ">
+        <div class="cs-label">Where this started</div>
+        <p>Bug Tracker (Bound) is a bug-and-feedback platform. Testers and clients report issues directly on the live site; each report flows into a project to be triaged. The core loop worked. What didn’t work was the moment a QA lead opened the product to answer the question everyone asks them: <em>where are we?</em></p>
+        <p>The answer lived in a filtered table. I set out to design the view that answers it in a glance.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Problem</div>
-        <h4>A bug list says what's broken, not what to do next</h4>
-        <p>A flat list tells you an issue exists, but not where the team should focus. Priorities hide in a sortable column, ownership is unclear, and the big picture never surfaces.</p>
+      <section class="cs-sec ">
+        <div class="cs-label">The problem</div>
+        <h4>A bug list says what’s broken, not what to do next</h4>
+        <p>Lists are honest and complete and almost useless for decisions. Priority is a sortable column, so hotspots never jump out. Ownership is a field, so nobody is visibly responsible. And the big picture — how many open, how many critical, who is overloaded — has to be assembled in someone’s head every morning.</p>
+        <blockquote class="cs-quote"><p>The team didn’t need more data. They needed <mark>the first screen to make a decision for them.</mark></p></blockquote>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Insights that shaped it</div>
-        <div class="cs-insights">
-          <div class="cs-insight"><div class="n">01</div><h5>Counts drive decisions</h5><p>Totals by state answer the first question a team asks: where are we?</p></div>
-          <div class="cs-insight"><div class="n">02</div><h5>Priority must be visual</h5><p>Colour and charts beat a sortable column for spotting hotspots fast.</p></div>
-          <div class="cs-insight"><div class="n">03</div><h5>People make it actionable</h5><p>A bug means little until it sits beside the person who owns it.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">What I heard</div>
+        <div class="cs-insights"><div class="cs-insight"><div class="n">01</div><h5>Counts drive decisions</h5><p>Totals by state answer the first question a team asks. They belong at the top, large.</p></div><div class="cs-insight"><div class="n">02</div><h5>Priority must be visual</h5><p>Colour and charts beat a sortable column for spotting hotspots in a second.</p></div><div class="cs-insight"><div class="n">03</div><h5>People make it actionable</h5><p>A bug means little until it sits beside the person who owns it.</p></div></div>
         <p class="cs-note">Qualitative insights from the issue-tracking problem space — directional, not a formal survey.</p>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Who it's for</div>
-        <div class="cs-persona">
-          <div class="who">
-            <div class="avatar">QA</div>
-            <div>
-              <div class="role">QA lead / project owner</div>
-              <div class="ctx">Owns quality, reports status</div>
-            </div>
-          </div>
-          <div class="cols">
-            <div><h6>Goals</h6><ul><li>See overall health at a glance</li><li>Spot priority hotspots</li><li>Know who owns what</li></ul></div>
-            <div><h6>Frustrations</h6><ul><li>Filtered lists nobody opens</li><li>No big-picture view</li><li>Chasing status manually</li></ul></div>
-          </div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Pain points</div>
+        <ul class="cs-pains"><li><span class="x">✕</span><div><strong>The list hides the picture</strong><p>A table of bugs is complete and honest, yet says nothing about overall health until someone counts.</p></div></li><li><span class="x">✕</span><div><strong>Priority is a sortable column</strong><p>Critical issues look identical to minor ones until you sort, so hotspots never jump out.</p></div></li><li><span class="x">✕</span><div><strong>Ownership is a field, not a face</strong><p>Assignee names sit in a column; nobody is visibly responsible and workload is impossible to read.</p></div></li><li><span class="x">✕</span><div><strong>Status is assembled by hand</strong><p>Every morning someone rebuilds “how many open, how many critical” in their head or a slide.</p></div></li><li><span class="x">✕</span><div><strong>Filtered views go unopened</strong><p>Saved filters were meant to help, but each one answered a single question and the team stopped opening them.</p></div></li></ul>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Goals</div>
-        <ul class="cs-goals">
-          <li>Turn the list into an overview.</li>
-          <li>Make priority and category legible instantly.</li>
-          <li>Put people beside the work.</li>
-          <li>Build a clean, scalable dashboard system.</li>
-        </ul>
+      <section class="cs-sec ">
+        <div class="cs-label">Who I designed for</div>
+        <div class="cs-persona"><div class="who"><div class="avatar has-photo"><img src="assets/personas/bugtracker.jpg" alt="" loading="lazy">QA</div><div><div class="role">QA lead / project owner</div><div class="ctx">Owns quality, reports status</div></div></div><div class="cols"><div><h6>Goals</h6><ul><li>See overall health at a glance</li><li>Spot priority hotspots</li><li>Know who owns what</li></ul></div><div><h6>Frustrations</h6><ul><li>Filtered lists nobody opens</li><li>No big-picture view</li><li>Chasing status manually</li></ul></div></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Design process</div>
-        <div class="cs-steps">
-          <div class="cs-step"><h5>Discover</h5><p>Watched how teams actually triage — the list was rarely the thing they opened.</p></div>
-          <div class="cs-step"><h5>Define</h5><p>Led with an overview: counts by state, then breakdowns and the people behind them.</p></div>
-          <div class="cs-step"><h5>Wireframe</h5><p>Set the KPI row, the analytics charts and the team panel before styling.</p></div>
-          <div class="cs-step"><h5>Design system</h5><p>Built consistent stat cards, charts and status colours that scale across projects.</p></div>
-          <div class="cs-step"><h5>Ship</h5><p>Delivered a clean, legible dashboard a team could read in a glance.</p></div>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Reframing the brief</div>
+        <div class="cs-principles"><div class="cs-principle"><div class="n">01</div><h5>Overview first</h5><p>The dashboard opens on the whole picture. The table is one click away, never the landing.</p></div><div class="cs-principle"><div class="n">02</div><h5>Colour means one thing</h5><p>Each state and priority owns a colour, used identically in stat cards, charts and boards.</p></div><div class="cs-principle"><div class="n">03</div><h5>People beside the work</h5><p>Assignment is visible on every surface — board, table, dashboard — not buried in a detail panel.</p></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Wireframes &amp; structure</div>
+      <section class="cs-sec ">
+        <div class="cs-label">Process</div>
+        <div class="cs-steps"><div class="cs-step"><h5>Discover</h5><p>Watched how teams actually triage — the list was rarely the thing they opened.</p></div><div class="cs-step"><h5>Define</h5><p>Led with an overview: counts by state, then breakdowns and the people behind them.</p></div><div class="cs-step"><h5>Wireframe</h5><p>Set the KPI row, the analytics charts and the team panel before styling.</p></div><div class="cs-step"><h5>Design system</h5><p>Built consistent stat cards, charts and status colours that scale across projects.</p></div><div class="cs-step"><h5>Ship</h5><p>Delivered a clean, legible dashboard a team could read in a glance.</p></div></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Sketches & early flows</div>
+        <p>The first sketches followed the loop a QA lead actually runs, not the feature list.</p>
+        <div class="cs-sketch"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="skRough" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="cs-sketch-intro">Sketched as the loop a team actually runs: see the picture, capture a bug in context, triage it, open it.</div><div class="cs-sketch-grid"><figure><svg viewBox="0 0 360 250" filter="url(#skRough)"><rect x="6" y="6" width="348" height="238" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="34" x2="354" y2="34" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="24" class="h" font-size="15">Overview</text><text x="18" y="56" class="h" font-size="11">overview · Project Bound</text><rect x="18" y="66" width="74" height="44" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="82" class="s" font-size="9">open</text><text x="26" y="102" class="h" font-size="14">42</text><rect x="98" y="66" width="74" height="44" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="106" y="82" class="s" font-size="9">in progress</text><text x="106" y="102" class="h" font-size="14">17</text><rect x="178" y="66" width="74" height="44" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="186" y="82" class="s" font-size="9">resolved</text><text x="186" y="102" class="h" font-size="14">128</text><rect x="258" y="66" width="74" height="44" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="266" y="82" class="s" font-size="9">critical</text><text x="266" y="102" class="h" font-size="14">6</text><rect x="18" y="122" width="160" height="80" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 190 L30 150 L60 150 L60 190 M70 190 L70 165 L100 165 L100 190 M110 190 L110 175 L140 175 L140 190" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="26" y="136" class="s" font-size="9">by priority</text><rect x="188" y="122" width="154" height="80" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="230" cy="162" r="26" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M230 136 A26 26 0 0 1 256 162 L230 162 Z" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="268" y="150" class="s" font-size="9">by category</text><path d="M268 162 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M268 171 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M268 180 q7.199999999999999 -3 15.0 0 t15.0 0 t15.0 0 t12.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="18" y="222" class="s" font-size="9">team · open per person</text><path d="M18 232 q38.879999999999995 -3 81.0 0 t81.0 0 t81.0 0 t64.8 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="240" y="56" class="note" font-size="12">counts first ↑</text></svg><figcaption>Where are we? — answered by the first row.</figcaption></figure><figure><svg viewBox="0 0 360 250" filter="url(#skRough)"><rect x="6" y="6" width="348" height="238" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="34" x2="354" y2="34" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="24" class="h" font-size="15">Capture on the live site</text><rect x="18" y="46" width="200" height="186" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 62 q21.599999999999998 -3 45.0 0 t45.0 0 t45.0 0 t36.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M28 71 q21.599999999999998 -3 45.0 0 t45.0 0 t45.0 0 t36.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M28 80 q21.599999999999998 -3 45.0 0 t45.0 0 t45.0 0 t36.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="28" y="96" width="180" height="60" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><path d="M36 110 q19.2 -3 40.0 0 t40.0 0 t40.0 0 t32.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M36 119 q19.2 -3 40.0 0 t40.0 0 t40.0 0 t32.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><circle cx="150" cy="128" r="9" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><path d="M150 119 L150 100" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="28" y="170" width="120" height="44" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 184 q12.0 -3 25.0 0 t25.0 0 t25.0 0 t20.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M36 193 q12.0 -3 25.0 0 t25.0 0 t25.0 0 t20.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="232" y="46" width="110" height="186" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="240" y="62" class="h" font-size="10">new feedback</text><text x="240" y="80" class="s" font-size="9">page: /pricing</text><text x="240" y="92" class="s" font-size="9">element: #cta</text><text x="240" y="112" class="s" font-size="9">title</text><rect x="240" y="116" width="94" height="16" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="240" y="146" class="s" font-size="9">priority</text><rect x="240" y="150" width="40" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="248" y="162" class="s" font-size="9">high</text><text x="240" y="182" class="s" font-size="9">screenshot ✓</text><rect x="240" y="200" width="94" height="18" rx="11" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><text x="250" y="215" class="s" font-size="10">Submit</text><text x="60" y="244" class="note" font-size="12">pin it where it happens</text></svg><figcaption>Report in context — page, element and screenshot attached automatically.</figcaption></figure><figure><svg viewBox="0 0 360 250" filter="url(#skRough)"><rect x="6" y="6" width="348" height="238" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="34" x2="354" y2="34" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="24" class="h" font-size="15">Board</text><rect x="18" y="46" width="76" height="188" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="24" y="60" class="s" font-size="10">new</text><rect x="24" y="70" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 82 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="30" y="90" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="38" y="102" class="s" font-size="9"></text><rect x="24" y="110" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 122 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="30" y="130" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="38" y="142" class="s" font-size="9"></text><rect x="24" y="150" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 162 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="30" y="170" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="38" y="182" class="s" font-size="9"></text><rect x="24" y="190" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 202 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="30" y="210" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="38" y="222" class="s" font-size="9"></text><rect x="100" y="46" width="76" height="188" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="106" y="60" class="s" font-size="10">triage</text><rect x="106" y="70" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M112 82 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="112" y="90" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="120" y="102" class="s" font-size="9"></text><rect x="106" y="110" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M112 122 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="112" y="130" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="120" y="142" class="s" font-size="9"></text><rect x="106" y="150" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M112 162 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="112" y="170" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="120" y="182" class="s" font-size="9"></text><rect x="182" y="46" width="76" height="188" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="188" y="60" class="s" font-size="10">doing</text><rect x="188" y="70" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M194 82 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="194" y="90" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="202" y="102" class="s" font-size="9"></text><rect x="188" y="110" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M194 122 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="194" y="130" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="202" y="142" class="s" font-size="9"></text><rect x="264" y="46" width="76" height="188" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="270" y="60" class="s" font-size="10">done</text><rect x="270" y="70" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M276 82 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="276" y="90" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="284" y="102" class="s" font-size="9"></text><rect x="270" y="110" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M276 122 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="276" y="130" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="284" y="142" class="s" font-size="9"></text><rect x="270" y="150" width="64" height="32" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M276 162 q6.0 -3 12.5 0 t12.5 0 t12.5 0 t10.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="276" y="170" width="22" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="284" y="182" class="s" font-size="9"></text><text x="240" y="244" class="note" font-size="12">colour = priority</text></svg><figcaption>Triage by dragging; the same status colours as the charts.</figcaption></figure><figure><svg viewBox="0 0 360 250" filter="url(#skRough)"><rect x="6" y="6" width="348" height="238" rx="10" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="34" x2="354" y2="34" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="3.5" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="24" class="h" font-size="15">Bug card</text><rect x="18" y="46" width="324" height="186" rx="6" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="28" y="66" class="h" font-size="11">#214 · Checkout button unresponsive on Safari</text><rect x="28" y="76" width="40" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="36" y="88" class="s" font-size="9">high</text><rect x="74" y="76" width="52" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="82" y="88" class="s" font-size="9">frontend</text><rect x="132" y="76" width="56" height="16" rx="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="140" y="88" class="s" font-size="9">in progress</text><text x="28" y="108" class="s" font-size="9">description</text><path d="M28 120 q24.0 -3 50.0 0 t50.0 0 t50.0 0 t40.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M28 129 q24.0 -3 50.0 0 t50.0 0 t50.0 0 t40.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M28 138 q24.0 -3 50.0 0 t50.0 0 t50.0 0 t40.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><rect x="240" y="100" width="94" height="60" rx="4" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="250" y="114" class="s" font-size="9">screenshot</text><text x="28" y="158" class="s" font-size="9">assignee</text><circle cx="36" cy="176" r="8" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><text x="50" y="180" class="h" font-size="10">Divya N</text><text x="28" y="204" class="s" font-size="9">activity</text><path d="M28 216 q36.0 -3 75.0 0 t75.0 0 t75.0 0 t60.0 0" stroke="#2f3542" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><text x="230" y="190" class="note" font-size="12">people beside the work</text></svg><figcaption>Everything needed to act: context, priority, owner, history.</figcaption></figure></div><p class="cs-sketch-flow">Flow: Overview → (someone reports on the site) → Board → Bug card → back to Overview with the counts moved.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">Structure before style</div>
         <p>Overview-first: the counts lead, the charts explain, and the people sit right beside the work.</p>
         <div class="cs-wire">
           <div class="cs-frame">
@@ -1441,32 +1392,28 @@
             </div>
           </div>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
+        <div class="cs-label">Key decisions</div>
+        <ol class="cs-decisions"><li><h5>A KPI row that answers “where are we?”</h5><p>Open, in progress, resolved and critical counts sit at the top in large type.</p><p class="why"><span>Why</span>This is the sentence a QA lead says in stand-up every day. The dashboard should say it for them.</p></li><li><h5>Charts for priority and category</h5><p>Breakdowns use the same status colours as the board, so a red wedge and a red card mean the same thing.</p><p class="why"><span>Why</span>Consistency between chart and board is what lets someone go from “that’s a lot of critical” to the actual tickets without re-learning the colours.</p></li><li><h5>Team panel on the overview</h5><p>Members and their open counts appear alongside the analytics.</p><p class="why"><span>Why</span>Knowing who is overloaded is half of triage. Making it visible turns the dashboard from a report into a plan.</p></li><li><h5>Report in context, triage on a board</h5><p>Feedback is captured on the live site with the page and element attached, then lands on a kanban board.</p><p class="why"><span>Why</span>Context at capture time removes the back-and-forth that makes bug reports expensive; the board makes the flow visible.</p></li></ol>
+
+      </section>
+      <section class="cs-sec ">
         <div class="cs-label">Design system</div>
         <h4>Legible stats, clear status colour</h4>
-        <div class="cs-type">
-          <div class="big">Ag</div>
-          <div class="scale">
-            <div><span class="s1">Big count numbers</span><span class="lab">Display</span></div>
-            <div><span class="s2">Card &amp; chart headings</span><span class="lab">Heading</span></div>
-            <div><span class="s3">Table and label body</span><span class="lab">Body</span></div>
-          </div>
-        </div>
-        <div class="cs-swatches">
-          <div class="cs-swatch"><div class="chip" style="background:#1f9d63"></div><div class="meta"><div class="nm">Green</div><div class="hex">#1F9D63</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#6a5cff"></div><div class="meta"><div class="nm">Indigo</div><div class="hex">#6A5CFF</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div>
-          <div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div>
-        </div>
+        <div class="cs-type"><div class="big">Ag</div><div class="scale"><div><span class="s1">Big count numbers</span><span class="lab">Display</span></div><div><span class="s2">Card &amp; chart headings</span><span class="lab">Heading</span></div><div><span class="s3">Table and label body</span><span class="lab">Body</span></div></div></div>
+        <div class="cs-swatches"><div class="cs-swatch"><div class="chip" style="background:#1f9d63"></div><div class="meta"><div class="nm">Green</div><div class="hex">#1F9D63</div></div></div><div class="cs-swatch"><div class="chip" style="background:#6a5cff"></div><div class="meta"><div class="nm">Indigo</div><div class="hex">#6A5CFF</div></div></div><div class="cs-swatch"><div class="chip" style="background:#141a16"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#141A16</div></div></div><div class="cs-swatch"><div class="chip" style="background:#f4f7f4"></div><div class="meta"><div class="nm">Paper</div><div class="hex">#F4F7F4</div></div></div></div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Final design</div>
+      <section class="cs-sec ">
+        <div class="cs-label">The design</div>
         <h4>The whole picture in a glance</h4>
         <p>The overview leads: counts by state, breakdowns by priority and category, and the team beside the work — one dashboard instead of a filtered list nobody opens.</p>
         <figure class="cs-shot"><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-overview.png" alt="Bug Tracker overview dashboard" loading="lazy"></div><figcaption>Overview — totals by state, priority and category charts, and the team, all on one screen.</figcaption></figure>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">How it works</div>
         <h4>From website feedback to fixed</h4>
         <p>The signature loop: report an issue in context on the live site, and watch it flow into the project to be triaged and resolved.</p>
@@ -1476,8 +1423,9 @@
           <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-kanban.png" alt="Triage on the kanban board" loading="lazy"></div><figcaption>3 · Triage on the board</figcaption></figure>
           <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-bugcard.png" alt="Open the bug card for detail" loading="lazy"></div><figcaption>4 · Open the bug card for detail</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">Key screens</div>
         <div class="cs-webgrid">
           <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-projects.png" alt="Projects list" loading="lazy"></div><figcaption>Projects</figcaption></figure>
@@ -1485,8 +1433,9 @@
           <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-integrations.png" alt="Integrations" loading="lazy"></div><figcaption>Integrations</figcaption></figure>
           <figure><div class="cs-browser"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><img src="assets/bt-billing.png" alt="Billing and plans" loading="lazy"></div><figcaption>Billing &amp; plans</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
+      <section class="cs-sec ">
         <div class="cs-label">Every screen</div>
         <p>The full system — capture and activity, project boards, team and org management, integrations, and account settings.</p>
         <div class="cs-gallery web">
@@ -1504,17 +1453,25 @@
           <figure><img src="assets/bt-profile.png" alt="Profile" loading="lazy"><figcaption>Profile</figcaption></figure>
           <figure><img src="assets/bt-signup.png" alt="Sign up" loading="lazy"><figcaption>Sign up</figcaption></figure>
         </div>
+
       </section>
-      <section class="cs-sec">
-        <div class="cs-label">Impact</div>
-        <div class="cs-impact">
-          <p>A bug-and-feedback loop a team can actually run — reported in context, organised on a board, and rolled up into an overview that shows exactly what to do next.</p>
-        </div>
+      <section class="cs-sec ">
+        <div class="cs-label">Outcome</div>
+        <div class="cs-impact"><p>A bug-and-feedback loop a team can actually run — reported in context, organised on a board, and rolled up into an overview that shows exactly what to do next.</p></div>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What I learned</div>
+        <ul class="cs-learn"><li><strong>Design for the first question.</strong> Once I knew the sentence the QA lead says every morning, the dashboard designed itself.</li><li><strong>Shared colour is shared meaning.</strong> The system’s value was in making a chart wedge and a board card say the same thing.</li><li><strong>Capture context early.</strong> The cheapest bug report is the one taken on the page where the bug is.</li></ul>
+
+      </section>
+      <section class="cs-sec ">
+        <div class="cs-label">What’s next</div>
+        <p>Trend views over time — are we getting faster at closing criticals? — and per-person workload balancing straight from the team panel.</p>
+
       </section>
     </div>
-    <footer class="cs-foot">
-      <a href="https://www.figma.com/proto/tMKLzmzSRjHSGGegkvHonq/Bug-tracker-Final?node-id=2401-22720&amp;viewport=14229%2C-7480%2C0.68&amp;t=qUJ5xcbCaFcVm2PO-1&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;page-id=19%3A1344&amp;starting-point-node-id=2401%3A22720" target="_blank" rel="noopener">Open prototype ↗</a>
-    </footer>
+    <footer class="cs-foot"><a href="https://www.figma.com/proto/tMKLzmzSRjHSGGegkvHonq/Bug-tracker-Final?node-id=2401-22720&amp;viewport=14229%2C-7480%2C0.68&amp;t=qUJ5xcbCaFcVm2PO-1&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;page-id=19%3A1344&amp;starting-point-node-id=2401%3A22720" target="_blank" rel="noopener">Open prototype ↗</a></footer>
   </article>
 </template>
 
@@ -1528,6 +1485,6 @@
         integrity="sha384-O55L/6rhHr9CFvrxqv5luxOCcmVaBmETbZbJDP+Do8T0pztTACsFBD/IXCNkj7DV"
         crossorigin="anonymous"></script>
 <script src="js/site.js" defer></script>
-<script src="js/v2.js?v=3" defer></script>
+<script src="js/v2.js?v=4" defer></script>
 </body>
 </html>

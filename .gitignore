@@ -21,3 +21,7 @@ assets/1742283947746*
 
 # portrait source (the site ships the processed cutout only)
 assets/vignesh-cutout-src.png
+
+assets/personas/*-src.jpg
+assets/personas/_*.jpg
+assets/personas/candidates.html
