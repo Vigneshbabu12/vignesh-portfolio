@@ -766,3 +766,14 @@ body[data-chapter="night"] .pcard-media::before,body[data-chapter="night"] .pcar
 body[data-chapter="night"] .pcard,body[data-chapter="night"] .pcard-body{background:rgba(255,255,255,.04)}
 /* project card CTAs read as actions: bold */
 .panel-links a,.panel-links .panel-cs{font-weight:700}
+
+/* ═══ hero ink is pinned ═══
+   The hero only ever sits in the morning chapter, yet its text colour came
+   from the chapter tokens via a .9s colour transition. On iPhone a fast flick
+   back from the night section could leave that transition parked on the
+   night value — near-white text on a pale sky, the fold apparently empty.
+   Fixed colours sidestep the transition entirely. */
+.hero-name{color:#121412}
+.hero-hi,.hero-sub{color:#3b423c}
+.hero-foot,.prev-label{color:#6a746c}
+.hero-name,.hero-hi,.hero-sub,.hero-foot,.prev-label{transition:none}
