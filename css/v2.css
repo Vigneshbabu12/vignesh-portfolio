@@ -703,3 +703,62 @@ body.lb-open .cursor,body.lb-open .cursor-dot{opacity:0!important}
 .cs-persona .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:50%}
 .cs-persona .avatar.has-photo{background:#e9e6f6;color:transparent}
 .cs-persona .avatar.has-photo{width:64px;height:64px}
+
+/* ═══ PROJECT CARDS — aurora media panes ═══
+   The blurred-photo look: very large, very soft colour fields that
+   melt into each other (no hard lobes), a diagonal light sheen, visible grain.
+   Each project carries its own palette. Everything that moves is a transform,
+   so the sticky card stack never re-rasterises a filtered layer. */
+.pcard-media{--m1:#9ad66b;--m2:#cfeeb8;--m3:#7fd1e8;--m4:#e8f7ff;--m5:#ffffff;--mbase:#dff0e6;--mdark:0;
+  background:
+    linear-gradient(118deg,var(--m1) 0%,var(--m2) 38%,var(--m3) 72%,var(--m4) 100%);
+  overflow:hidden;isolation:isolate}
+.pcard-media::before,.pcard-media::after{content:'';position:absolute;inset:-30%;z-index:-1;pointer-events:none;
+  transform:translateZ(0);backface-visibility:hidden}
+.pcard-media::before{
+  background:
+    radial-gradient(70% 62% at 16% 22%,var(--m1) 0%,color-mix(in srgb,var(--m1) 70%,transparent) 28%,color-mix(in srgb,var(--m1) 25%,transparent) 58%,transparent 82%),
+    radial-gradient(64% 70% at 84% 26%,var(--m3) 0%,color-mix(in srgb,var(--m3) 70%,transparent) 28%,color-mix(in srgb,var(--m3) 25%,transparent) 58%,transparent 82%),
+    radial-gradient(76% 64% at 72% 86%,var(--m2) 0%,color-mix(in srgb,var(--m2) 65%,transparent) 30%,color-mix(in srgb,var(--m2) 20%,transparent) 60%,transparent 84%),
+    radial-gradient(60% 56% at 18% 86%,var(--m4) 0%,color-mix(in srgb,var(--m4) 60%,transparent) 32%,transparent 80%);
+  animation:meshDriftA 9s ease-in-out infinite alternate}
+.pcard-media::after{opacity:.9;
+  background:
+    /* the light: a wide diagonal sheen plus a soft bloom, like sun through frosted glass */
+    linear-gradient(32deg,transparent 30%,color-mix(in srgb,var(--m5) 55%,transparent) 48%,color-mix(in srgb,var(--m5) 80%,transparent) 52%,color-mix(in srgb,var(--m5) 55%,transparent) 56%,transparent 74%),
+    radial-gradient(48% 44% at 56% 44%,color-mix(in srgb,var(--m5) 70%,transparent) 0%,color-mix(in srgb,var(--m5) 30%,transparent) 40%,transparent 76%),
+    radial-gradient(58% 54% at 30% 60%,var(--m3) 0%,color-mix(in srgb,var(--m3) 40%,transparent) 40%,transparent 80%),
+    radial-gradient(56% 50% at 80% 64%,var(--m1) 0%,color-mix(in srgb,var(--m1) 40%,transparent) 40%,transparent 80%);
+  animation:meshDriftB 12s ease-in-out infinite alternate}
+@keyframes meshDriftA{
+  0%  {transform:translate3d(-9%,-6%,0) rotate(-5deg) scale(1)}
+  50% {transform:translate3d(4%,7%,0) rotate(3deg) scale(1.14)}
+  100%{transform:translate3d(10%,-4%,0) rotate(9deg) scale(1.04)}}
+@keyframes meshDriftB{
+  0%  {transform:translate3d(8%,6%,0) rotate(6deg) scale(1.08)}
+  50% {transform:translate3d(-5%,-7%,0) rotate(-4deg) scale(1)}
+  100%{transform:translate3d(-10%,5%,0) rotate(-11deg) scale(1.16)}}
+.pcard-media .shot-frame,.pcard-media .proto{position:relative;z-index:1}
+.pcard-media > .mesh-grain{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.2;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+.pcard-media .shot-frame{background:#fff;border-color:rgba(255,255,255,.95);
+  box-shadow:0 34px 80px -30px rgba(20,24,70,.55),0 0 0 6px rgba(255,255,255,.28)}
+.pcard-media--proto .proto img{filter:drop-shadow(0 30px 44px rgba(20,24,70,.38))}
+
+/* per-project palettes (aurora) */
+#w1 .pcard-media{--m1:#8fd45f;--m2:#d4f2bd;--m3:#7ccfe9;--m4:#e9f8ff;--m5:#ffffff}            /* Kanakku — natural green·blue with light */
+#w2 .pcard-media{--m1:#ffd0ea;--m2:#9cc2ff;--m3:#6fd8ff;--m4:#ead9ff;--m5:#ffffff}            /* Ring Sizer — pearl pink·blue aurora */
+#w3 .pcard-media{--m1:#7c5cff;--m2:#5db5ff;--m3:#c7b4ff;--m4:#e6ecff;--m5:#ffffff}            /* Radius — violet·blue aurora */
+#w4 .pcard-media{--m1:#2a0738;--m2:#6e1680;--m3:#d8289c;--m4:#8f2bb8;--m5:#ff9ad8;--mdark:1}  /* Subscription — deep grainy purple·magenta */
+#w5 .pcard-media{--m1:#ffb98f;--m2:#ffe3cf;--m3:#9fe0c0;--m4:#fff4e6;--m5:#ffffff}            /* Bug Tracker — warm peach·mint */
+#w4 .pcard-media > .mesh-grain{opacity:.3}
+#w4 .pcard-media .shot-frame{box-shadow:0 34px 80px -30px rgba(0,0,0,.7),0 0 0 6px rgba(255,255,255,.14)}
+
+
+body[data-chapter="night"] .pcard-media::before,body[data-chapter="night"] .pcard-media::after{opacity:.78}
+@media(prefers-reduced-motion:reduce){.pcard-media::before,.pcard-media::after{animation:none}}
+/* copy half of the project cards on plain white, so the mesh pane is the only colour */
+.pcard,.pcard-body{background:#fff}
+body[data-chapter="night"] .pcard,body[data-chapter="night"] .pcard-body{background:rgba(255,255,255,.04)}
+/* project card CTAs read as actions: bold */
+.panel-links a,.panel-links .panel-cs{font-weight:700}
