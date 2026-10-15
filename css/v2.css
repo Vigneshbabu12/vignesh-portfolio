@@ -743,7 +743,11 @@ body.lb-open .cursor,body.lb-open .cursor-dot{opacity:0!important}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
 .pcard-media .shot-frame{background:#fff;border-color:rgba(255,255,255,.95);
   box-shadow:0 34px 80px -30px rgba(20,24,70,.55),0 0 0 6px rgba(255,255,255,.28)}
-.pcard-media--proto .proto img{filter:drop-shadow(0 30px 44px rgba(20,24,70,.38))}
+/* shadow on the wrapper, not the <img>: WebKit ignores object-fit on an image
+   that carries a filter, which stretched the phone on iOS. The wrapper has no
+   background, so drop-shadow still follows the phone's silhouette. */
+.pcard-media--proto .proto{filter:drop-shadow(0 30px 44px rgba(20,24,70,.38))}
+.pcard-media--proto .proto img{filter:none;align-self:center;flex:0 0 auto}
 
 /* per-project palettes (aurora) */
 #w1 .pcard-media{--m1:#8fd45f;--m2:#d4f2bd;--m3:#7ccfe9;--m4:#e9f8ff;--m5:#ffffff}            /* Kanakku — natural green·blue with light */
