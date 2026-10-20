@@ -888,3 +888,9 @@ body.cards-solid .panel-links a.store-cta{background:#121412;color:#fff}
   body.cards-solid #w2 .pcard-media{--pad:22px}
   body.cards-solid .panel-links{padding-top:16px}
 }
+
+/* live prototype embeds: Figma's document can grow a vertical scrollbar at
+   the iframe's right edge, which showed inside the phone as a grey strip.
+   Give the iframe 40px more than the screen so that edge is always clipped
+   by the bezel window, whatever the zoom. */
+.proto-screen iframe{width:calc(var(--proto-zoom,1.52) * 100% + 40px);scrollbar-width:none}

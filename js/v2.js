@@ -14,6 +14,10 @@
    ═══════════════════════════════════════════════════════════ */
 (() => {
   'use strict';
+  // prototype iframes: no scrollbars inside the phone screen
+  const quietFrames = root => root.querySelectorAll('.proto-screen iframe:not([scrolling])').forEach(f => { f.setAttribute('scrolling', 'no'); f.style.overflow = 'hidden'; });
+  new MutationObserver(() => quietFrames(document)).observe(document.body, { childList: true, subtree: true });
+  quietFrames(document);
   // ?cards=solid — local variant of the project cards: white rounded card,
   // solid brand-colour media panel with the shot cropped into it, cursor label.
   if (new URLSearchParams(location.search).get('cards') !== 'aurora') {
