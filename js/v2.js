@@ -14,6 +14,36 @@
    ═══════════════════════════════════════════════════════════ */
 (() => {
   'use strict';
+  // ?cards=solid — local variant of the project cards: white rounded card,
+  // solid brand-colour media panel with the shot cropped into it, cursor label.
+  if (new URLSearchParams(location.search).get('cards') !== 'aurora') {
+    document.body.classList.add('cards-solid');
+    document.querySelectorAll('.panel').forEach(p => {
+      const m = p.querySelector('.pcard-media'), cs = p.querySelector('.panel-cs');
+      if (!m) return;
+      m.setAttribute('data-cursor', 'Click to view');
+      if (cs) { m.style.cursor = 'pointer'; m.addEventListener('click', () => cs.click()); }
+    });
+  }
+  // ?hero=window — local variant of the top fold: badge pill, two-line claim,
+  // product window peeking from the fold (Meetmind-style), same cloud sky.
+  if (new URLSearchParams(location.search).get('hero') === 'window') {
+    document.body.classList.add('hw-on');
+    const inner = document.querySelector('.hero-inner'), name = document.querySelector('.hero-name'), btn = document.querySelector('.hero .btn');
+    if (inner && name && btn) {
+      const badge = document.createElement('p'); badge.className = 'hero-badge';
+      badge.innerHTML = '<b>18K+</b> followers <i>·</i> <span>on LinkedIn</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>';
+      name.before(badge);
+      const claim = document.createElement('h2'); claim.className = 'hero-claim';
+      claim.innerHTML = 'I turn complex problems into<br><span>elegant digital experiences.</span>';
+      const roles = document.querySelector('.hero-roles'); (roles || name).after(claim);
+      const win = document.createElement('div'); win.className = 'hero-window'; win.setAttribute('aria-hidden', 'true');
+      // asset prefix from an image already on the page (root serves assets/, the v2 workbench ../assets/)
+      const anyImg = document.querySelector('img[src*="assets/"]'), prefix = anyImg ? anyImg.getAttribute('src').split('assets/')[0] : '';
+      win.innerHTML = '<div class="hw-bar"><i></i><i></i><i></i><span></span></div><img src="' + prefix + 'assets/kanakku-dashboard.png?v=2" alt="">';
+      btn.after(win);
+    }
+  }
   const scene = document.getElementById('scene');
   const canvas = document.getElementById('skyGL');
   if (!scene || !canvas) return;
@@ -268,8 +298,10 @@
     tl.fromTo(card, { y: '45vh', opacity: 0, scale: .96 }, { y: 0, opacity: 1, scale: 1, ease: 'power2.out' }, 0);
   } else if (T !== 'paper') {
     gsap.set(card, { transformOrigin: '50% 50%' });
-    tl.fromTo(card, { x: () => Math.min(innerWidth * .55, 680), y: 70, rotate: 3.2, opacity: .15 },
-                    { x: 0, y: 0, rotate: 0, opacity: 1, ease: 'power2.out' }, 0);
+    // no `y` on the card itself: the DWELL pin below also writes the card's y,
+    // and two writers left a 70px residue that pushed the card into the stats
+    tl.fromTo(card, { x: () => Math.min(innerWidth * .55, 680), rotate: 3.2, opacity: .15 },
+                    { x: 0, rotate: 0, opacity: 1, ease: 'power2.out' }, 0);
   }
   if (T !== 'paper') tl.fromTo(img, { y: 40, scale: .9, transformOrigin: '50% 100%' }, { y: 0, scale: 1, ease: 'power2.out' }, .1)
     .fromTo(streaks, { opacity: 0 }, { opacity: 1, ease: 'power1.out', duration: .35 }, 0)

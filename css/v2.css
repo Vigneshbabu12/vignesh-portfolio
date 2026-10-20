@@ -777,3 +777,111 @@ body[data-chapter="night"] .pcard,body[data-chapter="night"] .pcard-body{backgro
 .hero-hi,.hero-sub{color:#3b423c}
 .hero-foot,.prev-label{color:#6a746c}
 .hero-name,.hero-hi,.hero-sub,.hero-foot,.prev-label{transition:none}
+
+/* ═══ ?hero=window — local top-fold variant ═══
+   Centred stack: badge pill → name → roles → two-line claim (second line in
+   quiet grey) → pill CTA → a product window that peeks up from the fold and
+   gets cut by it, like a browser rising into view. Sky and clouds unchanged. */
+body.hw-on .hero{justify-content:flex-start;padding-top:clamp(72px,9.5vh,104px);overflow:hidden}
+body.hw-on .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:1100px;width:100%}
+body.hw-on .hero-hi,body.hw-on .hero-sub,body.hw-on .prev,body.hw-on .hero-foot{display:none}
+body.hw-on .hero-badge{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;padding:9px 14px 9px 16px;border-radius:999px;
+  font:500 13px/1 var(--f);letter-spacing:.01em;color:var(--ink-2);
+  background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 10px 30px -18px rgba(30,40,90,.35)}
+body.hw-on .hero-badge b{font-weight:600;color:#121412}
+body.hw-on .hero-badge i{font-style:normal;color:var(--faint)}
+body.hw-on .hero-badge svg{width:20px;height:20px;margin-left:2px;border-radius:5px;padding:3px;background:#0a66c2;fill:#fff}
+body.hw-on .hero-name{font-size:clamp(52px,8.6vw,112px);line-height:.92;margin:0}
+body.hw-on .hero-roles{margin-top:12px;font-size:clamp(13px,1.1vw,15px)}
+body.hw-on .hero-claim{margin:clamp(14px,2.4vh,24px) 0 0;font-family:var(--f);font-weight:400;letter-spacing:-.025em;line-height:1.08;
+  font-size:clamp(26px,3.6vw,48px);color:#121412;max-width:26ch}
+body.hw-on .hero-claim span{color:#8a9190}
+body.hw-on .hero .btn{margin-top:clamp(18px,2.8vh,28px)}
+body.hw-on .hero-window{position:relative;margin-top:clamp(24px,4.2vh,44px);width:min(860px,90vw);
+  background:#fff;border:1px solid rgba(255,255,255,.95);border-bottom:0;border-radius:18px 18px 0 0;
+  box-shadow:0 -2px 0 rgba(255,255,255,.6) inset,0 40px 90px -40px rgba(20,30,90,.45),0 0 0 8px rgba(255,255,255,.28);
+  overflow:hidden}
+body.hw-on .hero-window .hw-bar{display:flex;align-items:center;gap:7px;padding:12px 14px;background:#f6f7f9;border-bottom:1px solid #e9ebef}
+body.hw-on .hero-window .hw-bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}
+body.hw-on .hero-window .hw-bar i:nth-child(2){background:#febc2e}
+body.hw-on .hero-window .hw-bar i:nth-child(3){background:#28c840}
+body.hw-on .hero-window .hw-bar span{flex:1;height:10px;margin:0 28% 0 12px;border-radius:999px;background:#e9ebef}
+body.hw-on .hero-window img{display:block;width:100%;height:auto}
+/* the window keeps a little of its head above the fold on short screens */
+@media(max-height:760px){body.hw-on .hero-name{font-size:clamp(48px,8vw,100px)}body.hw-on .hero-claim{font-size:clamp(24px,3.6vw,44px)}}
+@media(max-width:819px){
+  body.hw-on .hero{padding-top:92px}
+  body.hw-on .hero-claim{font-size:clamp(24px,7vw,32px);max-width:22ch}
+  body.hw-on .hero-badge{font-size:12px}
+  body.hw-on .hero-window{width:94vw;margin-top:28px}
+}
+
+/* ═══ project cards — solid panel (default; ?cards=aurora for the old mesh) ═══
+   Box and colour from the reference: a white card with a big radius and a
+   soft drop shadow, the media half an inset panel in the project's own solid
+   brand colour with the product shot centred inside it on equal radii. Copy
+   keeps our content, re-spaced: title → lead → meta pills → problem/solution/
+   impact → note → link pills pinned to the bottom. */
+body.cards-solid .pcard{background:#fff;border:0;border-radius:28px;padding:20px;gap:0;
+  box-shadow:5px 15px 25px rgba(0,0,0,.05),0 0 0 1px rgba(20,30,60,.04)}
+body.cards-solid .pcard-body{padding:clamp(22px,2.4vw,40px) clamp(20px,2.2vw,36px) clamp(18px,2vw,30px);gap:0;justify-content:flex-start}
+body.cards-solid .pcard-media{--solid:#2a62dc;--pad:clamp(22px,2.6vw,42px);border:0;padding:var(--pad);border-radius:20px;background:var(--solid);
+  position:relative;overflow:hidden;min-height:0;display:flex;align-items:center;justify-content:center}
+body.cards-solid .pcard-media::before,body.cards-solid .pcard-media::after{content:none;animation:none}
+body.cards-solid .pcard-media > .mesh-grain{display:none}
+body.cards-solid #w1 .pcard-media{--solid:#2a62dc}
+body.cards-solid #w2 .pcard-media{--solid:#4a58d6;--pad:clamp(30px,3.6vw,58px)}
+body.cards-solid #w3 .pcard-media{--solid:#6a4ad0}
+body.cards-solid #w4 .pcard-media{--solid:#b24a95}
+body.cards-solid #w5 .pcard-media{--solid:#d5602a;--pad:clamp(26px,3vw,48px)}
+/* the shot: centred, whole, equal radius on every corner */
+body.cards-solid .pcard-media .shot-frame{position:relative;width:100%;max-width:100%;max-height:100%;flex:0 1 auto;display:block;
+  border:0;border-radius:16px;overflow:hidden;background:#fff;
+  box-shadow:0 30px 70px -24px rgba(0,0,0,.45),0 0 0 6px rgba(255,255,255,.14)}
+body.cards-solid .pcard-media .shot-frame img{display:block;width:100%;height:auto;max-height:100%;object-fit:contain}
+body.cards-solid #w2 .pcard-media .shot-frame{width:min(100%,calc(100cqh - 2*var(--pad)));height:auto;aspect-ratio:1}
+body.cards-solid #w2 .pcard-media{container-type:size}
+body.cards-solid #w2 .pcard-media .shot-frame img{height:100%;width:100%;object-fit:cover}
+body.cards-solid .pcard-media--proto{padding:var(--pad)}
+body.cards-solid .pcard-media--proto .proto{position:relative;inset:auto;transform:none;height:100%;width:auto;max-height:100%;filter:none;
+  display:flex;align-items:center;justify-content:center}
+body.cards-solid .pcard-media--proto .proto img{height:100%;max-height:100%;width:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.45))}
+body.cards-solid .proto-hint{display:none}
+/* typography: one clear hierarchy, even rhythm, lighter weights */
+body.cards-solid .panel-n,body.cards-solid .panel-live{font-size:11px}
+body.cards-solid .panel-title{margin-top:16px;font-weight:500;font-size:min(clamp(30px,3vw,44px),6.4vh);letter-spacing:-.03em;line-height:1.05;color:#121412}
+body.cards-solid .panel-title em{color:var(--solid-ink,#2a62dc);font-weight:400}
+body.cards-solid #w1 .panel-title em{--solid-ink:#2a62dc} body.cards-solid #w2 .panel-title em{--solid-ink:#4a58d6}
+body.cards-solid #w3 .panel-title em{--solid-ink:#6a4ad0} body.cards-solid #w4 .panel-title em{--solid-ink:#b24a95} body.cards-solid #w5 .panel-title em{--solid-ink:#d5602a}
+body.cards-solid .panel-lead{margin-top:12px;font-size:min(clamp(15px,1.2vw,17px),2.3vh);line-height:1.5;color:#3b423c;max-width:42ch;font-weight:400}
+body.cards-solid .panel-meta{margin-top:16px;gap:8px}
+body.cards-solid .panel-meta div{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:#f1f2f4;font-size:12.5px;color:#3b423c}
+body.cards-solid .panel-meta dt{margin:0;color:#8a9190;font-size:10px;letter-spacing:.12em}
+body.cards-solid .panel-meta dd{font-size:12.5px;color:#121412;font-weight:500}
+body.cards-solid .panel-pss{margin-top:18px;padding-top:14px;border-top:1px solid #ecedef;gap:8px}
+body.cards-solid .panel-pss p{font-size:14px;line-height:1.55;color:#3b423c}
+body.cards-solid .panel-pss span{color:var(--solid-ink,#2a62dc);font-size:10px}
+body.cards-solid #w1 .panel-pss span{--solid-ink:#2a62dc} body.cards-solid #w2 .panel-pss span{--solid-ink:#4a58d6}
+body.cards-solid #w3 .panel-pss span{--solid-ink:#6a4ad0} body.cards-solid #w4 .panel-pss span{--solid-ink:#b24a95} body.cards-solid #w5 .panel-pss span{--solid-ink:#d5602a}
+body.cards-solid .panel-note{margin-top:12px;padding:12px 14px;border-radius:12px;background:#f7f7f8;font-size:13px;line-height:1.55;color:#5a635c}
+body.cards-solid .pcard .counters{margin-top:14px}
+body.cards-solid .panel-links{margin-top:auto;padding-top:20px;gap:8px}
+body.cards-solid .panel-links a,body.cards-solid .panel-links .panel-cs{padding:9px 14px;border-radius:999px;background:#f1f2f4;color:#121412;font-size:12px;font-weight:600;letter-spacing:.04em;text-decoration:none;border:0}
+body.cards-solid .panel-links a:hover,body.cards-solid .panel-links .panel-cs:hover{background:#121412;color:#fff}
+body.cards-solid .panel-links .panel-cs{background:#121412;color:#fff}
+body.cards-solid .panel-links .panel-cs:hover{background:var(--solid-ink,#2a62dc)}
+body.cards-solid .panel-links a.store-cta{background:#121412;color:#fff}
+@media(min-width:1000px){
+  body.cards-solid .pcard{grid-template-columns:1fr 1.05fr}
+  body.cards-solid .pcard-media{border-left:0;border-right:0}
+  /* the stack peeks 14px of each card above the next; keep that strip all white */
+  body.cards-solid .works{--stack-step:14px}
+}
+@media(max-width:999px){
+  body.cards-solid .pcard{padding:14px;border-radius:22px}
+  body.cards-solid .pcard-body{padding:20px 14px 18px}
+  body.cards-solid .pcard-media{height:320px;border-radius:16px;--pad:18px}
+  body.cards-solid #w2 .pcard-media{--pad:22px}
+  body.cards-solid .panel-links{padding-top:16px}
+}
