@@ -844,9 +844,12 @@ body.cards-solid #w2 .pcard-media .shot-frame{width:min(100%,calc(100cqh - 2*var
 body.cards-solid #w2 .pcard-media{container-type:size}
 body.cards-solid #w2 .pcard-media .shot-frame img{height:100%;width:100%;object-fit:cover}
 body.cards-solid .pcard-media--proto{padding:var(--pad)}
-body.cards-solid .pcard-media--proto .proto{position:relative;inset:auto;transform:none;height:100%;width:auto;max-height:100%;filter:none;
-  display:flex;align-items:center;justify-content:center}
-body.cards-solid .pcard-media--proto .proto img{height:100%;max-height:100%;width:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.45))}
+/* shadow on the wrapper, never on the <img>: WebKit paints a filtered image
+   as an opaque rectangle and ignores its fit, which squared the phone's
+   corners on iPhone */
+body.cards-solid .pcard-media--proto .proto{position:relative;inset:auto;transform:none;height:100%;width:auto;max-height:100%;
+  display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 30px 50px rgba(0,0,0,.45))}
+body.cards-solid .pcard-media--proto .proto img{height:100%;max-height:100%;width:auto;filter:none;background:transparent;border-radius:0}
 body.cards-solid .proto-hint{display:none}
 /* typography: one clear hierarchy, even rhythm, lighter weights */
 body.cards-solid .panel-n,body.cards-solid .panel-live{font-size:11px}
